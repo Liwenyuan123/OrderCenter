@@ -7,7 +7,15 @@ namespace OrderCenterStandard.ViewModels
 {
     public class OrderView
     {
-        public O_OrderMain OrderMain { get; set; }
+        public string MainID { get; set; }
+       // public string OrderNum { get; set; }
+        public string UsePersonName { get; set; }
+        public string Phone { get; set; }
+        //public string ReceivePerson { get; set; }
+       // public Nullable<int> State { get; set; }
+        public string Remark { get; set; }
+        //public Nullable<int> OrderState { get; set; }
+        //public DateTime AddDate { get; set; }
         public List<O_OrderDetail> OrderDetail { get; set; }
     }
 }

@@ -56,6 +56,7 @@ namespace OrderCenterStandard.Services
                     //添加明细信息
                     foreach(O_OrderDetail d in orderDetails)
                     {
+                        d.UID = Guid.NewGuid();
                         d.MainId = orderMain.UID.ToString();
                         d.State = 1;
                         db.O_OrderDetail.Add(d);
