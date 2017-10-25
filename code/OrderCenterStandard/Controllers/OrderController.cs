@@ -17,7 +17,8 @@ namespace OrderCenterStandard.Controllers
         //api/Order/id
         public IHttpActionResult Get(string id)
         {
-           //this is a text
+            //this is a text
+            Guid.Parse(id);
             return Ok();
         }
       
