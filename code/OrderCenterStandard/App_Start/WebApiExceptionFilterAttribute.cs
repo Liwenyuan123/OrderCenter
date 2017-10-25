@@ -39,7 +39,7 @@ namespace OrderCenterStandard.App_Start
             Log.WriteLog(logMsg);
             //调用日志类的写日志的方法，将错误堆栈跟踪信息传入  
             //Log.WriteLog(ex.StackTrace);
-            base.OnException(actionExecutedContext);
+            //base.OnException(actionExecutedContext);
         }
     }
 }

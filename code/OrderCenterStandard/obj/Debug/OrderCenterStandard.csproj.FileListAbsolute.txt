@@ -174,3 +174,4 @@ F:\2222\ordercenter\code\OrderCenterStandard\bin\zh-Hans\System.Web.WebPages.Raz
 F:\2222\ordercenter\code\OrderCenterStandard\obj\Debug\OrderCenterStandard.csprojResolveAssemblyReference.cache
 F:\2222\ordercenter\code\OrderCenterStandard\obj\Debug\OrderCenterStandard.dll
 F:\2222\ordercenter\code\OrderCenterStandard\obj\Debug\OrderCenterStandard.pdb
+F:\2222\ordercenter\code\OrderCenterStandard\bin\SF_Frame_Valudation.pdb

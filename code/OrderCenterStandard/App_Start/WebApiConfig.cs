@@ -21,7 +21,7 @@ namespace OrderCenterStandard
                 defaults: new { id = RouteParameter.Optional }
             );
             //配置全局异常捕获
-            config.Filters.Add(new WebApiExceptionFilterAttribute());
+            //config.Filters.Add(new WebApiExceptionFilterAttribute());
         }
     }
 }

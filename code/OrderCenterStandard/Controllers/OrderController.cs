@@ -8,36 +8,19 @@ using OrderCenterStandard.Services;
 using Newtonsoft.Json;
 using OrderCenterStandard.ViewModels;
 using Newtonsoft.Json.Linq;
+using SF_Frame_Valudation;
 
 namespace OrderCenterStandard.Controllers
 {
     public class OrderController : ApiController
     {
-        //api/Order
-        public IHttpActionResult Get()
+        //api/Order/id
+        public IHttpActionResult Get(string id)
         {
-            string jsonArrayText1 = "[{'a':'a1','b':'b1'},{'a':'a2','b':'b2'}]";
-            
-            JArray ja = (JArray)JsonConvert.DeserializeObject(jsonArrayText1);
-            string ja1a = ja[1]["a"].ToString();
-            List<Demo> list = new List<Demo>();
-            for(int i = 0; i < ja.Count; i++)
-            {
-                Demo demo = new Demo();
-                demo.id =( i + 1);
-                demo.value = ja[i].ToString();
-                list.Add(demo);
-            }
-            //或者
-            JObject o = (JObject)ja[1];
-            string oa = o["a"].ToString();
+           
             return Ok();
         }
-        public class Demo
-        {
-            public int id { get; set; }
-            public string value { get; set; }
-        }
+      
 
 
         /// <summary>
@@ -48,6 +31,7 @@ namespace OrderCenterStandard.Controllers
         //api/Order
         public IHttpActionResult Post([FromBody]dynamic query)
         {
+            CheckDataNullValudation.CheckNullGet(query,"请输入参数");
             string str = Convert.ToString(query);
             OrderView orderViews = JsonConvert.DeserializeObject<OrderView>(str);
             List<O_OrderDetail> orderDetails = new List<O_OrderDetail>();
