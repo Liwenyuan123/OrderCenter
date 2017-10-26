@@ -1,0 +1,4 @@
+F:\2222\ordercenter\code\OrderCenter.Data.DTO\bin\Debug\OrderCenter.Data.DTO.dll
+F:\2222\ordercenter\code\OrderCenter.Data.DTO\bin\Debug\OrderCenter.Data.DTO.pdb
+F:\2222\ordercenter\code\OrderCenter.Data.DTO\obj\Debug\OrderCenter.Data.DTO.dll
+F:\2222\ordercenter\code\OrderCenter.Data.DTO\obj\Debug\OrderCenter.Data.DTO.pdb

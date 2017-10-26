@@ -86,6 +86,7 @@ E:\OrderCenter\OrderCenterStandard\OrderCenterStandard\bin\zh-Hans\System.Web.We
 E:\OrderCenter\OrderCenterStandard\OrderCenterStandard\obj\Debug\OrderCenterStandard.dll
 E:\OrderCenter\OrderCenterStandard\OrderCenterStandard\obj\Debug\OrderCenterStandard.pdb
 E:\OrderCenter\OrderCenterStandard\OrderCenterStandard\obj\Debug\OrderCenterStandard.csprojResolveAssemblyReference.cache
+F:\2222\ordercenter\code\OrderCenterStandard\obj\Debug\OrderCenterStandard.csprojResolveAssemblyReference.cache
 F:\2222\ordercenter\code\OrderCenterStandard\bin\ApplicationInsights.config
 F:\2222\ordercenter\code\OrderCenterStandard\bin\roslyn\csc.exe
 F:\2222\ordercenter\code\OrderCenterStandard\bin\roslyn\csc.exe.config
@@ -129,6 +130,8 @@ F:\2222\ordercenter\code\OrderCenterStandard\bin\Microsoft.ApplicationInsights.d
 F:\2222\ordercenter\code\OrderCenterStandard\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 F:\2222\ordercenter\code\OrderCenterStandard\bin\Microsoft.Web.Infrastructure.dll
 F:\2222\ordercenter\code\OrderCenterStandard\bin\Newtonsoft.Json.dll
+F:\2222\ordercenter\code\OrderCenterStandard\bin\OrderCenter.Data.DTO.dll
+F:\2222\ordercenter\code\OrderCenterStandard\bin\OrderCenter.Data.Service.dll
 F:\2222\ordercenter\code\OrderCenterStandard\bin\System.Net.Http.Formatting.dll
 F:\2222\ordercenter\code\OrderCenterStandard\bin\System.Web.Helpers.dll
 F:\2222\ordercenter\code\OrderCenterStandard\bin\System.Web.Http.dll
@@ -140,6 +143,9 @@ F:\2222\ordercenter\code\OrderCenterStandard\bin\System.Web.WebPages.Deployment.
 F:\2222\ordercenter\code\OrderCenterStandard\bin\System.Web.WebPages.dll
 F:\2222\ordercenter\code\OrderCenterStandard\bin\System.Web.WebPages.Razor.dll
 F:\2222\ordercenter\code\OrderCenterStandard\bin\WebGrease.dll
+F:\2222\ordercenter\code\OrderCenterStandard\bin\OrderCenter.Data.DTO.pdb
+F:\2222\ordercenter\code\OrderCenterStandard\bin\OrderCenter.Data.Service.pdb
+F:\2222\ordercenter\code\OrderCenterStandard\bin\OrderCenter.Data.Service.dll.config
 F:\2222\ordercenter\code\OrderCenterStandard\bin\EntityFramework.xml
 F:\2222\ordercenter\code\OrderCenterStandard\bin\EntityFramework.SqlServer.xml
 F:\2222\ordercenter\code\OrderCenterStandard\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
@@ -171,7 +177,5 @@ F:\2222\ordercenter\code\OrderCenterStandard\bin\zh-Hans\System.Web.Razor.resour
 F:\2222\ordercenter\code\OrderCenterStandard\bin\zh-Hans\System.Web.WebPages.resources.dll
 F:\2222\ordercenter\code\OrderCenterStandard\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 F:\2222\ordercenter\code\OrderCenterStandard\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
-F:\2222\ordercenter\code\OrderCenterStandard\obj\Debug\OrderCenterStandard.csprojResolveAssemblyReference.cache
 F:\2222\ordercenter\code\OrderCenterStandard\obj\Debug\OrderCenterStandard.dll
 F:\2222\ordercenter\code\OrderCenterStandard\obj\Debug\OrderCenterStandard.pdb
-F:\2222\ordercenter\code\OrderCenterStandard\bin\SF_Frame_Valudation.pdb

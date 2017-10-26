@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OrderCenterDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="O_CommodityInfo">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ComName" Type="varchar" MaxLength="100" />
+          <Property Name="Standard" Type="varchar" MaxLength="100" />
+          <Property Name="Unit" Type="varchar" MaxLength="20" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PriceSum" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="State" Type="int" />
+          <Property Name="TypeID" Type="int" />
+          <Property Name="Remark" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="O_FoodType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PID" Type="int" />
+          <Property Name="TypeName" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="int" />
+          <Property Name="Remark" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="O_OrderDetail">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MainId" Type="varchar" MaxLength="50" />
+          <Property Name="CommodityId" Type="varchar" MaxLength="50" />
+          <Property Name="ComName" Type="varchar" MaxLength="50" />
+          <Property Name="Standard" Type="varchar" MaxLength="50" />
+          <Property Name="Unit" Type="varchar" MaxLength="50" />
+          <Property Name="PricePlan" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="NumPlan" Type="float" />
+          <Property Name="PriceSumPlan" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="NumReal" Type="float" />
+          <Property Name="PriceReal" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PriceSumReal" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="OrderState" Type="int" />
+          <Property Name="State" Type="int" />
+        </EntityType>
+        <EntityType Name="O_OrderMain">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderNum" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UsePersonName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReceivePerson" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="OrderState" Type="int" Nullable="false" />
+          <Property Name="Remark" Type="varchar" MaxLength="50" />
+          <Property Name="AddDate" Type="datetime" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="O_Unit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="O_UserInfo">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" />
+          <Property Name="PassWord" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="11" />
+          <Property Name="State" Type="int" />
+          <Property Name="Company" Type="varchar" MaxLength="50" />
+          <Property Name="Remark" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityContainer Name="OrderCenterDBStoreContainer">
+          <EntitySet Name="O_CommodityInfo" EntityType="Self.O_CommodityInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="O_FoodType" EntityType="Self.O_FoodType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="O_OrderDetail" EntityType="Self.O_OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="O_OrderMain" EntityType="Self.O_OrderMain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="O_Unit" EntityType="Self.O_Unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="O_UserInfo" EntityType="Self.O_UserInfo" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OrderCenterDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="O_CommodityInfo">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Guid" Nullable="false" />
+          <Property Name="ComName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Standard" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PriceSum" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="State" Type="Int32" />
+          <Property Name="TypeID" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="O_FoodType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PID" Type="Int32" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="O_OrderDetail">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Guid" Nullable="false" />
+          <Property Name="MainId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CommodityId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ComName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Standard" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PricePlan" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="NumPlan" Type="Double" />
+          <Property Name="PriceSumPlan" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="NumReal" Type="Double" />
+          <Property Name="PriceReal" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PriceSumReal" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="OrderState" Type="Int32" />
+          <Property Name="State" Type="Int32" />
+        </EntityType>
+        <EntityType Name="O_OrderMain">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Guid" Nullable="false" />
+          <Property Name="OrderNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UsePersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReceivePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="OrderState" Type="Int32" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="O_Unit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="O_UserInfo">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="Int32" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="OrderCentDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="O_CommodityInfo" EntityType="Self.O_CommodityInfo" />
+          <EntitySet Name="O_FoodType" EntityType="Self.O_FoodType" />
+          <EntitySet Name="O_OrderDetail" EntityType="Self.O_OrderDetail" />
+          <EntitySet Name="O_OrderMain" EntityType="Self.O_OrderMain" />
+          <EntitySet Name="O_Unit" EntityType="Self.O_Unit" />
+          <EntitySet Name="O_UserInfo" EntityType="Self.O_UserInfo" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OrderCenterDBStoreContainer" CdmEntityContainer="OrderCentDB">
+          <EntitySetMapping Name="O_CommodityInfo">
+            <EntityTypeMapping TypeName="OrderCenterDB.O_CommodityInfo">
+              <MappingFragment StoreEntitySet="O_CommodityInfo">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="ComName" ColumnName="ComName" />
+                <ScalarProperty Name="Standard" ColumnName="Standard" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PriceSum" ColumnName="PriceSum" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="O_FoodType">
+            <EntityTypeMapping TypeName="OrderCenterDB.O_FoodType">
+              <MappingFragment StoreEntitySet="O_FoodType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="O_OrderDetail">
+            <EntityTypeMapping TypeName="OrderCenterDB.O_OrderDetail">
+              <MappingFragment StoreEntitySet="O_OrderDetail">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="MainId" ColumnName="MainId" />
+                <ScalarProperty Name="CommodityId" ColumnName="CommodityId" />
+                <ScalarProperty Name="ComName" ColumnName="ComName" />
+                <ScalarProperty Name="Standard" ColumnName="Standard" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="PricePlan" ColumnName="PricePlan" />
+                <ScalarProperty Name="NumPlan" ColumnName="NumPlan" />
+                <ScalarProperty Name="PriceSumPlan" ColumnName="PriceSumPlan" />
+                <ScalarProperty Name="NumReal" ColumnName="NumReal" />
+                <ScalarProperty Name="PriceReal" ColumnName="PriceReal" />
+                <ScalarProperty Name="PriceSumReal" ColumnName="PriceSumReal" />
+                <ScalarProperty Name="OrderState" ColumnName="OrderState" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="O_OrderMain">
+            <EntityTypeMapping TypeName="OrderCenterDB.O_OrderMain">
+              <MappingFragment StoreEntitySet="O_OrderMain">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="OrderNum" ColumnName="OrderNum" />
+                <ScalarProperty Name="UsePersonName" ColumnName="UsePersonName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="ReceivePerson" ColumnName="ReceivePerson" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="OrderState" ColumnName="OrderState" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="O_Unit">
+            <EntityTypeMapping TypeName="OrderCenterDB.O_Unit">
+              <MappingFragment StoreEntitySet="O_Unit">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="O_UserInfo">
+            <EntityTypeMapping TypeName="OrderCenterDB.O_UserInfo">
+              <MappingFragment StoreEntitySet="O_UserInfo">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

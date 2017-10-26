@@ -1,11 +1,12 @@
-﻿using OrderCenterStandard.Services;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using OrderCenterStandard.ViewModels;
+using OrderCenter.Data.Service;
+using OrderCenter.Data.DTO;
 using OrderCenterStandard.App_Start;
 
 namespace OrderCenterStandard.Controllers
@@ -23,7 +24,7 @@ namespace OrderCenterStandard.Controllers
         public IHttpActionResult Post([FromBody]dynamic query,[FromUri] string flagType)
         {
             string str =Convert.ToString( query);
-            CommodityView model = Newtonsoft.Json.JsonConvert.DeserializeObject<CommodityView>(str);
+            CommodityViewModel model = Newtonsoft.Json.JsonConvert.DeserializeObject<CommodityViewModel>(str);
             var comService = new CommodityService();
             switch (flagType)
             {

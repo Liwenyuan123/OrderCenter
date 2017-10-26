@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OrderCenterDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="O_CommodityInfo">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="Guid" Nullable="false" />
+    <Property Name="ComName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Standard" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PriceSum" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="State" Type="Int32" />
+    <Property Name="TypeID" Type="Int32" />
+    <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="O_FoodType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PID" Type="Int32" />
+    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="Int32" />
+    <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="O_OrderDetail">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="Guid" Nullable="false" />
+    <Property Name="MainId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CommodityId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ComName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Standard" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PricePlan" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="NumPlan" Type="Double" />
+    <Property Name="PriceSumPlan" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="NumReal" Type="Double" />
+    <Property Name="PriceReal" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PriceSumReal" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="OrderState" Type="Int32" />
+    <Property Name="State" Type="Int32" />
+  </EntityType>
+  <EntityType Name="O_OrderMain">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="Guid" Nullable="false" />
+    <Property Name="OrderNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UsePersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ReceivePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <Property Name="OrderState" Type="Int32" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="O_Unit">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="O_UserInfo">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="Int32" />
+    <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="OrderCentDB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="O_CommodityInfo" EntityType="Self.O_CommodityInfo" />
+    <EntitySet Name="O_FoodType" EntityType="Self.O_FoodType" />
+    <EntitySet Name="O_OrderDetail" EntityType="Self.O_OrderDetail" />
+    <EntitySet Name="O_OrderMain" EntityType="Self.O_OrderMain" />
+    <EntitySet Name="O_Unit" EntityType="Self.O_Unit" />
+    <EntitySet Name="O_UserInfo" EntityType="Self.O_UserInfo" />
+  </EntityContainer>
+</Schema>

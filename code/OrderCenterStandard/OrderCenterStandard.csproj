@@ -198,64 +198,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="OrderCenterDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OrderCenterDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OrderCenterDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OrderCenterDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OrderCenterDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OrderCenterDB.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="O_CommodityInfo.cs">
-      <DependentUpon>OrderCenterDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="O_FoodType.cs">
-      <DependentUpon>OrderCenterDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="O_OrderDetail.cs">
-      <DependentUpon>OrderCenterDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="O_OrderMain.cs">
-      <DependentUpon>OrderCenterDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="O_Unit.cs">
-      <DependentUpon>OrderCenterDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="O_UserInfo.cs">
-      <DependentUpon>OrderCenterDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CommodityService.cs" />
-    <Compile Include="Services\FoodTypeService.cs" />
-    <Compile Include="Services\OrderService.cs" />
-    <Compile Include="ViewModels\CommodityView.cs" />
-    <Compile Include="ViewModels\OkNew.cs" />
-    <Compile Include="ViewModels\OrderView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="default.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="OrderCenterDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>OrderCenterDB.Context.cs</LastGenOutput>
-      <DependentUpon>OrderCenterDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="OrderCenterDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OrderCenterDB.edmx</DependentUpon>
-      <LastGenOutput>OrderCenterDB.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -280,13 +232,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="OrderCenterDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OrderCenterDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="OrderCenterDB.edmx.diagram">
-      <DependentUpon>OrderCenterDB.edmx</DependentUpon>
-    </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -329,6 +275,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OrderCenter.Data.DTO\OrderCenter.Data.DTO.csproj">
+      <Project>{1b365f57-93e3-482a-8bd8-162535d4d5cb}</Project>
+      <Name>OrderCenter.Data.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OrderCenter.Data.Service\OrderCenter.Data.Service.csproj">
+      <Project>{a7b0e5dc-6587-40d8-999d-12e5713aa75e}</Project>
+      <Name>OrderCenter.Data.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

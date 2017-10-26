@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OrderCenterDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="O_CommodityInfo">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ComName" Type="varchar" MaxLength="100" />
+    <Property Name="Standard" Type="varchar" MaxLength="100" />
+    <Property Name="Unit" Type="varchar" MaxLength="20" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PriceSum" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="State" Type="int" />
+    <Property Name="TypeID" Type="int" />
+    <Property Name="Remark" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="O_FoodType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PID" Type="int" />
+    <Property Name="TypeName" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="int" />
+    <Property Name="Remark" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="O_OrderDetail">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MainId" Type="varchar" MaxLength="50" />
+    <Property Name="CommodityId" Type="varchar" MaxLength="50" />
+    <Property Name="ComName" Type="varchar" MaxLength="50" />
+    <Property Name="Standard" Type="varchar" MaxLength="50" />
+    <Property Name="Unit" Type="varchar" MaxLength="50" />
+    <Property Name="PricePlan" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NumPlan" Type="float" />
+    <Property Name="PriceSumPlan" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NumReal" Type="float" />
+    <Property Name="PriceReal" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PriceSumReal" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="OrderState" Type="int" />
+    <Property Name="State" Type="int" />
+  </EntityType>
+  <EntityType Name="O_OrderMain">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OrderNum" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UsePersonName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ReceivePerson" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="int" Nullable="false" />
+    <Property Name="OrderState" Type="int" Nullable="false" />
+    <Property Name="Remark" Type="varchar" MaxLength="50" />
+    <Property Name="AddDate" Type="datetime" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="O_Unit">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="O_UserInfo">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="20" />
+    <Property Name="PassWord" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="11" />
+    <Property Name="State" Type="int" />
+    <Property Name="Company" Type="varchar" MaxLength="50" />
+    <Property Name="Remark" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityContainer Name="OrderCenterDBStoreContainer">
+    <EntitySet Name="O_CommodityInfo" EntityType="Self.O_CommodityInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="O_FoodType" EntityType="Self.O_FoodType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="O_OrderDetail" EntityType="Self.O_OrderDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="O_OrderMain" EntityType="Self.O_OrderMain" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="O_Unit" EntityType="Self.O_Unit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="O_UserInfo" EntityType="Self.O_UserInfo" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

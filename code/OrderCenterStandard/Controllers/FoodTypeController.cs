@@ -4,8 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using OrderCenterStandard.Services;
 using Newtonsoft.Json;
+using OrderCenter.Data.Service;
 
 namespace OrderCenterStandard.Controllers
 {
@@ -19,7 +19,7 @@ namespace OrderCenterStandard.Controllers
             return Ok(lists);
         }
         // Post: api/FoodType
-        public IHttpActionResult Post([FromBody]dynamic query)
+        public IHttpActionResult Post([FromBody]dynamic query,[FromUri] string flag)
         {
             List<O_FoodType> models = new List<O_FoodType>();
             foreach (var item in query)
@@ -29,7 +29,7 @@ namespace OrderCenterStandard.Controllers
                 models.Add(m);
             }
             var service = new FoodTypeService();
-            bool result = service.AddFoodType(models);
+            bool result = service.Add(models);
             return Ok();
         }
 
