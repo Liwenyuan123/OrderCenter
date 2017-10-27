@@ -23,5 +23,7 @@ namespace OrderCenter.Data.Service
         public Nullable<int> State { get; set; }
         public Nullable<int> TypeID { get; set; }
         public string Remark { get; set; }
+    
+        public virtual O_FoodType O_FoodType { get; set; }
     }
 }

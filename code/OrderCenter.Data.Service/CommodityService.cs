@@ -4,25 +4,52 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OrderCenter.Data.DTO;
+using System.Linq.Expressions;
 
 namespace OrderCenter.Data.Service
 {
    public class CommodityService
     {
         /// <summary>
-        ///
+        /// 分页查询
         /// </summary>
+        /// <param name="ComName">商品名称</param>
+        /// <param name="TypeID">商品类别</param>
+        /// <param name="PageIndex">第几页</param>
+        /// <param name="PageCount">总页数</param>
+        /// <param name="PageTotal">总条数</param>
+        /// <param name="PageSize">每页条数</param>
         /// <returns></returns>
-        public IQueryable<CommodityViewModel> GetAll()
+        public List<CommodityViewModel> Select(string ComName,int  TypeID, int PageIndex, int PageCount, out int PageTotal,int PageSize)
         {
-
+            PageTotal = 0;
+            Expression<Func<O_CommodityInfo, bool>> where = t => true;
+            if (!string.IsNullOrEmpty(ComName))
+            {
+               where = PredicateExtensions.And<O_CommodityInfo>(where,t=> t.ComName.Contains(ComName));
+            }
+            if(TypeID != 0 )
+            {
+                where = PredicateExtensions.And<O_CommodityInfo>(where, t => t.TypeID == TypeID);
+            }
+            
             using (var db = new OrderCentDB())
             {
-                var lists = from c in db.O_CommodityInfo join b in db.O_FoodType on c.TypeID equals b.ID where c.State == 1 select new CommodityViewModel() { UID = c.UID, ComName = c.ComName, Standard = c.Standard, Unit = c.Unit, Price = c.Price??0, PriceSum = c.PriceSum??0, TypeID = b.ID};
-                return lists;
+                var models = db.O_CommodityInfo.Where(where).Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(c=>new CommodityViewModel() { UID =c.UID,ComName =c.ComName,Standard = c.Standard,Unit = c.Unit,Price = c.Price??0,PriceSum = c.PriceSum??0,TypeName = c.O_FoodType.TypeName}).ToList();
+                PageTotal = db.O_CommodityInfo.Where(where).Count();
+
+                return models;
             }
 
 
+        }
+       public CommodityViewModel GetByID(string uid)
+        {
+            using (var db = new OrderCentDB())
+            {
+                var model = db.O_CommodityInfo.Where(c=>c.UID.ToString() == uid).Select(c => new CommodityViewModel() { UID = c.UID, ComName = c.ComName, Standard = c.Standard, Unit = c.Unit, Price = c.Price ?? 0, PriceSum = c.PriceSum ?? 0, TypeName = c.O_FoodType.TypeName }).ToList();
+                return model[0];
+            }
         }
 
         public bool Add(CommodityViewModel model)
@@ -62,6 +89,19 @@ namespace OrderCenter.Data.Service
                 return db.SaveChanges() > 0;
             }
         }
+        //删除
+        public bool Delete(string uid)
+        {
+            using (var db = new OrderCentDB())
+            {
+                O_CommodityInfo oldModel = db.O_CommodityInfo.FirstOrDefault(c => c.UID.ToString() == uid);
+                if (oldModel == null) return false;
+                oldModel.State = 0;
+                return db.SaveChanges() > 0;
+            }
+
+        }
     }
+   
 
 }

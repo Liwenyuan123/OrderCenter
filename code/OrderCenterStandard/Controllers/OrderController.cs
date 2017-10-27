@@ -15,10 +15,8 @@ namespace OrderCenterStandard.Controllers
     public class OrderController : ApiController
     {
         //api/Order/id
-        public IHttpActionResult Get(string id)
+        public IHttpActionResult Get(string StartDate,string EndDate,string OrderState,int PageIndex)
         {
-            //this is a text
-            Guid.Parse(id);
             OrderService service = new OrderService();
            
             return Ok();

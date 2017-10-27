@@ -14,10 +14,19 @@ namespace OrderCenter.Data.Service
     
     public partial class O_FoodType
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public O_FoodType()
+        {
+            this.O_CommodityInfo = new HashSet<O_CommodityInfo>();
+        }
+    
         public int ID { get; set; }
         public Nullable<int> PID { get; set; }
         public string TypeName { get; set; }
         public Nullable<int> State { get; set; }
         public string Remark { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<O_CommodityInfo> O_CommodityInfo { get; set; }
     }
 }

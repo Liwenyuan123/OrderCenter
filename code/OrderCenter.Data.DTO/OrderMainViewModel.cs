@@ -21,7 +21,9 @@ namespace OrderCenter.Data.DTO
         public string Address { get; set; }
         //订单状态
         public  OrderState OrState { get; set; }
-        //public DateTime AddDate { get; set; }
+        //下单时间
+        public string AddDate { get; set; }
+        
         public List<OrderDetailViewModel> OrderDetail { get; set; }
     }
 }

@@ -82,6 +82,18 @@
           <Property Name="Company" Type="varchar" MaxLength="50" />
           <Property Name="Remark" Type="varchar" MaxLength="200" />
         </EntityType>
+        <Association Name="com_type_typeID">
+          <End Role="O_FoodType" Type="Self.O_FoodType" Multiplicity="0..1" />
+          <End Role="O_CommodityInfo" Type="Self.O_CommodityInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="O_FoodType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="O_CommodityInfo">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="OrderCenterDBStoreContainer">
           <EntitySet Name="O_CommodityInfo" EntityType="Self.O_CommodityInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="O_FoodType" EntityType="Self.O_FoodType" Schema="dbo" store:Type="Tables" />
@@ -89,6 +101,10 @@
           <EntitySet Name="O_OrderMain" EntityType="Self.O_OrderMain" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="O_Unit" EntityType="Self.O_Unit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="O_UserInfo" EntityType="Self.O_UserInfo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="com_type_typeID" Association="Self.com_type_typeID">
+            <End Role="O_FoodType" EntitySet="O_FoodType" />
+            <End Role="O_CommodityInfo" EntitySet="O_CommodityInfo" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -107,6 +123,7 @@
           <Property Name="State" Type="Int32" />
           <Property Name="TypeID" Type="Int32" />
           <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="O_FoodType" Relationship="OrderCenterDB.com_type_typeID" FromRole="O_CommodityInfo" ToRole="O_FoodType" />
         </EntityType>
         <EntityType Name="O_FoodType">
           <Key>
@@ -117,6 +134,7 @@
           <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="State" Type="Int32" />
           <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="O_CommodityInfo" Relationship="OrderCenterDB.com_type_typeID" FromRole="O_FoodType" ToRole="O_CommodityInfo" />
         </EntityType>
         <EntityType Name="O_OrderDetail">
           <Key>
@@ -178,7 +196,23 @@
           <EntitySet Name="O_OrderMain" EntityType="Self.O_OrderMain" />
           <EntitySet Name="O_Unit" EntityType="Self.O_Unit" />
           <EntitySet Name="O_UserInfo" EntityType="Self.O_UserInfo" />
+          <AssociationSet Name="com_type_typeID" Association="OrderCenterDB.com_type_typeID">
+            <End Role="O_FoodType" EntitySet="O_FoodType" />
+            <End Role="O_CommodityInfo" EntitySet="O_CommodityInfo" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="com_type_typeID">
+          <End Type="OrderCenterDB.O_FoodType" Role="O_FoodType" Multiplicity="0..1" />
+          <End Type="OrderCenterDB.O_CommodityInfo" Role="O_CommodityInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="O_FoodType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="O_CommodityInfo">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

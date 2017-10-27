@@ -14,10 +14,10 @@ namespace OrderCenterStandard.Controllers
     public class CommodityController : ApiController
     {
         //Get api/Commodity
-        public IHttpActionResult Get()
+        public IHttpActionResult Get(string ComName,int TypeID,int PageIndex,int PageCount,int PageTotal)
         {
             var comService = new CommodityService();
-            var lists = comService.GetAll(); 
+            var lists = comService.Select(ComName, TypeID, PageIndex, PageCount,out PageTotal,10); 
             return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(lists));
         }
         //Post api/Commodity
@@ -36,6 +36,24 @@ namespace OrderCenterStandard.Controllers
             }
             return Ok("操作成功！");
             
+        }
+        public IHttpActionResult Post(string UID,string flagType)
+        {
+            var reMsg="";
+            CommodityService comService = new CommodityService();
+            switch (flagType)
+            {
+                case "1":
+                  if (comService.Delete(UID))
+                        reMsg="操作成功！";
+                    else reMsg ="操作失败";break;
+                case "2":
+                    reMsg = Newtonsoft.Json.JsonConvert.SerializeObject( comService.GetByID(UID)).ToString();
+                    break;
+                default:
+                    break;
+            }
+            return Ok(reMsg);
         }
     }
 }
