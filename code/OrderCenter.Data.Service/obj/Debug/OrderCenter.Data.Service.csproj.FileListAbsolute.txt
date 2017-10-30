@@ -1,4 +1,3 @@
-F:\2222\ordercenter\code\OrderCenter.Data.Service\obj\Debug\OrderCenter.Data.Service.csprojResolveAssemblyReference.cache
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\OrderCenter.Data.Service.dll.config
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\OrderCenter.Data.Service.dll
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\OrderCenter.Data.Service.pdb
@@ -8,8 +7,10 @@ F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\OrderCenter.Data.DTO
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\OrderCenter.Data.Model.dll
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\OrderCenter.Data.DTO.pdb
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\OrderCenter.Data.Model.pdb
+F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\OrderCenter.Data.Model.dll.config
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\EntityFramework.xml
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\EntityFramework.SqlServer.xml
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\2222\ordercenter\code\OrderCenter.Data.Service\obj\Debug\OrderCenter.Data.Service.csprojResolveAssemblyReference.cache
 F:\2222\ordercenter\code\OrderCenter.Data.Service\obj\Debug\OrderCenter.Data.Service.dll
 F:\2222\ordercenter\code\OrderCenter.Data.Service\obj\Debug\OrderCenter.Data.Service.pdb

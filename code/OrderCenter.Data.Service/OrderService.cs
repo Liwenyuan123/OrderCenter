@@ -26,7 +26,7 @@ namespace OrderCenter.Data.Service
             var lists = GetPageDate<O_OrderMain, DateTime>(c => new { c.OrderNum, c.OrderState, c.Phone, c.ReceivePerson, c.UID, c.UsePersonName, c.Remark }, c => c.State == 1, c => c.AddDate, 2, 4, out totalNum);
             return lists;
         }
-        public List<OrderMainViewModel> Select(string startDate,string endDate,int orderState, int pageIndex,int pageCount,int pageSize,out int pageTotal)
+        public List<OrderMainViewModel> Select(string startDate,string endDate,int orderState, int pageIndex,out int pageCount,out int pageTotal)
         {
             Expression<Func<O_OrderMain, bool>> where = t => true;
             if (!string.IsNullOrEmpty(startDate))
@@ -43,27 +43,16 @@ namespace OrderCenter.Data.Service
             }
             using (var db = new OrderCentDB())
             {
-                var list = db.O_OrderMain.Where(where).Skip((pageIndex - 1) * pageSize).Take(pageSize).Select(t=>new OrderMainViewModel{ MainID =t.UID.ToString(), OrderNum =t.OrderNum, UsePersonName =t.UsePersonName, Phone =t.Phone, Address =t.Address, OrState = GetEnumDes(t.OrderState)}).ToList();
+                //总条数
                 pageTotal = db.O_OrderMain.Where(where).Count();
+                //总页数
+                pageCount =Convert.ToInt32( Math.Ceiling((decimal) pageTotal / PageSize.Count));
+                var list = db.O_OrderMain.Where(where).Skip((pageIndex - 1) * PageSize.Count).Take(PageSize.Count).Select(t=>new OrderMainViewModel{ MainID =t.UID.ToString(), OrderNum =t.OrderNum, UsePersonName =t.UsePersonName, Phone =t.Phone, Address =t.Address, OrState =Enum.GetName(typeof( OrderState),Convert.ToInt32( t.OrderState) )}).ToList();
+                return list;
+               
             } 
         }
-        /// <summary>
-        /// 获取描述信息
-        /// </summary>
-        /// <param name="en">枚举</param>
-        /// <returns></returns>
-        public static string GetEnumDes(this Enum en)
-        {
-            Type type = en.GetType();
-            MemberInfo[] memInfo = type.GetMember(en.ToString());
-            if (memInfo != null && memInfo.Length > 0)
-            {
-                object[] attrs = memInfo[0].GetCustomAttributes(typeof(System.ComponentModel.DescriptionAttribute), false);
-                if (attrs != null && attrs.Length > 0)
-                    return ((DescriptionAttribute)attrs[0]).Description;
-            }
-            return en.ToString();
-        }
+        
         /// <summary>
         /// 根据MainID 获取明细信息
         /// </summary>
@@ -77,6 +66,7 @@ namespace OrderCenter.Data.Service
                 return models.ToList();
             }
         }
+
         public bool AddOrder(O_OrderMain orderMain, List<O_OrderDetail> orderDetails)
         {
             using (var db = new OrderCentDB())
@@ -103,6 +93,21 @@ namespace OrderCenter.Data.Service
             }
             return true;
         }
+
+        public bool UpdateOrderState(string mainId,int orderState)
+        {
+            bool re = false;
+            
+            using (var db = new OrderCentDB())
+            {
+                var model = db.O_OrderMain.FirstOrDefault(c => c.UID.ToString() == mainId);
+                model.OrderState = orderState;
+                if (db.SaveChanges() > 0) { re = true; }
+
+                return re;
+            }
+        }
+        
         public string CreatOrderNum()
         {
             string str = DateTime.Now.ToString("yyyy-MM-dd");

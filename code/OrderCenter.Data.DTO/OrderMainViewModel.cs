@@ -9,6 +9,12 @@ namespace OrderCenter.Data.DTO
 {
     public class OrderMainViewModel
     {
+        ////当前页数索引
+        //public int PageIndex { get; set; }
+        ////总页数
+        //public int PageCount { get; set; }
+        ////总条数
+        //public int PageToTal { get; set; }
         //主单ID,主键
         public string MainID { get; set; }
         //订单编号
@@ -20,7 +26,7 @@ namespace OrderCenter.Data.DTO
         
         public string Address { get; set; }
         //订单状态
-        public  OrderState OrState { get; set; }
+        public  string OrState { get; set; }
         //下单时间
         public string AddDate { get; set; }
         

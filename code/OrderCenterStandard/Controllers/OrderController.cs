@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Newtonsoft.Json;
 using OrderCenter.Data.DTO;
+using OrderCenter.Data.DTO.ViewEnum;
 using OrderCenter.Data.Service;
 using Newtonsoft.Json.Linq;
 using SF_Frame_Valudation;
@@ -14,12 +15,42 @@ namespace OrderCenterStandard.Controllers
 {
     public class OrderController : ApiController
     {
-        //api/Order/id
+        OrderService service = new OrderService();
+        //api/Order/
         public IHttpActionResult Get(string StartDate,string EndDate,string OrderState,int PageIndex)
         {
-            OrderService service = new OrderService();
-           
-            return Ok();
+            
+            int pageCount = 0;
+            int pageTotal = 0;
+            var models = service.Select(StartDate, EndDate, int.Parse(OrderState), PageIndex, out pageCount, out pageTotal);
+            string data = "[{\"PageIndex \":\""+PageIndex+"\",\"PageCount\":\""+pageCount+"\",\"PageTotal\":\""+pageTotal+"\",\"Models\"：\""+Newtonsoft.Json.JsonConvert.SerializeObject(models)+"\"}]";
+            return Ok(data);
+        }
+        //api/Order/id
+        public IHttpActionResult Get(string MainId)
+        {
+            var details = service.GetOrderDetail(MainId);
+            return Ok(details);
+        }
+        public IHttpActionResult GetAduit(string MainID,string Flag)
+        {
+            
+            bool re = false;
+            switch (Flag)
+            {
+                case "通过":
+                    re= service.UpdateOrderState(MainID,(int) OrderState.AuditPassed);
+                    break;
+                case "不通过":
+                    re= service.UpdateOrderState(MainID, (int)OrderState.AuditPassed);
+                    break;
+                case "发货":
+                    re=service.UpdateOrderState(MainID, (int)OrderState.IsOver);
+                    break;
+
+            }
+            if (re) { return Ok("操作成功！"); }
+            return Ok("操作失败！");
         }
       
 
@@ -50,7 +81,7 @@ namespace OrderCenterStandard.Controllers
                 d.PricePlan = detail.PricePlan;
                 orderDetails.Add(d);
             }
-            var service = new OrderService();
+            
             service.AddOrder(orderMain, orderDetails);
 
             return Ok();

@@ -1,5 +1,10 @@
+F:\2222\ordercenter\code\OrderCenter.Data.Model\bin\Debug\OrderCenter.Data.Model.dll.config
 F:\2222\ordercenter\code\OrderCenter.Data.Model\bin\Debug\OrderCenter.Data.Model.dll
 F:\2222\ordercenter\code\OrderCenter.Data.Model\bin\Debug\OrderCenter.Data.Model.pdb
+F:\2222\ordercenter\code\OrderCenter.Data.Model\bin\Debug\EntityFramework.dll
+F:\2222\ordercenter\code\OrderCenter.Data.Model\bin\Debug\EntityFramework.SqlServer.dll
+F:\2222\ordercenter\code\OrderCenter.Data.Model\bin\Debug\EntityFramework.xml
+F:\2222\ordercenter\code\OrderCenter.Data.Model\bin\Debug\EntityFramework.SqlServer.xml
+F:\2222\ordercenter\code\OrderCenter.Data.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
 F:\2222\ordercenter\code\OrderCenter.Data.Model\obj\Debug\OrderCenter.Data.Model.dll
 F:\2222\ordercenter\code\OrderCenter.Data.Model\obj\Debug\OrderCenter.Data.Model.pdb
-F:\2222\ordercenter\code\OrderCenter.Data.Model\obj\Debug\OrderCenter.Data.Model.csprojResolveAssemblyReference.cache

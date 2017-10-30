@@ -86,7 +86,6 @@ E:\OrderCenter\OrderCenterStandard\OrderCenterStandard\bin\zh-Hans\System.Web.We
 E:\OrderCenter\OrderCenterStandard\OrderCenterStandard\obj\Debug\OrderCenterStandard.dll
 E:\OrderCenter\OrderCenterStandard\OrderCenterStandard\obj\Debug\OrderCenterStandard.pdb
 E:\OrderCenter\OrderCenterStandard\OrderCenterStandard\obj\Debug\OrderCenterStandard.csprojResolveAssemblyReference.cache
-F:\2222\ordercenter\code\OrderCenterStandard\obj\Debug\OrderCenterStandard.csprojResolveAssemblyReference.cache
 F:\2222\ordercenter\code\OrderCenterStandard\bin\ApplicationInsights.config
 F:\2222\ordercenter\code\OrderCenterStandard\bin\roslyn\csc.exe
 F:\2222\ordercenter\code\OrderCenterStandard\bin\roslyn\csc.exe.config
@@ -177,5 +176,6 @@ F:\2222\ordercenter\code\OrderCenterStandard\bin\zh-Hans\System.Web.Razor.resour
 F:\2222\ordercenter\code\OrderCenterStandard\bin\zh-Hans\System.Web.WebPages.resources.dll
 F:\2222\ordercenter\code\OrderCenterStandard\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 F:\2222\ordercenter\code\OrderCenterStandard\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+F:\2222\ordercenter\code\OrderCenterStandard\obj\Debug\OrderCenterStandard.csprojResolveAssemblyReference.cache
 F:\2222\ordercenter\code\OrderCenterStandard\obj\Debug\OrderCenterStandard.dll
 F:\2222\ordercenter\code\OrderCenterStandard\obj\Debug\OrderCenterStandard.pdb

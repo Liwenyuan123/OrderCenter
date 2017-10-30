@@ -77,6 +77,18 @@
     <Property Name="Company" Type="varchar" MaxLength="50" />
     <Property Name="Remark" Type="varchar" MaxLength="200" />
   </EntityType>
+  <Association Name="com_type_typeID">
+    <End Role="O_FoodType" Type="Self.O_FoodType" Multiplicity="0..1" />
+    <End Role="O_CommodityInfo" Type="Self.O_CommodityInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="O_FoodType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="O_CommodityInfo">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="OrderCenterDBStoreContainer">
     <EntitySet Name="O_CommodityInfo" EntityType="Self.O_CommodityInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="O_FoodType" EntityType="Self.O_FoodType" Schema="dbo" store:Type="Tables" />
@@ -84,5 +96,9 @@
     <EntitySet Name="O_OrderMain" EntityType="Self.O_OrderMain" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="O_Unit" EntityType="Self.O_Unit" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="O_UserInfo" EntityType="Self.O_UserInfo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="com_type_typeID" Association="Self.com_type_typeID">
+      <End Role="O_FoodType" EntitySet="O_FoodType" />
+      <End Role="O_CommodityInfo" EntitySet="O_CommodityInfo" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>
