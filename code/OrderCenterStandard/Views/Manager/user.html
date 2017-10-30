@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset='utf-8' />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>订货系统</title>
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" type="text/css" href="./css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="./css/common.css" />
+		<link rel="stylesheet" type="text/css" href="./css/goods.css" />
+		<script type="text/javascript" src='./js/jquery.min.js'></script>
+		<script type="text/javascript" src='./js/bootstrap.min.js'></script>
+		<script type="text/javascript" src="./js/user.js"></script>
+		<script type="text/javascript" src="./js/password.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+
+			<!-- 左侧导航栏 -->
+			<ul class="nav nav-pills nav-stacked">
+				<li><img src="./image/logo.png" /></li>
+				<li>
+					<a href="home.html">
+						<img class="tabImg" src="./image/home.png" />
+					</a>
+				</li>
+				<li>
+					<a href="goods.html">
+						<img class="tabImg" src="./image/goods.png" />
+					</a>
+				</li>
+				<li>
+					<a href="order.html">
+						<img class="tabImg" src="./image/order.png" />
+					</a>
+				</li>
+				<li class="changeColor">
+					<a href="user.html">
+						<img class="tabImg" src="./image/user.png" />
+						<img class="current" src="./image/current.png" />
+					</a>
+				</li>
+			</ul>
+
+			<!-- 右侧主内容 -->
+			<div class="container">
+				<div class="row commonRow">
+					<div class="col-md-10 title">订货系统</div>
+					<div class="col-md-1 userInfo">
+						<span class="glyphicon glyphicon-user" arial-hidden="true"></span>
+						<span class="userName dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Taylor</span>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+							<li>用户名：Taylor</li>
+							<li><span type="button" class="revise btn btn-default" data-toggle="modal" data-target="#revise">修改密码</span></li>
+						</ul>
+					</div>
+					<div class="col-md-1 userInfo">
+						<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+						<span class="logout">退出</span>
+					</div>
+				</div>
+
+				<!-- 用户 -->
+				<div class="mainContent">
+					<div class="row content_nav">
+						<span class="title">首页</span>&nbsp;&nbsp;&gt;
+						<span style="font-size:19px;">&nbsp;&nbsp;用户</span>
+					</div>
+					<div class="content">
+						<div class="row">
+							<form class="form-inline">
+								<div class="form-group">
+									<label for="account">账号：</label>
+									<input type="text" class="form-control" id="account" />
+								</div>&nbsp;&nbsp;
+								<div class="form-group">
+									<label for="status">状态：</label>
+									<select class="form-control" id="status">
+										<option value="0">--请选择--</option>
+										<option value="1">全部</option>
+										<option value="2">启用</option>
+										<option value="3">禁用</option>
+									</select>
+								</div>&nbsp;&nbsp;
+								<button type="button" class="btn btn-default search" onclick="search()">查询</button>
+							</form>
+						</div>
+						<table class="table table-hover">
+							<thead>
+								<th>序号</th>
+								<th>账号</th>
+								<th>姓名</th>
+								<th>联系方式</th>
+								<th>状态</th>
+								<th>操作</th>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>15212135452</td>
+									<td>张浩</td>
+									<td>15212135452</td>
+									<td>启用</td>
+									<td>
+										<span data-toggle="modal" data-target="#edit">修改</span>&nbsp;&nbsp;&nbsp;
+										<span data-toggle="modal" data-target="#delete">删除</span>
+									</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>15822122321</td>
+									<td>章明</td>
+									<td>15822122321</td>
+									<td>禁用</td>
+									<td>
+										<span data-toggle="modal" data-target="#edit">修改</span>&nbsp;&nbsp;&nbsp;
+										<span data-toggle="modal" data-target="#delete">删除</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="row pageInfo">
+							<span>共计：55条</span>
+							<span>第<p class="page">1</p>页 共 6 页</span>
+							<span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+							<input type="hidden" name="page" />
+						</div>
+					</div>
+				</div>
+
+				<!-- 修改-模态框 -->
+				<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="editLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<span type="button" class="close" data-dismiss="modal" aria-label="Close">×</span>
+								<h4 class="modal-title" id="editLabel">修改商品信息</h4>
+								<input type="hidden" name="id" />
+							</div>
+							<div class="modal-body">
+								<table class="table editGoodsItem">
+									<colgroup>
+										<col span="3">
+										<col span="8">
+									</colgroup>
+									<tr>
+										<td>账号：&nbsp;&nbsp;</td>
+										<td><input type="text" name="account" readonly="readonly" /></td>
+									</tr>
+									<tr>
+										<td>姓名：&nbsp;&nbsp;</td>
+										<td><input type="text" name="userName" readonly="readonly" /></td>
+									</tr>
+									<tr>
+										<td>状态：&nbsp;&nbsp;</td>
+										<td>
+											<select class="form-control" name="status">
+												<option value="0">--请选择--</option>
+												<option value="1">启用</option>
+												<option value="2">禁用</option>
+											</select>
+										</td>
+									</tr>
+								</table>
+					      	</div>
+					      	<div class="modal-footer">
+					        	<span type="button" class="btn update">修改</span>
+					      	</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 删除-模态框 -->
+				<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="deleteLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<span type="button" class="close" data-dismiss="modal" aria-label="Close">×</span>
+								<h4 class="modal-title" id="deleteLabel">删除用户信息</h4>
+								<input type="hidden" name="delete_user_id" />
+							</div>
+							<div class="modal-body">
+								确定删除该条信息？！
+					      	</div>
+					      	<div class="modal-footer">
+					        	<span type="button" class="btn delete" onclick="deleteData()">删除</span>
+					      	</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 修改密码-模态框 -->
+				<div class="modal fade" id="revise" tabindex="-1" role="dialog" aria-labelledby="reviseLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="reviseLabel">修改密码</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-inline">
+									<div class="form-group">
+										<label>原始密码：</label>
+										<input type="password" name="oldPassword" class="oldPassword" />
+										<div class="old_msg"></div>
+									</div>
+								</form>
+								<form class="form-inline">
+									<div class="form-group">
+										<label>修改密码：</label>
+										<input type="password" name="newPassword" class="newPassword" />
+										<div class="new_msg"></div>
+									</div>
+								</form>
+								<form class="form-inline">
+									<div class="form-group">
+										<label>重复密码：</label>
+										<input type="password" name="repeat" class="repeat" />
+										<div class="repeat_msg"></div>
+									</div>
+								</form>
+					      	</div>
+					      	<div class="modal-footer">
+					        	<span type="button" class="btn btn-default save_pw">确定</span>
+					        	<span type="button" class="btn btn-default quit" data-dismiss="modal">取消</span>
+					      	</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>

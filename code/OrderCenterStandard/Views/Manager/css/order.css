@@ -1,0 +1,73 @@
+.table th{
+	font-weight: bolder;
+}
+.form-inline{
+	margin: 20px 40px; 
+}
+.form-inline label{
+	font-weight: normal;
+	font-size: 18px;
+}
+.pageInfo{
+	position: relative;
+}
+.pageInfo span{
+	position: absolute;
+}
+.pageInfo :nth-child(1){
+	right: 20%;
+}
+.pageInfo :nth-child(2){
+	right: 10%;
+}
+.page{
+	display: inline-block;
+	border: 1px solid #DCE2E7;
+	padding: 0 4px;
+}
+.glyphicon-triangle-left, .glyphicon-triangle-right{
+	border: 2px solid #F7F7F7;
+	padding: 4px;
+	cursor: pointer;
+	position: absolute;
+}
+.glyphicon-triangle-left{
+	right: 8%;
+}
+.glyphicon-triangle-right{
+	right: 5%;
+}
+.colorRed{
+	color: #FF1A1A;
+}
+.colorOrange{
+	color: #FF7418;
+}
+.colorGreen{
+	background: #437C1C;
+	padding: 3px 14px;
+	color: white;
+	margin-top: 5px;
+}
+.glyphicon-search{
+	color: #D2DCE2;
+	cursor: pointer;
+}
+.chooseItem{
+	font-size: 18px;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+.active{
+	background: #458C16;
+	color: white;
+}
+.fontGreen span{
+	color: #458C16!important;
+}
+.table>tbody>tr>td{
+	vertical-align: middle;
+}
+#examine .modal-body{
+	text-align: center;
+}

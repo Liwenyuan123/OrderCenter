@@ -1,0 +1,158 @@
+/*整个页面*/
+body{
+	background: #F7F7F7;
+}
+.wrapper{
+	height: 100%;
+	background: #F7F7F7;
+}
+
+/*左侧导航*/
+.nav{
+	width: 6%;
+	height: 100%;
+	position: fixed;
+	color: white;
+	background-color: #458C16;
+}
+.nav li{
+	width: 100%;
+	padding: 10px 0;
+	margin: 20px;
+	cursor: pointer;
+}
+.nav-pills>li.active>a, .nav>li>a:hover{
+	background: none!important;
+}
+.changeColor{
+	background: #437C1D;
+}
+.current{
+	color: #F7F7F7;
+	width: 10px;
+	height: 20px;
+	position: absolute;
+	right: 0;
+	top: 25%;
+}
+.tabImg{
+	margin-left: 30%;
+}
+
+/*右侧内容*/
+.container{
+	width: 94%;
+	float: right;
+	background: #F7F7F7!important;
+}
+.commonRow{
+	line-height: 60px;
+	background: white;
+	border-bottom: 2px solid #E5E7E9;
+}
+.title{
+	font-weight: bolder;
+}
+.userInfo{
+	color: #787878;
+}
+.glyphicon-user{
+	color: #F9562D;
+}
+.glyphicon-open{
+	color: #01A6E6;
+}
+.userName, .logout{
+	cursor: pointer;
+}
+.dropdown-menu li{
+	text-align: center;
+	font-size: 18px;
+}
+.content_nav{
+	padding: 20px 15px 10px 15px;
+}
+.content{
+	background: white;
+}
+.table{
+	border: 1px solid #F1F1F1;
+	width: 95%;
+    margin-left: 2.5%;
+    font-size: 18px;
+}
+.table span{
+	font-size: 18px;
+	cursor: pointer;
+}
+.table thead{
+	background: #F7F7F7;
+}
+.table th, .table td{
+	text-align: center;
+	font-weight: normal;
+}
+.table tr{
+	border: none!important;
+}
+.hideBorder{
+	border: none;
+}
+
+/*分页*/
+.pageInfo{
+	background: white;
+	position: relative;
+}
+.pageInfo span{
+	position: absolute;
+}
+.pageInfo :nth-child(1){
+	right: 20%;
+}
+.pageInfo :nth-child(2){
+	right: 10%;
+}
+.page{
+	display: inline-block;
+	border: 1px solid #DCE2E7;
+	padding: 0 4px;
+}
+.glyphicon-triangle-left, .glyphicon-triangle-right{
+	border: 2px solid #F7F7F7;
+	padding: 4px;
+	cursor: pointer;
+	position: absolute;
+}
+.glyphicon-triangle-left{
+	right: 8%;
+}
+.glyphicon-triangle-right{
+	right: 5%;
+}
+
+/*模态框*/
+/*.delete{
+	background: #F9562D;
+	color: white;
+}*/
+.update{
+	background: #458C16;
+	color: white;
+}
+.modal-header, .modal-header span[type=button]{
+	background: #458C16;
+	color: white;
+}
+.save{
+	background: #458C16;
+	color: white;
+}
+.revise{
+	cursor: pointer;
+	background: #F7F7F7;
+	padding: 6px;
+}
+#revise .modal-body label{
+	font-weight: normal;
+}

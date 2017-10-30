@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset='utf-8' />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>订货系统</title>
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" type="text/css" href="./css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="./css/common.css" />
+		<link rel="stylesheet" type="text/css" href="./css/home.css" />
+		<script type="text/javascript" src='./js/jquery.min.js'></script>
+		<script type="text/javascript" src='./js/bootstrap.min.js'></script>
+		<script type="text/javascript" src="./js/home.js"></script>
+		<script type="text/javascript" src="./js/password.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+
+			<!-- 左侧导航栏 -->
+			<ul class="nav nav-pills nav-stacked">
+				<li><img src="./image/logo.png" /></li>
+				<li class="changeColor">
+					<a href="home.html">
+						<img class="tabImg" src="./image/home.png" />
+						<img class="current" src="./image/current.png" />
+					</a>
+				</li>
+				<li>
+					<a href="goods.html">
+						<img class="tabImg" src="./image/goods.png" />
+					</a>
+				</li>
+				<li>
+					<a href="order.html">
+						<img class="tabImg" src="./image/order.png" />
+					</a>
+				</li>
+				<li>
+					<a href="user.html">
+						<img class="tabImg" src="./image/user.png" />
+					</a>
+				</li>
+			</ul>
+
+			<!-- 右侧主内容 -->
+			<div class="container">
+				<div class="row commonRow">
+					<div class="col-md-10 title">订货系统</div>
+					<div class="col-md-1 userInfo">
+						<span class="glyphicon glyphicon-user" arial-hidden="true"></span>
+						<span class="userName dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Taylor</span>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+							<li>用户名：Taylor</li>
+							<li><span type="button" class="revise btn btn-default" data-toggle="modal" data-target="#revise">修改密码</span></li>
+						</ul>
+					</div>
+					<div class="col-md-1 userInfo">
+						<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+						<span class="logout">退出</span>
+					</div>
+				</div>
+
+				<!-- 首页 -->
+				<div class="mainContent">
+					<div class="row content_nav">
+						<span class="title">首页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<span class="loginTime">上次登录时间：<span>2017-10-10 10:00:00</span></span>
+					</div>
+					<div class="content">
+						<div class="row">
+							<div class="col-md-7"><img class="bannerImg" src="./image/banner.jpg" /></div>
+							<div class="panel panel-default col-md-4 serviceInfo">
+						  		<div class="panel-heading">
+						    		<h3 class="panel-title">平台服务信息</h3>
+						  		</div>
+						  		<div class="panel-body row">
+						    		<div class="col-md-8">
+						    			<div>
+						    				<span class="glyphicon glyphicon-user" style="color:#675D92;" arial-hidden="true"></span>&nbsp;&nbsp;&nbsp;专属业务员-王珍
+						    			</div>
+						    			<div>
+						    				<span class="glyphicon glyphicon-phone-alt" style="color:#4E9E1B;" arial-hidden="true"></span>&nbsp;&nbsp;&nbsp;158-0000-000
+						    			</div>
+						    			<div>
+						    				<span class="glyphicon glyphicon-time" style="color:#6AA5DF;" arial-hidden="true"></span>&nbsp;&nbsp;&nbsp;
+						    				<span style="font-weight:bolder;">服务时间</span><br />
+						    				<span>周一至周五 8:30-17:30</span>
+						    			</div>
+						    			<img src="./image/example2.jpg" />
+						    		</div>
+							  		<div class="col-md-3">
+							  			<img src="./image/example1.jpg" style="margin-top:20%;" />
+							  		</div>
+						  		</div>
+							</div>
+						</div>
+						<table class="table table-hover">
+							<thead>
+								<th style="color:#447B1C;font-weight:bolder;">简报</th>
+								<th>订货单</th>
+								<th>订货金额</th>
+								<th>送货单</th>
+								<th>销售金额</th>
+							</thead>
+							<tbody>
+								<tr>
+									<td>今日</td>
+									<td>2笔</td>
+									<td>￥1250.00</td>
+									<td>2笔</td>
+									<td>￥1250.00</td>
+								</tr>
+								<tr>
+									<td>今日</td>
+									<td>2笔</td>
+									<td>￥1250.00</td>
+									<td>2笔</td>
+									<td>￥1250.00</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<!-- 修改密码-模态框 -->
+				<div class="modal fade" id="revise" tabindex="-1" role="dialog" aria-labelledby="reviseLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="reviseLabel">修改密码</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-inline">
+									<div class="form-group">
+										<label>原始密码：</label>
+										<input type="password" name="oldPassword" class="oldPassword" />
+										<div class="old_msg"></div>
+									</div>
+								</form><br />
+								<form class="form-inline">
+									<div class="form-group">
+										<label>修改密码：</label>
+										<input type="password" name="newPassword" class="newPassword" />
+										<div class="new_msg"></div>
+									</div>
+								</form><br />
+								<form class="form-inline">
+									<div class="form-group">
+										<label>重复密码：</label>
+										<input type="password" name="repeat" class="repeat" />
+										<div class="repeat_msg"></div>
+									</div>
+								</form>
+					      	</div>
+					      	<div class="modal-footer">
+					        	<span type="button" class="btn btn-default save_pw">确定</span>
+					        	<span type="button" class="btn btn-default quit" data-dismiss="modal">取消</span>
+					      	</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>

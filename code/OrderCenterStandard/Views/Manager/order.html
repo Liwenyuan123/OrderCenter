@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset='utf-8' />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>订货系统</title>
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" type="text/css" href="./css/datepicker.css" />
+		<link rel="stylesheet" type="text/css" href="./css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="./css/common.css" />
+		<link rel="stylesheet" type="text/css" href="./css/order.css" />
+		<script type="text/javascript" src='./js/jquery.min.js'></script>
+		<script type="text/javascript" src='./js/bootstrap.min.js'></script>
+		<script type="text/javascript" src="./js/datepicker.min.js"></script>
+		<script type="text/javascript" src="./js/datepicker.zh-CN.min.js"></script>
+		<script type="text/javascript" src="./js/order.js"></script>
+		<script type="text/javascript" src="./js/password.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+
+			<!-- 左侧导航栏 -->
+			<ul class="nav nav-pills nav-stacked">
+				<li><img src="./image/logo.png" /></li>
+				<li>
+					<a href="home.html">
+						<img class="tabImg" src="./image/home.png" />
+					</a>
+				</li>
+				<li>
+					<a href="goods.html">
+						<img class="tabImg" src="./image/goods.png" />
+					</a>
+				</li>
+				<li class="changeColor">
+					<a href="order.html">
+						<img class="tabImg" src="./image/order.png" />
+						<img class="current" src="./image/current.png" />
+					</a>
+				</li>
+				<li>
+					<a href="user.html">
+						<img class="tabImg" src="./image/user.png" />
+					</a>
+				</li>
+			</ul>
+
+			<!-- 右侧主内容 -->
+			<div class="container">
+				<div class="row commonRow">
+					<div class="col-md-10 title">订货系统</div>
+					<div class="col-md-1 userInfo">
+						<span class="glyphicon glyphicon-user" arial-hidden="true"></span>
+						<span class="userName dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Taylor</span>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+							<li>用户名：Taylor</li>
+							<li><span type="button" class="revise btn btn-default" data-toggle="modal" data-target="#revise">修改密码</span></li>
+						</ul>
+					</div>
+					<div class="col-md-1 userInfo">
+						<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+						<span class="logout">退出</span>
+					</div>
+				</div>
+
+				<!-- 订单 -->
+				<div class="mainContent">
+					<div class="row content_nav">
+						<span class="title">首页</span>&nbsp;&nbsp;&gt;
+						<span style="font-size:19px;">&nbsp;&nbsp;订货单</span>
+					</div>
+					<div class="content">
+						<div class="row">
+							<form class="form-inline">
+								<div class="form-group">
+									<label for="account">时间：</label>
+									<input type="text" placeholder="请选择起始时间" class="form-control datepicker" data-date-format="yyyy-mm-dd" name="time_up" />&nbsp;&nbsp;至&nbsp;&nbsp;
+									<input type="text" placeholder="请选择结束时间" class="form-control datepicker" data-date-format="yyyy-mm-dd" name="time_down" />
+								</div>
+								<span class="glyphicon glyphicon-search" onclick="search()"></span>
+							</form>
+							<form class="form-inline">
+								<div class="form-group">
+									<label>筛选状态：</label>
+									<span class="chooseItem active">全部</span>
+									<span class="chooseItem">待审核</span>
+									<span class="chooseItem">待发货</span>
+									<span class="chooseItem">已发货</span>
+								</div>
+							</form>
+						</div>
+						<table class="table table-hover">
+							<thead>
+								<th>单号/下单时间</th>
+								<th>姓名</th>
+								<th>联系方式</th>
+								<th>地址</th>
+								<th>订单状态</th>
+								<th>操作</th>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<div>DH-020171017-007701</div>
+										<div>2017-10-17 12:00</div>
+									</td>
+									<td>张浩</td>
+									<td>15212135452</td>
+									<td>天津市和平区岳阳道小学</td>
+									<td class="colorRed status">待审核</td>
+									<td>
+										<div class="fontGreen">
+											<a href="orderDetail.html"><span>订单详情</span></a>&nbsp;&nbsp;&nbsp;
+											<span data-toggle="modal" data-target="#examine">审核</span>
+										</div>
+										<span class="colorGreen">发货</span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div>DH-020171017-007701</div>
+										<div>2017-10-17 12:00</div>
+									</td>
+									<td>章明</td>
+									<td>15822122321</td>
+									<td>天津市和平区岳阳道小学</td>
+									<td class="colorOrange status">待发货</td>
+									<td>
+										<div class="fontGreen">
+											<a href="orderDetail.html"><span>订单详情</span></a>&nbsp;&nbsp;&nbsp;
+											<span data-toggle="modal" data-target="#examine">审核</span>
+										</div>
+										<span class="colorGreen">发货</span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div>DH-020171017-007701</div>
+										<div>2017-10-17 12:00</div>
+									</td>
+									<td>章明</td>
+									<td>15822122321</td>
+									<td>天津市和平区岳阳道小学</td>
+									<td class="colorOrange status">已发货</td>
+									<td>
+										<div class="fontGreen">
+											<a href="orderDetail.html"><span>订单详情</span></a>&nbsp;&nbsp;&nbsp;
+											<span data-toggle="modal" data-target="#examine">审核</span>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="row pageInfo">
+							<span>共计：185条</span>
+							<span>第<p class="page">1</p>页 共 19 页</span>
+							<span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+							<input type="hidden" name="page" />
+						</div>
+					</div>
+				</div>
+
+				<!-- 审核-模态框 -->
+				<div class="modal fade" id="examine" tabindex="-1" role="dialog" aria-labelledby="examineLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<span type="button" class="close" data-dismiss="modal" aria-label="Close">×</span>
+								<h4 class="modal-title" id="examineLabel">审核信息</h4>
+								<input type="hidden" name="id" />
+							</div>
+							<div class="modal-body">
+								<span type="button" class="btn btn-default confirm">通过</span>&nbsp;&nbsp;&nbsp;&nbsp;
+					        	<span type="button" class="btn btn-default refuse">拒绝</span>
+					      	</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 修改密码-模态框 -->
+				<div class="modal fade" id="revise" tabindex="-1" role="dialog" aria-labelledby="reviseLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="reviseLabel">修改密码</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-inline">
+									<div class="form-group">
+										<label>原始密码：</label>
+										<input type="password" name="oldPassword" class="oldPassword" />
+										<div class="old_msg"></div>
+									</div>
+								</form>
+								<form class="form-inline">
+									<div class="form-group">
+										<label>修改密码：</label>
+										<input type="password" name="newPassword" class="newPassword" />
+										<div class="new_msg"></div>
+									</div>
+								</form>
+								<form class="form-inline">
+									<div class="form-group">
+										<label>重复密码：</label>
+										<input type="password" name="repeat" class="repeat" />
+										<div class="repeat_msg"></div>
+									</div>
+								</form>
+					      	</div>
+					      	<div class="modal-footer">
+					        	<span type="button" class="btn btn-default save_pw">确定</span>
+					        	<span type="button" class="btn btn-default quit" data-dismiss="modal">取消</span>
+					      	</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>

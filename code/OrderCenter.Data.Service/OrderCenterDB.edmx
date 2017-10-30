@@ -62,6 +62,7 @@
           <Property Name="Remark" Type="varchar" MaxLength="50" />
           <Property Name="AddDate" Type="datetime" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="O_Unit">
           <Key>
@@ -169,6 +170,7 @@
           <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AddDate" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="O_Unit">
           <Key>
@@ -268,6 +270,7 @@
           <EntitySetMapping Name="O_OrderMain">
             <EntityTypeMapping TypeName="OrderCenterDB.O_OrderMain">
               <MappingFragment StoreEntitySet="O_OrderMain">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="OrderNum" ColumnName="OrderNum" />

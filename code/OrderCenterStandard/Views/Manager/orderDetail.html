@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset='utf-8' />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>订货系统</title>
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" type="text/css" href="./css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="./css/common.css" />
+		<style type="text/css">
+			.table th{
+				font-weight: bolder;
+			}
+			.operation{
+				padding: 20px 3%;
+			}
+			.operation span{
+				padding: 8px 10px;
+				border: 1px solid #E2E2E2;
+				background: #F7F7F7;
+				color: #666;
+				line-height: 1.1;
+				cursor: pointer;
+			}
+			input[name=number]{
+				width: 10%;
+				text-align: center;
+			}
+		</style>
+		<script type="text/javascript" src='./js/jquery.min.js'></script>
+		<script type="text/javascript" src='./js/bootstrap.min.js'></script>
+		<script type="text/javascript" src="./js/orderDetail.js"></script>
+		<script type="text/javascript" src="./js/password.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+
+			<!-- 左侧导航栏 -->
+			<ul class="nav nav-pills nav-stacked">
+				<li><img src="./image/logo.png" /></li>
+				<li>
+					<a href="home.html">
+						<img class="tabImg" src="./image/home.png" />
+					</a>
+				</li>
+				<li>
+					<a href="goods.html">
+						<img class="tabImg" src="./image/goods.png" />
+					</a>
+				</li>
+				<li class="changeColor">
+					<a href="order.html">
+						<img class="tabImg" src="./image/order.png" />
+						<img class="current" src="./image/current.png" />
+					</a>
+				</li>
+				<li>
+					<a href="user.html">
+						<img class="tabImg" src="./image/user.png" />
+					</a>
+				</li>
+			</ul>
+
+			<!-- 右侧主内容 -->
+			<div class="container">
+				<div class="row commonRow">
+					<div class="col-md-10 title">订货系统</div>
+					<div class="col-md-1 userInfo">
+						<span class="glyphicon glyphicon-user" arial-hidden="true"></span>
+						<span class="userName dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Taylor</span>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+							<li>用户名：Taylor</li>
+							<li><span type="button" class="revise btn btn-default" data-toggle="modal" data-target="#revise">修改密码</span></li>
+						</ul>
+					</div>
+					<div class="col-md-1 userInfo">
+						<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+						<span class="logout">退出</span>
+					</div>
+				</div>
+
+				<!-- 用户 -->
+				<div class="mainContent">
+					<input type="hidden" name="orderDetail_id" />
+					<div class="row content_nav">
+						<span class="title">首页</span>&nbsp;&nbsp;&gt;
+						<span style="font-size:19px;">&nbsp;&nbsp;订货单</span>&nbsp;&nbsp;&gt;
+						<span style="font-size:19px;">&nbsp;&nbsp;订单详情</span>
+					</div>
+					<div class="content">
+						<div class="row operation">
+							<span class="glyphicon glyphicon-print" aria-hidden="true" onclick="print()"> 打印</span>
+							<span class="glyphicon glyphicon-edit" aria-hidden="true" onclick="updateData()"> 修改</span>
+							<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" onclick="saveData()"> 保存</span>
+						</div>
+						<table class="table table-hover table-striped">
+							<thead>
+								<th>序号</th>
+								<th>产品名称</th>
+								<th>规格</th>
+								<th>单价/单位</th>
+								<th>数量</th>
+								<th>金额</th>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>利达面粉</td>
+									<td>25kg</td>
+									<td>￥90/袋</td>
+									<td><input type="text" name="number" value="10" class="hideBorder" readonly="readonly" /></td>
+									<td>￥100</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>利达面粉</td>
+									<td>25kg</td>
+									<td>￥90/袋</td>
+									<td><input type="text" name="number" value="10" class="hideBorder" readonly="readonly" /></td>
+									<td>￥100</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="row pageInfo">
+							<span>共计：720条</span>
+							<span>第<p class="page">1</p>页 共 72 页</span>
+							<span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+						</div>
+						<input type="hidden" name="page" />
+					</div>
+				</div>
+
+				<!-- 修改密码-模态框 -->
+				<div class="modal fade" id="revise" tabindex="-1" role="dialog" aria-labelledby="reviseLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="reviseLabel">修改密码</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-inline">
+									<div class="form-group">
+										<label>原始密码：</label>
+										<input type="password" name="oldPassword" class="oldPassword" />
+										<div class="old_msg"></div>
+									</div>
+								</form><br />
+								<form class="form-inline">
+									<div class="form-group">
+										<label>修改密码：</label>
+										<input type="password" name="newPassword" class="newPassword" />
+										<div class="new_msg"></div>
+									</div>
+								</form><br />
+								<form class="form-inline">
+									<div class="form-group">
+										<label>重复密码：</label>
+										<input type="password" name="repeat" class="repeat" />
+										<div class="repeat_msg"></div>
+									</div>
+								</form><br />
+					      	</div>
+					      	<div class="modal-footer">
+					        	<span type="button" class="btn btn-default save_pw">确定</span>
+					        	<span type="button" class="btn btn-default quit" data-dismiss="modal">取消</span>
+					      	</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>

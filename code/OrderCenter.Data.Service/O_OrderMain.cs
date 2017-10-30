@@ -24,5 +24,6 @@ namespace OrderCenter.Data.Service
         public string Remark { get; set; }
         public System.DateTime AddDate { get; set; }
         public string Address { get; set; }
+        public string UserID { get; set; }
     }
 }

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using SF_Frame_Valudation;
+using OrderCenter.Data.DTO;
+using OrderCenter.Data.Service;
 
 namespace OrderCenterStandard.Controllers
 {
@@ -21,11 +24,23 @@ namespace OrderCenterStandard.Controllers
             throw new Exception();
         }
 
-        // POST: api/User
+        // POST: api/UserLogin
         public IHttpActionResult Post([FromBody]dynamic query)
         {
-            //Register Opration Guide to UserPhoneRegistion
-            throw new Exception();
+            //check args
+            SF_Frame_Valudation.CheckDataNullValudation.CheckNullGet(query, "数据为空");
+            string loginId = query.loginId;
+            int random = query.random;
+            long timeStamp = query.timeStamp;
+            string secretString =query.secretString;
+
+            //login and get user info
+            OrderService serivice = new OrderService();
+            
+                //support loginid,phone,email login!
+                LoginDataModel loginDataModel = fact.CreateChannel().UserLogin(loginId, random, timeStamp, secretString);
+                return OK(loginDataModel);
+            
         }
 
         // PUT: api/User

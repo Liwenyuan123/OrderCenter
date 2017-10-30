@@ -1,0 +1,21 @@
+.loginTime, .loginTime span{
+	color: #999A99;
+	font-size: 15px;
+}
+.bannerImg{
+	margin: 20px 40px;
+}
+.serviceInfo{
+	padding: 0;
+	float: right;
+	margin-top: 20px;
+	margin-right: 50px;
+	line-height: 2;
+}
+.serviceInfo .panel-title{
+	color: #447B1C;
+	font-weight: bolder;
+}
+.serviceInfo .panel-body{
+	font-size: 19px!important;
+}

@@ -50,6 +50,7 @@
     <EntitySetMapping Name="O_OrderMain">
       <EntityTypeMapping TypeName="OrderCenterDB.O_OrderMain">
         <MappingFragment StoreEntitySet="O_OrderMain">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="UID" ColumnName="UID" />
           <ScalarProperty Name="OrderNum" ColumnName="OrderNum" />

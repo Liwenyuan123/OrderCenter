@@ -192,6 +192,7 @@
     <Compile Include="Controllers\CommodityController.cs" />
     <Compile Include="Controllers\FoodTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderAppController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -239,6 +240,41 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Views\Manager\css\bootstrap-theme.min.css" />
+    <Content Include="Views\Manager\css\bootstrap.min.css" />
+    <Content Include="Views\Manager\css\common.css" />
+    <Content Include="Views\Manager\css\datepicker.css" />
+    <Content Include="Views\Manager\css\goods.css" />
+    <Content Include="Views\Manager\css\home.css" />
+    <Content Include="Views\Manager\css\order.css" />
+    <Content Include="Views\Manager\css\reset.css" />
+    <Content Include="Views\Manager\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Views\Manager\goods.html" />
+    <Content Include="Views\Manager\home.html" />
+    <Content Include="Views\Manager\image\background.jpg" />
+    <Content Include="Views\Manager\image\banner.jpg" />
+    <Content Include="Views\Manager\image\current.png" />
+    <Content Include="Views\Manager\image\example1.jpg" />
+    <Content Include="Views\Manager\image\example2.jpg" />
+    <Content Include="Views\Manager\image\goods.png" />
+    <Content Include="Views\Manager\image\home.png" />
+    <Content Include="Views\Manager\image\logo.png" />
+    <Content Include="Views\Manager\image\order.png" />
+    <Content Include="Views\Manager\image\user.png" />
+    <Content Include="Views\Manager\js\bootstrap.min.js" />
+    <Content Include="Views\Manager\js\datepicker.min.js" />
+    <Content Include="Views\Manager\js\datepicker.zh-CN.min.js" />
+    <Content Include="Views\Manager\js\goods.js" />
+    <Content Include="Views\Manager\js\home.js" />
+    <Content Include="Views\Manager\js\jquery.min.js" />
+    <Content Include="Views\Manager\js\order.js" />
+    <Content Include="Views\Manager\js\orderDetail.js" />
+    <Content Include="Views\Manager\js\password.js" />
+    <Content Include="Views\Manager\js\user.js" />
+    <Content Include="Views\Manager\login.html" />
+    <Content Include="Views\Manager\order.html" />
+    <Content Include="Views\Manager\orderDetail.html" />
+    <Content Include="Views\Manager\user.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -253,6 +289,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Manager\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Views\Manager\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Views\Manager\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Views\Manager\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

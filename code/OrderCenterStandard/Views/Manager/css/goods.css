@@ -1,0 +1,36 @@
+.table th{
+	font-weight: bolder;
+}
+.form-inline{
+	margin: 20px 40px; 
+}
+.form-inline label{
+	font-weight: normal;
+	font-size: 18px;
+}
+.add{
+	position: absolute;
+	right: 3%;
+}
+
+/*模态框*/
+.modal-header, .modal-header span[type=button]{
+	background: #458C16;
+	color: white;
+}
+.save{
+	background: #458C16;
+	color: white;
+}
+.reset{
+	background: #F7F7F7;
+}
+.close{
+	color: white;
+}
+.editGoodsItem tr td:nth-child(1){
+	text-align: right;
+}
+.editGoodsItem, .editGoodsItem tr, .editGoodsItem tr td{
+	border: 0px solid transparent!important;
+}
