@@ -79,6 +79,7 @@
     <Property Name="State" Type="Int32" />
     <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="LoginID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityContainer Name="OrderCentDB" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="O_CommodityInfo" EntityType="Self.O_CommodityInfo" />

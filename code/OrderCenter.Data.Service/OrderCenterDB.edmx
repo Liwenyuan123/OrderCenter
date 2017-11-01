@@ -82,6 +82,7 @@
           <Property Name="State" Type="int" />
           <Property Name="Company" Type="varchar" MaxLength="50" />
           <Property Name="Remark" Type="varchar" MaxLength="200" />
+          <Property Name="LoginID" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="com_type_typeID">
           <End Role="O_FoodType" Type="Self.O_FoodType" Multiplicity="0..1" />
@@ -190,6 +191,7 @@
           <Property Name="State" Type="Int32" />
           <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LoginID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="OrderCentDB" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="O_CommodityInfo" EntityType="Self.O_CommodityInfo" />
@@ -295,6 +297,7 @@
           <EntitySetMapping Name="O_UserInfo">
             <EntityTypeMapping TypeName="OrderCenterDB.O_UserInfo">
               <MappingFragment StoreEntitySet="O_UserInfo">
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="PassWord" ColumnName="PassWord" />

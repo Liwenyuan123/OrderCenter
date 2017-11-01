@@ -8,18 +8,31 @@ using System.Web.Http;
 using OrderCenter.Data.Service;
 using OrderCenter.Data.DTO;
 using OrderCenterStandard.App_Start;
+using OrderCenter.Data.DTO.ViewEnum;
 
 namespace OrderCenterStandard.Controllers
 {
     public class CommodityController : ApiController
     {
         //Get api/Commodity
-        public IHttpActionResult Get(string ComName,int TypeID,int PageIndex,int PageCount,int PageTotal)
+        [HttpGet]
+        public IHttpActionResult Get(string ComName, int TypeID, int PageIndex)
         {
+            //string ComName,int TypeID,int PageIndex
             var comService = new CommodityService();
-            var lists = comService.Select(ComName, TypeID, PageIndex, PageCount,out PageTotal,10); 
+            int PageCount = 0;
+            int PageTotal = 0;
+            var lists = comService.Select(ComName, TypeID, PageIndex,out PageCount,out PageTotal,PageSize.Count); 
             return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(lists));
         }
+        //app商品订单页
+        [HttpGet]
+        public IHttpActionResult Get()
+        {
+            var comService = new CommodityService();
+            var list = comService.GroupByType();
+            return Json(list);
+         }
         //Post api/Commodity
         public IHttpActionResult Post([FromBody]dynamic query,[FromUri] string flagType)
         {

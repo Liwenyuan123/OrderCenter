@@ -16,9 +16,10 @@ namespace OrderCenter.Data.DTO
         ////总条数
         //public int PageToTal { get; set; }
         //主单ID,主键
-        public string MainID { get; set; }
-        //订单编号
-        public string OrderNum { get; set; }
+        public Guid MainID { get; set; }
+        ////订单编号
+        //public string OrderNum { get; set; }
+        public string UserID { get; set; }
         //下单人
         public string UsePersonName { get; set; }
         //下单人电话

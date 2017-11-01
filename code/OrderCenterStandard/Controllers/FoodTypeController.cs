@@ -14,12 +14,16 @@ namespace OrderCenterStandard.Controllers
         // GET api/FoodType
         public IHttpActionResult Get()
         {
+
             var service = new FoodTypeService();
             var lists = service.GetAll();
             return Ok(lists);
+
+
+
         }
         // Post: api/FoodType
-        public IHttpActionResult Post([FromBody]dynamic query,[FromUri] string flag)
+        public IHttpActionResult Post([FromBody]dynamic query, [FromUri] string flag)
         {
             List<O_FoodType> models = new List<O_FoodType>();
             foreach (var item in query)

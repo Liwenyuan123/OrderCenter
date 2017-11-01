@@ -32,6 +32,8 @@ namespace OrderCenterStandard.Controllers
             var details = service.GetOrderDetail(MainId);
             return Ok(details);
         }
+        //api/Order/MainID=""&&Flag=""
+        [HttpGet]
         public IHttpActionResult GetAduit(string MainID,string Flag)
         {
             
@@ -45,7 +47,9 @@ namespace OrderCenterStandard.Controllers
                     re= service.UpdateOrderState(MainID, (int)OrderState.AuditPassed);
                     break;
                 case "发货":
-                    re=service.UpdateOrderState(MainID, (int)OrderState.IsOver);
+                    re=service.UpdateOrderState(MainID, (int)OrderState.IsOver);break;
+                case "收货":
+                    re = service.UpdateOrderState(MainID, (int)OrderState.IsOver);
                     break;
 
             }
@@ -64,25 +68,11 @@ namespace OrderCenterStandard.Controllers
         public IHttpActionResult Post([FromBody]dynamic query)
         {
             CheckDataNullValudation.CheckNullGet(query,"请输入参数");
-            string str = Convert.ToString(query);
-            OrderMainViewModel orderViews = JsonConvert.DeserializeObject<OrderMainViewModel>(str);
-            List<O_OrderDetail> orderDetails = new List<O_OrderDetail>();
-            O_OrderMain orderMain = new O_OrderMain();
-
-            orderMain.Phone = orderViews.Phone;
-            orderMain.Address = orderViews.Address;
-            orderMain.State = 1;
-            orderMain.UsePersonName = orderViews.UsePersonName;
-            foreach (var detail in orderViews.OrderDetail)
-            {
-                O_OrderDetail d = new O_OrderDetail();
-                d.ComName = detail.ComName;
-                d.NumPlan = detail.NumPlan;
-                d.PricePlan = detail.PricePlan;
-                orderDetails.Add(d);
-            }
+            //string str = Convert.ToString(query);
+            OrderMainViewModel orderViews = JsonConvert.DeserializeObject<OrderMainViewModel>(query);
             
-            service.AddOrder(orderMain, orderDetails);
+            //adding necessary condition judgment......
+            service.pc_AddOrder(orderViews);
 
             return Ok();
         }

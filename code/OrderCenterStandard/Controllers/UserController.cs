@@ -12,8 +12,9 @@ namespace OrderCenterStandard.Controllers
 {
     public class UserController : ApiController
     {
+        UserService serivice = new UserService();
         // GET: api/User
-        public IHttpActionResult Get(int pageIndex, int pageSize, bool isDesc)
+        public IHttpActionResult Get(string loginID,string userState, int pageIndex, int pageSize)
         {
             throw new Exception();
         }
@@ -35,12 +36,10 @@ namespace OrderCenterStandard.Controllers
             string secretString =query.secretString;
 
             //login and get user info
-            OrderService serivice = new OrderService();
-            
-                //support loginid,phone,email login!
-                LoginDataModel loginDataModel = fact.CreateChannel().UserLogin(loginId, random, timeStamp, secretString);
-                return OK(loginDataModel);
-            
+           
+           //support loginid,phone,email login!
+             LoginDataModel loginDataModel = serivice.UserLogin(loginId, random, timeStamp, secretString);
+             return Ok(loginDataModel);
         }
 
         // PUT: api/User

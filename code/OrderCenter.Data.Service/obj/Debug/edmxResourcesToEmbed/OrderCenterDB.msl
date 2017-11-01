@@ -75,6 +75,7 @@
     <EntitySetMapping Name="O_UserInfo">
       <EntityTypeMapping TypeName="OrderCenterDB.O_UserInfo">
         <MappingFragment StoreEntitySet="O_UserInfo">
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
           <ScalarProperty Name="UID" ColumnName="UID" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="PassWord" ColumnName="PassWord" />

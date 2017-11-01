@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using OrderCenter.Data.DTO;
 using System.Linq.Expressions;
+using OrderCenter.Data.DTO.ViewEnum;
 
 namespace OrderCenter.Data.Service
 {
-   public class CommodityService
+    public class CommodityService
     {
         /// <summary>
         /// 分页查询
@@ -20,34 +21,35 @@ namespace OrderCenter.Data.Service
         /// <param name="PageTotal">总条数</param>
         /// <param name="PageSize">每页条数</param>
         /// <returns></returns>
-        public List<CommodityViewModel> Select(string ComName,int  TypeID, int PageIndex, int PageCount, out int PageTotal,int PageSize)
+        public List<CommodityViewModel> Select(string ComName, int TypeID, int PageIndex,out int PageCount, out int PageTotal, int PageSize)
         {
-            PageTotal = 0;
+            
             Expression<Func<O_CommodityInfo, bool>> where = t => true;
             if (!string.IsNullOrEmpty(ComName))
             {
-               where = PredicateExtensions.And<O_CommodityInfo>(where,t=> t.ComName.Contains(ComName));
+                where = PredicateExtensions.And<O_CommodityInfo>(where, t => t.ComName.Contains(ComName));
             }
-            if(TypeID != 0 )
+            if (TypeID != 0)
             {
                 where = PredicateExtensions.And<O_CommodityInfo>(where, t => t.TypeID == TypeID);
             }
-            
+
             using (var db = new OrderCentDB())
             {
-                var models = db.O_CommodityInfo.Where(where).Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(c=>new CommodityViewModel() { UID =c.UID,ComName =c.ComName,Standard = c.Standard,Unit = c.Unit,Price = c.Price??0,PriceSum = c.PriceSum??0,TypeName = c.O_FoodType.TypeName}).ToList();
-                PageTotal = db.O_CommodityInfo.Where(where).Count();
+                var models = db.O_CommodityInfo.Where(where).OrderBy(c=>c.ComName).Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(c => new CommodityViewModel() { UID = c.UID, ComName = c.ComName, Standard = c.Standard, Unit = c.Unit, Price = c.Price ?? 0, PriceSum = c.PriceSum ?? 0, TypeName = c.O_FoodType.TypeName });
 
-                return models;
+                PageTotal = db.O_CommodityInfo.Where(where).Select(m => m.UID).AsQueryable().Count();
+                PageCount =Convert.ToInt32( Math.Ceiling(Convert.ToDecimal(PageTotal) / PageSize));
+                return models.ToList();
             }
 
 
         }
-       public CommodityViewModel GetByID(string uid)
+        public CommodityViewModel GetByID(string uid)
         {
             using (var db = new OrderCentDB())
             {
-                var model = db.O_CommodityInfo.Where(c=>c.UID.ToString() == uid).Select(c => new CommodityViewModel() { UID = c.UID, ComName = c.ComName, Standard = c.Standard, Unit = c.Unit, Price = c.Price ?? 0, PriceSum = c.PriceSum ?? 0, TypeName = c.O_FoodType.TypeName }).ToList();
+                var model = db.O_CommodityInfo.Where(c => c.UID.ToString() == uid).Select(c => new CommodityViewModel() { UID = c.UID, ComName = c.ComName, Standard = c.Standard, Unit = c.Unit, Price = c.Price ?? 0, PriceSum = c.PriceSum ?? 0, TypeName = c.O_FoodType.TypeName }).ToList();
                 return model[0];
             }
         }
@@ -101,7 +103,20 @@ namespace OrderCenter.Data.Service
             }
 
         }
+
+        public dynamic GroupByType()
+        {
+            using (var db = new  OrderCentDB())
+            {
+
+                //var result = from o in db.O_CommodityInfo join m in db.O_FoodType on o.TypeID equals m.ID into om from omD in om.DefaultIfEmpty() group omD  by o.TypeID into g select new { TypeId = g.Key,TypeName = g.TypeName ,CommodityList = g };
+                var result = from o in db.O_CommodityInfo join m in db.O_FoodType on o.TypeID equals m.ID where o.State == (int)RecordState.NORMAL select new { UID = o.UID, ComName = o.ComName, Price = o.Price, PriceSum = o.PriceSum, TypeID = o.TypeID, TypeName = m.TypeName, Standard = o.Standard };
+                var re = from o in result group o by o.TypeName  into g select new { TypeName = g.Key, ComList = g };
+                return re.ToList();
+
+            }
+        }
     }
-   
+
 
 }

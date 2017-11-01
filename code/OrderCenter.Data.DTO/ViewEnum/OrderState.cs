@@ -15,6 +15,9 @@ namespace OrderCenter.Data.DTO.ViewEnum
         AuditPassed = 2,
         [Description("审核不通过")]
         AuditNo = 3,
+
+       [Description("发货")]
+        Deliver =5,
         [Description("已完成")]
         IsOver = 4
     }

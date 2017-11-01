@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OrderCenter.Data.DTO.ViewEnum;
+using OrderCenter.Data.DTO;
 
 namespace OrderCenter.Data.Service
 {
    public class FoodTypeService
     {
-        public IQueryable<O_FoodType> GetAll()
+        public List<FoodTypeViewModel> GetAll()
         {
-            var db = new OrderCentDB();
-            var models = from m in db.O_FoodType where m.State == 1 && m.ID > 0 select m;
-            return models;
+            using (var db = new OrderCentDB())
+            {
+                var models = db.O_FoodType.Where(m => m.State == (int)RecordState.NORMAL).Select(c=>new FoodTypeViewModel() { ID = c.ID,TypeName = c.TypeName}).ToList();
+                return models;
+            }
         }
         /// <summary>
         /// 添加类别

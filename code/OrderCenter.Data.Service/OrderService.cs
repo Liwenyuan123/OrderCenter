@@ -26,6 +26,7 @@ namespace OrderCenter.Data.Service
             var lists = GetPageDate<O_OrderMain, DateTime>(c => new { c.OrderNum, c.OrderState, c.Phone, c.ReceivePerson, c.UID, c.UsePersonName, c.Remark }, c => c.State == 1, c => c.AddDate, 2, 4, out totalNum);
             return lists;
         }
+
         public List<OrderMainViewModel> Select(string startDate,string endDate,int orderState, int pageIndex,out int pageCount,out int pageTotal)
         {
             Expression<Func<O_OrderMain, bool>> where = t => true;
@@ -63,24 +64,23 @@ namespace OrderCenter.Data.Service
             }
         }
 
-        public bool AddOrder(O_OrderMain orderMain, List<O_OrderDetail> orderDetails)
+        public bool pc_AddOrder(OrderMainViewModel orderViewModel)
         {
             using (var db = new OrderCentDB())
             {
-                //添加主表信息
+                O_OrderMain orderMain = db.O_OrderMain.FirstOrDefault(c => c.UID == orderViewModel.MainID);
+                //update orderMain orderState 
                 using (var tran = db.Database.BeginTransaction())
                 {
-                    orderMain.UID = Guid.NewGuid();
-                    orderMain.OrderNum = CreatOrderNum();
-                    db.O_OrderMain.Add(orderMain);
+                    orderMain.OrderState = (int)OrderState.Deliver;
                     db.SaveChanges();
-                    //添加明细信息
-                    foreach (O_OrderDetail d in orderDetails)
+                    //update orderDetail NumReal\NumReal\PriceSumReal
+                    foreach (OrderDetailViewModel d in orderViewModel.OrderDetail)
                     {
-                        d.UID = Guid.NewGuid();
-                        d.MainId = orderMain.UID.ToString();
-                        d.State = 1;
-                        db.O_OrderDetail.Add(d);
+                        O_OrderDetail orderDetail = db.O_OrderDetail.FirstOrDefault(c => c.UID == d.UID);
+                        orderDetail.NumReal = d.NumReal;
+                        orderDetail.PriceReal = d.PriceReal;
+                        orderDetail.PriceSumReal = d.PriceSumReal;
                     }
                     db.SaveChanges();
                     tran.Commit();
@@ -90,6 +90,62 @@ namespace OrderCenter.Data.Service
             return true;
         }
 
+        public bool app_AddOrder(app_OrderMain model,out string Msg)
+        {
+            using (var db = new OrderCentDB())
+            {
+                Msg = "操作失败";
+                //添加主表信息
+                using (var tran = db.Database.BeginTransaction())
+                {
+                    var orderMain = new O_OrderMain();
+                    orderMain.UID = Guid.NewGuid();
+                    orderMain.OrderNum = CreatOrderNum();
+                    orderMain.AddDate = DateTime.Now;
+                    orderMain.OrderState = (int)OrderState.normal;
+                    orderMain.State = (int)RecordState.NORMAL;
+                    orderMain.Phone = model.Phone;
+                    orderMain.UserID = model.UserID;
+                    orderMain.UsePersonName = model.UsePersonName;
+                    orderMain.Address = model.Address;
+                    
+                    db.O_OrderMain.Add(orderMain);
+                    db.SaveChanges();
+                    //添加明细信息
+                    foreach (app_OrderDetail d in model.OrderDetail)
+                    {
+                        var orderDetail = new O_OrderDetail();
+                        orderDetail.UID = Guid.NewGuid();
+                        orderDetail.MainId = orderMain.UID.ToString();
+                        orderDetail.State =(int)RecordState.NORMAL;
+                        orderDetail.CommodityId = d.ComUID.ToString();
+                        orderDetail.ComName = d.ComName;
+                        orderDetail.Unit = d.Unit;
+                        orderDetail.Standard = d.Standard;
+                        orderDetail.NumPlan = d.NumPlan;
+                        orderDetail.NumReal = d.NumPlan;
+                        orderDetail.PricePlan = d.PricePlan;
+                        orderDetail.PriceReal = d.PricePlan;
+                        orderDetail.PriceSumPlan = d.PriceSumPlan;
+                        orderDetail.PriceSumReal = d.PriceSumPlan;
+                        db.O_OrderDetail.Add(orderDetail);
+                    }
+                    db.SaveChanges();
+                    tran.Commit();
+                }
+                Msg = "操作成功";
+                return true;
+            }
+        }
+
+        public dynamic app_FuzzySearch(string comName)
+        {
+            using (var db = new OrderCentDB())
+            {
+                var model = db.O_CommodityInfo.Where(c => c.ComName.Contains(comName)).Select(c =>new { c.UID,c.Unit,c.ComName,c.Price,c.PriceSum}).ToList();
+                return model;
+            }
+        }
         public bool UpdateOrderState(string mainId,int orderState)
         {
             bool re = false;
@@ -122,104 +178,7 @@ namespace OrderCenter.Data.Service
             
         }
 
-        /// <summary>
-        /// Login Service
-        /// </summary>
-        /// <param name="loginId">loginId</param>
-        /// <param name="random">random</param>
-        /// <param name="timeStamp">timeStamp</param>
-        /// <param name="secretString">secretString</param>
-        /// <returns></returns>
-        public LoginDataModel UserLogin(string loginId, int random, long timeStamp, string secretString)
-        {
-            //timeStamp verification timespan like:1505443441000
-            //bool isTimeStampValid = (DateTime_Helper_DG.GetCurrentTimeStamp() - timeStamp / 1000) <= QX_Frame_Data_Config.RequestExpireTime * 60;
-            //if (!isTimeStampValid)
-            //{
-            //    throw new Exception_DG_Internationalization(3009);
-            //}
-
-            //[random+timestamp] can be find in cache? -- multiple request refuse
-            //if (Cache_Helper_DG.Cache_Get($"{random}{timeStamp}".ToHashString()) != null)
-            //{
-            //    throw new Exception_DG_Internationalization(3010);
-            //}
-            //Cache_Helper_DG.Cache_Add($"{random}{timeStamp}".ToHashString(), 1);//add [random+timestamp] into cache
-
-            //get MD5[pwd] from database
-            //UserAccount userAccount = QuerySingle(new UserAccountQueryObject { QueryCondition = t => t.LoginId.Equals(loginId) || t.Tel.Equals(loginId) || t.Email.Equals(loginId) }).Cast<UserAccount>();
-
-            //if (userAccount == null)
-            //{
-            //    throw new Exception_DG_Internationalization(3011);
-            //}
-
-            //MD5[loginid+MD5[pwd]+ramdom+timestamp]==MD5[secretMessage]?
-            //hex_md5(hex_md5(loginId + hex_md5(pwd) + random + timeStamp) + loginId + loginId)
-            //bool secretStringMatched = MD5_Encrypt(MD5_Encrypt($"{loginId}{userAccount.Password}{random}{timeStamp}") + "qx_frame" + loginId).Equals(secretString);
-            //if (!secretStringMatched)
-            //{
-            //    //account or pwd error
-            //    throw new Exception_DG_Internationalization(3012);
-            //}
-
-            //get rsa keys
-            //RSA_Keys rsa_Keys = RSA_GetKeys();
-
-            //TokenAuthentication authentication = QuerySingle(new TokenAuthenticationQueryObject { QueryCondition = t => t.UserUid.Equals(userAccount.UserUid) }).Cast<TokenAuthentication>();
-
-            //if (authentication == null)
-            //{
-            //    authentication = TokenAuthentication.Build();
-            //    //secretKey=MD5[UserUid+timeStamp+random]
-            //    authentication.TokenSign = MD5_Encrypt($"{userAccount.UserUid}{timeStamp}{random}");
-            //    authentication.RSA_PublicKey = rsa_Keys.PublicKey;
-            //    authentication.RSA_PrivateKey = rsa_Keys.PrivateKey;
-            //    authentication.UserUid = userAccount.UserUid;
-            //    if (!authentication.Add(authentication))
-            //    {
-            //        throw new Exception_DG_Internationalization(3013);
-            //    }
-            //    authentication = QuerySingle(new TokenAuthenticationQueryObject { QueryCondition = t => t.UserUid.Equals(userAccount.UserUid) }).Cast<TokenAuthentication>();
-            //}
-            //else
-            //{
-            //    //secretKey=MD5[UserUid+timeStamp+random]
-            //    authentication.TokenSign = MD5_Encrypt($"{userAccount.UserUid}{timeStamp}{random}");
-            //    authentication.RSA_PublicKey = rsa_Keys.PublicKey;
-            //    authentication.RSA_PrivateKey = rsa_Keys.PrivateKey;
-            //    authentication.UserUid = userAccount.UserUid;
-            //    if (!authentication.Update(authentication))
-            //    {
-            //        throw new Exception_DG_Internationalization(3013);
-            //    }
-            //}
-
-            //long expireTimeStamp = DateTime_Helper_DG.GetTimeStampByDateTimeUtc(DateTime.UtcNow.AddDays(QX_Frame_Data_Config.AuthTokenExpireTime_days).AddHours(QX_Frame_Data_Config.AuthTokenExpireTime_hours).AddMinutes(QX_Frame_Data_Config.AuthTokenExpireTime_minutes));
-
-            ////token=RSA_publicKey[uid+loginid+expiretimestamp+tokensign]
-            //string token = RSA_Encrypt($"{userAccount.UserUid}&{expireTimeStamp}&{authentication.TokenSign}", rsa_Keys.PublicKey);
-
-            LoginDataModel loginDataModel = new LoginDataModel();
-            //loginDataModel.Uid = userAccount.UserUid;
-            //loginDataModel.AppKey = authentication.AppKey;
-            //loginDataModel.Token = token;
-            //loginDataModel.userInfoSelfViewModel = GetUserInfoViewModelSelfByUid(userAccount.UserUid);
-
-            ////record login history
-            //LoginHistory loginHistory = new LoginHistory
-            //{
-            //    UserUid = userAccount.UserUid,
-            //    LoginIp = Ip_Helper_DG.GetServerIpAddress()
-            //};
-
-            //if (!loginHistory.Add(loginHistory))
-            //{
-            //    throw new Exception_DG_Internationalization(3020);
-            //}
-
-            return loginDataModel;
-        }
+        
     }
 
 }

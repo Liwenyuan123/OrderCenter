@@ -21,5 +21,6 @@ namespace OrderCenter.Data.Service
         public Nullable<int> State { get; set; }
         public string Company { get; set; }
         public string Remark { get; set; }
+        public string LoginID { get; set; }
     }
 }
