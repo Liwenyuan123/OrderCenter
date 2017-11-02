@@ -78,6 +78,8 @@
     <Property Name="Company" Type="varchar" MaxLength="50" />
     <Property Name="Remark" Type="varchar" MaxLength="200" />
     <Property Name="LoginID" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="UserRole" Type="varchar" MaxLength="50" />
   </EntityType>
   <Association Name="com_type_typeID">
     <End Role="O_FoodType" Type="Self.O_FoodType" Multiplicity="0..1" />

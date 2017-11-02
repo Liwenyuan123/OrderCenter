@@ -100,32 +100,30 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="OrderCenterDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OrderCenterDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="OrderCenterDB.edmx.diagram">
       <DependentUpon>OrderCenterDB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="OrderCenterDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>OrderCenterDB.Context.cs</LastGenOutput>
       <DependentUpon>OrderCenterDB.edmx</DependentUpon>
+      <LastGenOutput>OrderCenterDB.Context.cs</LastGenOutput>
     </Content>
     <Content Include="OrderCenterDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OrderCenterDB.edmx</DependentUpon>
       <LastGenOutput>OrderCenterDB.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

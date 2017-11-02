@@ -129,7 +129,7 @@ namespace OrderCenter.Data.Service
                 loginModel.Token = "";
                 loginModel.AppKey = 1;
                 loginModel.userInfoSelfViewModel.LoginId = model.UserName;
-                loginModel.userInfoSelfViewModel.Tel = model.Phone;
+                
                 loginModel.userInfoSelfViewModel.UserUid = model.UID.ToString();
                 return loginModel;
             }

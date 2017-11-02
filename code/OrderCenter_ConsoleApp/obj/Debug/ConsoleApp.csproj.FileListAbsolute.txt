@@ -1,0 +1,5 @@
+F:\2222\ordercenter\code\OrderCenter_ConsoleApp\bin\Debug\OrderCenter_ConsoleApp.exe.config
+F:\2222\ordercenter\code\OrderCenter_ConsoleApp\bin\Debug\OrderCenter_ConsoleApp.exe
+F:\2222\ordercenter\code\OrderCenter_ConsoleApp\bin\Debug\OrderCenter_ConsoleApp.pdb
+F:\2222\ordercenter\code\OrderCenter_ConsoleApp\obj\Debug\OrderCenter_ConsoleApp.exe
+F:\2222\ordercenter\code\OrderCenter_ConsoleApp\obj\Debug\OrderCenter_ConsoleApp.pdb

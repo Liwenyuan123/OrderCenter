@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Linq.Expressions;
 using OrderCenter.Data.DTO;
 using OrderCenter.Data.DTO.ViewEnum;
+using OrderCenter.Data.DTO.CommHelper;
 
 namespace OrderCenter.Data.Service
 {
@@ -48,7 +49,7 @@ namespace OrderCenter.Data.Service
                 pageTotal = db.O_OrderMain.Where(where).Count();
                 //总页数
                 pageCount =Convert.ToInt32( Math.Ceiling((decimal) pageTotal / PageSize.Count));
-                var list = db.O_OrderMain.Where(where).Skip((pageIndex - 1) * PageSize.Count).Take(PageSize.Count).Select(t=>new OrderMainViewModel{ MainID =t.UID.ToString(), OrderNum =t.OrderNum, UsePersonName =t.UsePersonName, Phone =t.Phone, Address =t.Address, OrState =Enum.GetName(typeof( OrderState),Convert.ToInt32( t.OrderState) )}).ToList();
+                var list = db.O_OrderMain.Where(where).Skip((pageIndex - 1) * PageSize.Count).Take(PageSize.Count).Select(t=>new OrderMainViewModel{ MainID =t.UID, UsePersonName =t.UsePersonName, Phone =t.Phone, Address =t.Address, OrState =Enum.GetName(typeof( OrderState),Convert.ToInt32( t.OrderState) )}).ToList();
                 return list;
                
             } 
@@ -145,6 +146,27 @@ namespace OrderCenter.Data.Service
                 var model = db.O_CommodityInfo.Where(c => c.ComName.Contains(comName)).Select(c =>new { c.UID,c.Unit,c.ComName,c.Price,c.PriceSum}).ToList();
                 return model;
             }
+        }
+
+        public UserInfoSelfViewModel app_UserLogin(string loginID,string secretString, out string Msg)
+        {
+            
+            using (var db = new OrderCentDB())
+            {
+                var userInfo = db.O_UserInfo.Single(c => c.LoginID == loginID);
+                if (userInfo == null) { Msg = "用户不存在"; }
+                string pwd = Encrypt_Helper_SF.UserMd5(secretString + "SF_Frame_app");
+                if(userInfo.PassWord != pwd) { Msg = "账号或密码错误"; }
+                Msg = "登录成功";
+                UserInfoSelfViewModel model = new UserInfoSelfViewModel();
+                model.UserUid = userInfo.UID.ToString();
+                model.LoginId = userInfo.LoginID;
+                model.Phone = userInfo.Phone;
+                model.Address = userInfo.Address;
+
+                return model;
+            }
+            
         }
         public bool UpdateOrderState(string mainId,int orderState)
         {

@@ -16,7 +16,7 @@ namespace OrderCenter.Data.Service
     public partial class OrderCentDB : DbContext
     {
         public OrderCentDB()
-            : base("name=OrderCentDB")
+            : base("name=db_OrderCentEntities")
         {
         }
     

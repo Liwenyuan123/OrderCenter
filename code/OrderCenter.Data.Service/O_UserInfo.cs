@@ -22,5 +22,7 @@ namespace OrderCenter.Data.Service
         public string Company { get; set; }
         public string Remark { get; set; }
         public string LoginID { get; set; }
+        public string Address { get; set; }
+        public string UserRole { get; set; }
     }
 }

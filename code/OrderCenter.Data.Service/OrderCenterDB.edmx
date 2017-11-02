@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="OrderCenterDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="OrderCenterDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="O_CommodityInfo">
           <Key>
             <PropertyRef Name="UID" />
@@ -83,6 +83,8 @@
           <Property Name="Company" Type="varchar" MaxLength="50" />
           <Property Name="Remark" Type="varchar" MaxLength="200" />
           <Property Name="LoginID" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="UserRole" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="com_type_typeID">
           <End Role="O_FoodType" Type="Self.O_FoodType" Multiplicity="0..1" />
@@ -108,7 +110,8 @@
             <End Role="O_CommodityInfo" EntitySet="O_CommodityInfo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OrderCenterDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -125,7 +128,7 @@
           <Property Name="State" Type="Int32" />
           <Property Name="TypeID" Type="Int32" />
           <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="O_FoodType" Relationship="OrderCenterDB.com_type_typeID" FromRole="O_CommodityInfo" ToRole="O_FoodType" />
+          <NavigationProperty Name="O_FoodType" Relationship="Self.com_type_typeID" FromRole="O_CommodityInfo" ToRole="O_FoodType" />
         </EntityType>
         <EntityType Name="O_FoodType">
           <Key>
@@ -136,7 +139,7 @@
           <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="State" Type="Int32" />
           <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="O_CommodityInfo" Relationship="OrderCenterDB.com_type_typeID" FromRole="O_FoodType" ToRole="O_CommodityInfo" />
+          <NavigationProperty Name="O_CommodityInfo" Relationship="Self.com_type_typeID" FromRole="O_FoodType" ToRole="O_CommodityInfo" />
         </EntityType>
         <EntityType Name="O_OrderDetail">
           <Key>
@@ -169,9 +172,9 @@
           <Property Name="State" Type="Int32" Nullable="false" />
           <Property Name="OrderState" Type="Int32" Nullable="false" />
           <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="AddDate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="AddDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="O_Unit">
           <Key>
@@ -192,22 +195,12 @@
           <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="LoginID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityContainer Name="OrderCentDB" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="O_CommodityInfo" EntityType="Self.O_CommodityInfo" />
-          <EntitySet Name="O_FoodType" EntityType="Self.O_FoodType" />
-          <EntitySet Name="O_OrderDetail" EntityType="Self.O_OrderDetail" />
-          <EntitySet Name="O_OrderMain" EntityType="Self.O_OrderMain" />
-          <EntitySet Name="O_Unit" EntityType="Self.O_Unit" />
-          <EntitySet Name="O_UserInfo" EntityType="Self.O_UserInfo" />
-          <AssociationSet Name="com_type_typeID" Association="OrderCenterDB.com_type_typeID">
-            <End Role="O_FoodType" EntitySet="O_FoodType" />
-            <End Role="O_CommodityInfo" EntitySet="O_CommodityInfo" />
-          </AssociationSet>
-        </EntityContainer>
         <Association Name="com_type_typeID">
-          <End Type="OrderCenterDB.O_FoodType" Role="O_FoodType" Multiplicity="0..1" />
-          <End Type="OrderCenterDB.O_CommodityInfo" Role="O_CommodityInfo" Multiplicity="*" />
+          <End Role="O_FoodType" Type="Self.O_FoodType" Multiplicity="0..1" />
+          <End Role="O_CommodityInfo" Type="Self.O_CommodityInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="O_FoodType">
               <PropertyRef Name="ID" />
@@ -217,12 +210,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="db_OrderCentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="O_CommodityInfo" EntityType="Self.O_CommodityInfo" />
+          <EntitySet Name="O_FoodType" EntityType="Self.O_FoodType" />
+          <EntitySet Name="O_OrderDetail" EntityType="Self.O_OrderDetail" />
+          <EntitySet Name="O_OrderMain" EntityType="Self.O_OrderMain" />
+          <EntitySet Name="O_Unit" EntityType="Self.O_Unit" />
+          <EntitySet Name="O_UserInfo" EntityType="Self.O_UserInfo" />
+          <AssociationSet Name="com_type_typeID" Association="Self.com_type_typeID">
+            <End Role="O_FoodType" EntitySet="O_FoodType" />
+            <End Role="O_CommodityInfo" EntitySet="O_CommodityInfo" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="OrderCenterDBStoreContainer" CdmEntityContainer="OrderCentDB">
+        <EntityContainerMapping StorageEntityContainer="OrderCenterDBStoreContainer" CdmEntityContainer="db_OrderCentEntities">
           <EntitySetMapping Name="O_CommodityInfo">
             <EntityTypeMapping TypeName="OrderCenterDB.O_CommodityInfo">
               <MappingFragment StoreEntitySet="O_CommodityInfo">
@@ -272,8 +277,6 @@
           <EntitySetMapping Name="O_OrderMain">
             <EntityTypeMapping TypeName="OrderCenterDB.O_OrderMain">
               <MappingFragment StoreEntitySet="O_OrderMain">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="OrderNum" ColumnName="OrderNum" />
                 <ScalarProperty Name="UsePersonName" ColumnName="UsePersonName" />
@@ -283,6 +286,8 @@
                 <ScalarProperty Name="OrderState" ColumnName="OrderState" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -297,7 +302,6 @@
           <EntitySetMapping Name="O_UserInfo">
             <EntityTypeMapping TypeName="OrderCenterDB.O_UserInfo">
               <MappingFragment StoreEntitySet="O_UserInfo">
-                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="PassWord" ColumnName="PassWord" />
@@ -305,6 +309,9 @@
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Company" ColumnName="Company" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

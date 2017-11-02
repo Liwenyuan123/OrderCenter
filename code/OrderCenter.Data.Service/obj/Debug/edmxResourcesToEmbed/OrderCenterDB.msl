@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="OrderCenterDBStoreContainer" CdmEntityContainer="OrderCentDB">
+  <EntityContainerMapping StorageEntityContainer="OrderCenterDBStoreContainer" CdmEntityContainer="db_OrderCentEntities">
     <EntitySetMapping Name="O_CommodityInfo">
       <EntityTypeMapping TypeName="OrderCenterDB.O_CommodityInfo">
         <MappingFragment StoreEntitySet="O_CommodityInfo">
@@ -50,8 +50,6 @@
     <EntitySetMapping Name="O_OrderMain">
       <EntityTypeMapping TypeName="OrderCenterDB.O_OrderMain">
         <MappingFragment StoreEntitySet="O_OrderMain">
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="UID" ColumnName="UID" />
           <ScalarProperty Name="OrderNum" ColumnName="OrderNum" />
           <ScalarProperty Name="UsePersonName" ColumnName="UsePersonName" />
@@ -61,6 +59,8 @@
           <ScalarProperty Name="OrderState" ColumnName="OrderState" />
           <ScalarProperty Name="Remark" ColumnName="Remark" />
           <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -75,7 +75,6 @@
     <EntitySetMapping Name="O_UserInfo">
       <EntityTypeMapping TypeName="OrderCenterDB.O_UserInfo">
         <MappingFragment StoreEntitySet="O_UserInfo">
-          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
           <ScalarProperty Name="UID" ColumnName="UID" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="PassWord" ColumnName="PassWord" />
@@ -83,6 +82,9 @@
           <ScalarProperty Name="State" ColumnName="State" />
           <ScalarProperty Name="Company" ColumnName="Company" />
           <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

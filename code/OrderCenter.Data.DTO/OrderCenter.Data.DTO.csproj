@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="app_OrderDetail.cs" />
     <Compile Include="app_OrderMain.cs" />
+    <Compile Include="CommHelper\Encrypt_Helper_SF.cs" />
     <Compile Include="FoodTypeViewModel.cs" />
     <Compile Include="LoginDataModel.cs" />
     <Compile Include="OrderDetailViewModel.cs" />
