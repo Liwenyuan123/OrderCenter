@@ -14,13 +14,9 @@ namespace OrderCenterStandard.Controllers
         // GET api/FoodType
         public IHttpActionResult Get()
         {
-
             var service = new FoodTypeService();
             var lists = service.GetAll();
             return Ok(lists);
-
-
-
         }
         // Post: api/FoodType
         public IHttpActionResult Post([FromBody]dynamic query, [FromUri] string flag)

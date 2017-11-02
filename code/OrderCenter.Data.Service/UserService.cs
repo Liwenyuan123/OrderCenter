@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OrderCenter.Data.DTO;
 using OrderCenter.Data.DTO.ViewEnum;
+using OrderCenter.Data.DTO.CommHelper;
 using System.Linq.Expressions;
 
 namespace OrderCenter.Data.Service
@@ -19,7 +20,7 @@ namespace OrderCenter.Data.Service
         /// <param name="timeStamp">timeStamp</param>
         /// <param name="secretString">secretString</param>
         /// <returns></returns>
-        public LoginDataModel UserLogin(string loginId, int random, long timeStamp, string secretString)
+        public LoginDataModel UserLogin(string loginId,  string secretString)
         {
             //timeStamp verification timespan like:1505443441000
             //bool isTimeStampValid = (DateTime_Helper_DG.GetCurrentTimeStamp() - timeStamp / 1000) <= QX_Frame_Data_Config.RequestExpireTime * 60;
@@ -114,25 +115,51 @@ namespace OrderCenter.Data.Service
 
 
         //add userInfo
-        public LoginDataModel addUser(string loginID, string pwd, string phone)
+        public UserInfoSelfViewModel app_RegisterUser(app_RegisterViewModel modelView,out string Msg)
         {
             using (var db = new OrderCentDB())
             {
+                Msg = "操作失败";
                 O_UserInfo model = new O_UserInfo();
                 model.UID = Guid.NewGuid();
-                model.Phone = phone;
-                model.PassWord = pwd;
+                model.Phone = modelView.Phone;
+                model.UserName = modelView.UserName;
+                model.LoginID = modelView.LoginId;
+                model.PassWord = Encrypt_Helper_SF.UserMd5(modelView.PassWord.Trim()+"SF_Frame_app_8");
+                model.Address = modelView.Address;
                 model.State = (int)RecordState.NORMAL;
+                model.UserRole = UserRole.FRONT_END.ToString();
                 db.O_UserInfo.Add(model);
-                LoginDataModel loginModel = new LoginDataModel();
-                loginModel.Uid = model.UID;
-                loginModel.Token = "";
-                loginModel.AppKey = 1;
-                loginModel.userInfoSelfViewModel.LoginId = model.UserName;
-                
-                loginModel.userInfoSelfViewModel.UserUid = model.UID.ToString();
-                return loginModel;
+                if (db.SaveChanges() > 0) Msg = "注册成功";
+                UserInfoSelfViewModel reModel = new UserInfoSelfViewModel();
+                reModel.UserUid = model.UID.ToString();
+                reModel.UserName = model.UserName;
+                reModel.LoginId = model.LoginID;
+                reModel.Phone = model.Phone;
+                reModel.Address = model.Address;
+                return reModel;
             }
+        }
+
+        public UserInfoSelfViewModel app_UserLogin(string loginID, string secretString, out string Msg)
+        {
+
+            using (var db = new OrderCentDB())
+            {
+                var userInfo = db.O_UserInfo.Single(c => c.LoginID == loginID);
+                if (userInfo == null) { Msg = "用户不存在"; }
+                string pwd = Encrypt_Helper_SF.UserMd5(secretString.Trim() + "SF_Frame_app_8");
+                if (userInfo.PassWord != pwd) { Msg = "账号或密码错误"; }
+                Msg = "登录成功";
+                UserInfoSelfViewModel model = new UserInfoSelfViewModel();
+                model.UserUid = userInfo.UID.ToString();
+                model.LoginId = userInfo.LoginID;
+                model.Phone = userInfo.Phone;
+                model.Address = userInfo.Address;
+
+                return model;
+            }
+
         }
 
         public List<UserManageViewModel> SelectUsers(string loginId, int userState, int pageIndex, out int pageTotal, out int pageCount)
@@ -178,6 +205,20 @@ namespace OrderCenter.Data.Service
                 model.UserName = userName;
                 model.Phone = phone;
                 return db.SaveChanges() > 0;
+            }
+        }
+
+        //updatePassWord
+        public bool updatePassWord(string uid, string pwd,out string Msg)
+        {
+            using (var db = new OrderCentDB())
+            {
+                Msg = "操作失败";
+                var model = db.O_UserInfo.FirstOrDefault(c => c.UID.ToString() == uid);
+                model.PassWord = Encrypt_Helper_SF.UserMd5(pwd + "SF_Frame_app_8");
+                bool re = db.SaveChanges() > 0;
+                if (re) Msg = "修改成功";
+                return re;
             }
         }
     }

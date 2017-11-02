@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="app_OrderDetail.cs" />
     <Compile Include="app_OrderMain.cs" />
+    <Compile Include="app_RegisterViewModel.cs" />
     <Compile Include="CommHelper\Encrypt_Helper_SF.cs" />
+    <Compile Include="CommHelper\Return_ResultJsonModel.cs" />
     <Compile Include="FoodTypeViewModel.cs" />
     <Compile Include="LoginDataModel.cs" />
     <Compile Include="OrderDetailViewModel.cs" />
@@ -54,6 +56,7 @@
     <Compile Include="ViewEnum\OrderState.cs" />
     <Compile Include="ViewEnum\PageSize.cs" />
     <Compile Include="ViewEnum\RecordState.cs" />
+    <Compile Include="ViewEnum\UserRole.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

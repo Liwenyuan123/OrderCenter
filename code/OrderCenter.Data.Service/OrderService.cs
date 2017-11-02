@@ -28,18 +28,18 @@ namespace OrderCenter.Data.Service
             return lists;
         }
 
-        public List<OrderMainViewModel> Select(string startDate,string endDate,int orderState, int pageIndex,out int pageCount,out int pageTotal)
+        public List<OrderMainViewModel> Select(string startDate, string endDate, int orderState, int pageIndex, out int pageCount, out int pageTotal)
         {
             Expression<Func<O_OrderMain, bool>> where = t => true;
             if (!string.IsNullOrEmpty(startDate))
             {
-               where = where.And(t => t.AddDate >=Convert.ToDateTime( startDate));
+                where = where.And(t => t.AddDate >= Convert.ToDateTime(startDate));
             }
             if (!string.IsNullOrEmpty(endDate))
             {
                 where = where.And(t => t.AddDate <= Convert.ToDateTime(endDate));
             }
-            if(orderState != 0)
+            if (orderState != 0)
             {
                 where = where.And(t => t.OrderState == orderState);
             }
@@ -48,13 +48,13 @@ namespace OrderCenter.Data.Service
                 //总条数
                 pageTotal = db.O_OrderMain.Where(where).Count();
                 //总页数
-                pageCount =Convert.ToInt32( Math.Ceiling((decimal) pageTotal / PageSize.Count));
-                var list = db.O_OrderMain.Where(where).Skip((pageIndex - 1) * PageSize.Count).Take(PageSize.Count).Select(t=>new OrderMainViewModel{ MainID =t.UID, UsePersonName =t.UsePersonName, Phone =t.Phone, Address =t.Address, OrState =Enum.GetName(typeof( OrderState),Convert.ToInt32( t.OrderState) )}).ToList();
+                pageCount = Convert.ToInt32(Math.Ceiling((decimal)pageTotal / PageSize.Count));
+                var list = db.O_OrderMain.Where(where).Skip((pageIndex - 1) * PageSize.Count).Take(PageSize.Count).Select(t => new OrderMainViewModel { MainID = t.UID, UsePersonName = t.UsePersonName, Phone = t.Phone, Address = t.Address, OrState = Enum.GetName(typeof(OrderState), Convert.ToInt32(t.OrderState)) }).ToList();
                 return list;
-               
-            } 
+
+            }
         }
-        
+
         //get orderDetailList by MainID
         public List<O_OrderDetail> GetOrderDetail(string mainId)
         {
@@ -91,7 +91,7 @@ namespace OrderCenter.Data.Service
             return true;
         }
 
-        public bool app_AddOrder(app_OrderMain model,out string Msg)
+        public bool app_AddOrder(app_OrderMain model, out string Msg)
         {
             using (var db = new OrderCentDB())
             {
@@ -109,7 +109,7 @@ namespace OrderCenter.Data.Service
                     orderMain.UserID = model.UserID;
                     orderMain.UsePersonName = model.UsePersonName;
                     orderMain.Address = model.Address;
-                    
+
                     db.O_OrderMain.Add(orderMain);
                     db.SaveChanges();
                     //添加明细信息
@@ -118,7 +118,7 @@ namespace OrderCenter.Data.Service
                         var orderDetail = new O_OrderDetail();
                         orderDetail.UID = Guid.NewGuid();
                         orderDetail.MainId = orderMain.UID.ToString();
-                        orderDetail.State =(int)RecordState.NORMAL;
+                        orderDetail.State = (int)RecordState.NORMAL;
                         orderDetail.CommodityId = d.ComUID.ToString();
                         orderDetail.ComName = d.ComName;
                         orderDetail.Unit = d.Unit;
@@ -143,35 +143,16 @@ namespace OrderCenter.Data.Service
         {
             using (var db = new OrderCentDB())
             {
-                var model = db.O_CommodityInfo.Where(c => c.ComName.Contains(comName)).Select(c =>new { c.UID,c.Unit,c.ComName,c.Price,c.PriceSum}).ToList();
+                var model = db.O_CommodityInfo.Where(c => c.ComName.Contains(comName)).Select(c => new { c.UID, c.Unit, c.ComName, c.Price, c.PriceSum }).ToList();
                 return model;
             }
         }
 
-        public UserInfoSelfViewModel app_UserLogin(string loginID,string secretString, out string Msg)
-        {
-            
-            using (var db = new OrderCentDB())
-            {
-                var userInfo = db.O_UserInfo.Single(c => c.LoginID == loginID);
-                if (userInfo == null) { Msg = "用户不存在"; }
-                string pwd = Encrypt_Helper_SF.UserMd5(secretString + "SF_Frame_app");
-                if(userInfo.PassWord != pwd) { Msg = "账号或密码错误"; }
-                Msg = "登录成功";
-                UserInfoSelfViewModel model = new UserInfoSelfViewModel();
-                model.UserUid = userInfo.UID.ToString();
-                model.LoginId = userInfo.LoginID;
-                model.Phone = userInfo.Phone;
-                model.Address = userInfo.Address;
 
-                return model;
-            }
-            
-        }
-        public bool UpdateOrderState(string mainId,int orderState)
+        public bool UpdateOrderState(string mainId, int orderState)
         {
             bool re = false;
-            
+
             using (var db = new OrderCentDB())
             {
                 var model = db.O_OrderMain.FirstOrDefault(c => c.UID.ToString() == mainId);
@@ -181,7 +162,7 @@ namespace OrderCenter.Data.Service
                 return re;
             }
         }
-        
+
         public string CreatOrderNum()
         {
             string str = DateTime.Now.ToString("yyyy-MM-dd");
@@ -197,10 +178,10 @@ namespace OrderCenter.Data.Service
                 var models = db.O_OrderMain.Where(c => c.State == 1 && c.UserID == userId).ToList();
                 return models;
             }
-            
+
         }
 
-        
+
     }
 
 }

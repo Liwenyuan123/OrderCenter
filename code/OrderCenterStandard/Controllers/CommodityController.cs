@@ -22,10 +22,11 @@ namespace OrderCenterStandard.Controllers
             var comService = new CommodityService();
             int PageCount = 0;
             int PageTotal = 0;
-            var lists = comService.Select(ComName, TypeID, PageIndex,out PageCount,out PageTotal,PageSize.Count); 
-            return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(lists));
+            var lists = comService.Select(ComName, TypeID, PageIndex,out PageCount,out PageTotal,PageSize.Count);
+            var reModel = new { Msg = "查询成功", code = 0, data = lists };
+            return Json(reModel);
         }
-        //app商品订单页
+        //app商品列表页
         [HttpGet]
         public IHttpActionResult Get()
         {
@@ -34,33 +35,34 @@ namespace OrderCenterStandard.Controllers
             return Json(list);
          }
         //Post api/Commodity
-        public IHttpActionResult Post([FromBody]dynamic query,[FromUri] string flagType)
+        public IHttpActionResult Post([FromBody]dynamic query,[FromUri] int flagType)
         {
             string str =Convert.ToString( query);
             CommodityViewModel model = Newtonsoft.Json.JsonConvert.DeserializeObject<CommodityViewModel>(str);
             var comService = new CommodityService();
             switch (flagType)
             {
-                case "1":
+                case 1:
                     comService.Add(model);break;
-                case "2":
+                case 2:
                     comService.Update(model);break;
 
             }
             return Ok("操作成功！");
             
         }
-        public IHttpActionResult Post(string UID,string flagType)
+        //Post api/Commodity/UID=?FlagType =1
+        public IHttpActionResult Post(string UID,int FlagType)
         {
             var reMsg="";
             CommodityService comService = new CommodityService();
-            switch (flagType)
+            switch (FlagType)
             {
-                case "1":
+                case 1:
                   if (comService.Delete(UID))
                         reMsg="操作成功！";
                     else reMsg ="操作失败";break;
-                case "2":
+                case 2:
                     reMsg = Newtonsoft.Json.JsonConvert.SerializeObject( comService.GetByID(UID)).ToString();
                     break;
                 default:

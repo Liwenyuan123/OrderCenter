@@ -12,16 +12,16 @@ namespace OrderCenterStandard.Controllers
 {
     public class app_UserController : ApiController
     {
-        OrderService service = new OrderService();
+        UserService service = new UserService();
         // POST: api/UserLogin
         public IHttpActionResult Post([FromBody]dynamic query)
         {
             //check args
             SF_Frame_Valudation.CheckDataNullValudation.CheckNullGet(query, "数据为空");
-            string loginId = query.loginId;
-            string secretString = query.secretMessage;
+            string loginId = query.LoginId;
+            string secretString = query.SecretMessage;
             int random = query.random;
-            long timeStamp = query.timeStamp;
+            //long timeStamp = query.timeStamp;
             string Msg = "登录失败";
             //login and get user info
 

@@ -25,7 +25,7 @@ namespace OrderCenter.Data.Service
         {
             
             Expression<Func<O_CommodityInfo, bool>> where = t => true;
-            if (!string.IsNullOrEmpty(ComName))
+            if (!string.IsNullOrEmpty(ComName) && ComName != "0")
             {
                 where = PredicateExtensions.And<O_CommodityInfo>(where, t => t.ComName.Contains(ComName));
             }

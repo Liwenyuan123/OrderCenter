@@ -10,7 +10,7 @@ using OrderCenter.Data.Service;
 
 namespace OrderCenterStandard.Controllers
 {
-    public class UserController : ApiController
+    public class UserLoginController : ApiController
     {
         UserService serivice = new UserService();
         // GET: api/User
@@ -30,16 +30,17 @@ namespace OrderCenterStandard.Controllers
         {
             //check args
             SF_Frame_Valudation.CheckDataNullValudation.CheckNullGet(query, "数据为空");
-            string loginId = query.loginId;
-            int random = query.random;
-            long timeStamp = query.timeStamp;
-            string secretString =query.secretString;
-
+            string loginId = query.LoginId;
+            //int random = query.random;
+            //long timeStamp = query.timeStamp;
+            string secretString =query.SecretString;
+            string Msg = "登录失败";
             //login and get user info
            
            //support loginid,phone,email login!
-             LoginDataModel loginDataModel = serivice.UserLogin(loginId, random, timeStamp, secretString);
-             return Ok(loginDataModel);
+             UserInfoSelfViewModel loginDataModel = serivice.app_UserLogin(loginId, secretString,out Msg);
+             var data = new{ Message = Msg, Data = loginDataModel };
+            return Json(data);
         }
 
         // PUT: api/User

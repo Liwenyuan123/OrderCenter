@@ -46,8 +46,6 @@ namespace OrderCenterStandard.Controllers
                 case "不通过":
                     re= service.UpdateOrderState(MainID, (int)OrderState.AuditPassed);
                     break;
-                case "发货":
-                    re=service.UpdateOrderState(MainID, (int)OrderState.IsOver);break;
                 case "收货":
                     re = service.UpdateOrderState(MainID, (int)OrderState.IsOver);
                     break;
@@ -67,14 +65,15 @@ namespace OrderCenterStandard.Controllers
         //api/Order
         public IHttpActionResult Post([FromBody]dynamic query)
         {
+            string Msg = "操作失败";
             CheckDataNullValudation.CheckNullGet(query,"请输入参数");
             //string str = Convert.ToString(query);
             OrderMainViewModel orderViews = JsonConvert.DeserializeObject<OrderMainViewModel>(query);
-            
-            //adding necessary condition judgment......
-            service.pc_AddOrder(orderViews);
 
-            return Ok();
+            //adding necessary condition judgment......
+            if (service.pc_AddOrder(orderViews)) Msg = "操作成功";
+
+            return Ok(Msg);
         }
     }
 }
