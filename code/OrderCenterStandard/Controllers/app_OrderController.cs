@@ -41,7 +41,7 @@ namespace OrderCenterStandard.Controllers
         public IHttpActionResult Post([FromBody]dynamic query)
         {
             string Msg = "";
-            var model = Newtonsoft.Json.JsonConvert.DeserializeObject<app_OrderMain>(query);
+            var model = Newtonsoft.Json.JsonConvert.DeserializeObject<app_OrderMain>(Convert.ToString( query));
             bool result = service.app_AddOrder(model,out Msg);
             
             return Json(new Return_ResultJsonModel<OrderMainViewModel>(0,0,0,Msg,(int)ReturnCode.OK,null));

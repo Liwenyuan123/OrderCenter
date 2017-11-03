@@ -17,8 +17,9 @@ namespace OrderCenterStandard.Controllers
         // POST: api/UserLogin
         public IHttpActionResult Post([FromBody]dynamic query)
         {
+            var s = Convert.ToString(query);
             //check args
-            app_RegisterViewModel model = Newtonsoft.Json.JsonConvert.DeserializeObject<app_RegisterViewModel>(query);
+            app_RegisterViewModel model = Newtonsoft.Json.JsonConvert.DeserializeObject<app_RegisterViewModel>(s);
             string Msg = "true";
             int Code = -1;
             //login and get user info

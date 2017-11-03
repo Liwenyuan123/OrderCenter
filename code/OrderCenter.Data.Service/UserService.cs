@@ -158,6 +158,7 @@ namespace OrderCenter.Data.Service
                 model.LoginId = userInfo.LoginID;
                 model.Phone = userInfo.Phone;
                 model.Address = userInfo.Address;
+                model.UserName = userInfo.UserName;
 
                 return model;
             }

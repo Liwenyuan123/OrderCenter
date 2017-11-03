@@ -68,7 +68,7 @@ namespace OrderCenterStandard.Controllers
             string Msg = "操作失败";
             CheckDataNullValudation.CheckNullGet(query,"请输入参数");
             //string str = Convert.ToString(query);
-            OrderMainViewModel orderViews = JsonConvert.DeserializeObject<OrderMainViewModel>(query);
+            OrderMainViewModel orderViews = JsonConvert.DeserializeObject<OrderMainViewModel>(Convert.ToString( query));
 
             //adding necessary condition judgment......
             if (service.pc_AddOrder(orderViews)) Msg = "操作成功";
