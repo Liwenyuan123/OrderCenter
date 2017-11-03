@@ -24,9 +24,12 @@ namespace OrderCenterStandard.Controllers
             int PageCount = 0;
             int PageTotal = 0;
             string Msg = "操作失败";
+            string comName = query.ComName;
+            int typeID = query.TypeID;
+            int PageIndex = query.PageIndex;
             int Code = (int)ReturnCode.OPERATION_FAILED;
-            var lists = comService.Select(query.ComName, query.TypeID, query.PageIndex, out PageCount, out PageTotal, PageSize.Count, out Code, out Msg);
-            return Json(new Return_ResultJsonModel<CommodityViewModel>(query.PageIndex, PageCount, PageTotal, Msg, Code, lists));
+            var lists = comService.Select(comName,typeID , PageIndex, out PageCount, out PageTotal, PageSize.Count, out Code, out Msg);
+            return Json(new Return_ResultJsonModel<CommodityViewModel>(PageIndex, PageCount, PageTotal, Msg, Code, lists));
         }
         //app商品列表页
         [HttpGet]
