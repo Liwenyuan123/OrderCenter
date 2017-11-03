@@ -17,7 +17,7 @@ namespace OrderCenterStandard.Controllers
     {
         //Get api/Commodity
         [HttpPost]
-        public IHttpActionResult Post(string ComName, int TypeID, int PageIndex)
+        public IHttpActionResult Post([FromBody]dynamic query )
         {
             //string ComName,int TypeID,int PageIndex
             var comService = new CommodityService();
@@ -25,8 +25,8 @@ namespace OrderCenterStandard.Controllers
             int PageTotal = 0;
             string Msg = "操作失败";
             int Code = (int)ReturnCode.OPERATION_FAILED;
-            var lists = comService.Select(ComName, TypeID, PageIndex, out PageCount, out PageTotal, PageSize.Count, out Code, out Msg);
-            return Json(new Return_ResultJsonModel<CommodityViewModel>(PageIndex, PageCount, PageTotal, Msg, Code, lists));
+            var lists = comService.Select(query.ComName, query.TypeID, query.PageIndex, out PageCount, out PageTotal, PageSize.Count, out Code, out Msg);
+            return Json(new Return_ResultJsonModel<CommodityViewModel>(query.PageIndex, PageCount, PageTotal, Msg, Code, lists));
         }
         //app商品列表页
         [HttpGet]
