@@ -6,56 +6,48 @@ using System.Net.Http;
 using System.Web.Http;
 using OrderCenter.Data.Service;
 using OrderCenter.Data.DTO;
+using OrderCenter.Data.DTO.CommHelper;
+using OrderCenter.Data.DTO.ViewEnum;
 
 namespace OrderCenterStandard.Controllers
 {
     public class UserManageController : ApiController
     {
         UserService service = new UserService();
-        // POST: api/UserManage
-        public IHttpActionResult Post([FromBody]dynamic query)
-        {
-            //check args
-            //SF_Frame_Valudation.CheckDataNullValudation.CheckNullGet(query, "数据为空");
-            //string loginId = query.loginId;
-            //SF_Frame_Valudation.CheckFormatValidation.CheckMobilePhone(query.Tel, "电话号码数据不正确");
-            //string phone = query.Tel;
-            //string pwd = query.Pwd;
-
-            ////support loginid,phone,email login!
-            //LoginDataModel loginDataModel = service.addUser(loginId, pwd, phone);
-            //return Ok(loginDataModel);
-            return Ok();
-        }
+       
         //GET:api/UserManage
         public IHttpActionResult Post(string LoginId,int State,int PageIndex)
         {
             int pageCount = 0;
             int pageTotal = 0;
-            var models = service.SelectUsers(LoginId, State, PageIndex, out pageCount, out pageTotal);
+            string Msg = "操作失败";
+            int Code = (int)ReturnCode.OPERATION_FAILED;
+            var models = service.SelectUsers(LoginId, State, PageIndex, out pageCount, out pageTotal,out Msg,out Code);
             
-            var data = new { PageIndex = PageIndex, PageCount = pageCount, PageTotal = pageTotal, Data = models };
-            return Json(data);
+            return Json(new Return_ResultJsonModel<UserManageViewModel>(PageIndex,pageCount,pageTotal,Msg,Code,models));
            
         }
         //POST:api/UserMage
         public IHttpActionResult Post([FromBody]dynamic query, string Flag)
         {
             string Msg = "操作失败";
+            int Code = (int)ReturnCode.OPERATION_FAILED;
             switch (Flag)
             {
                 case "删除":
-                    if (service.deleteUser(query.Uid)) Msg = "操作成功";
-                    break;
+                    var list = service.deleteUser(query.Uid, out Msg, out Code);
+                    return Json(new Return_ResultJsonModel<UserInfoSelfViewModel>(0,0,0,Msg,Code,list));
                 case "修改":
-                    if (service.updateUser(query.Uid,query.LoginId,query.UserName,query.Phone)) Msg = "操作成功";
+                    var listU = service.updateUser(query.Uid,query.LoginId,query.UserName,query.Phone,out Msg,out Code);
+                    return Json(new Return_ResultJsonModel<UserInfoSelfViewModel>(0, 0, 0, Msg, Code, listU));
                     break;
                 case "修改密码":
-                    service.updatePassWord(query.Uid, query.PassWord, out Msg);break;
+                    service.updatePassWord(query.Uid, query.PassWord, out Msg);
+                    break;
 
             }
             
-            return Ok(msg);
+            return Ok(Msg);
         }
     }
 }

@@ -6,6 +6,9 @@ using System.Net.Http;
 using System.Web.Http;
 using Newtonsoft.Json;
 using OrderCenter.Data.Service;
+using OrderCenter.Data.DTO;
+using OrderCenter.Data.DTO.CommHelper;
+using OrderCenter.Data.DTO.ViewEnum;
 
 namespace OrderCenterStandard.Controllers
 {
@@ -16,7 +19,7 @@ namespace OrderCenterStandard.Controllers
         {
             var service = new FoodTypeService();
             var lists = service.GetAll();
-            return Ok(lists);
+            return Ok(new Return_ResultJsonModel<FoodTypeViewModel>(0,0,0,"查询成功",(int)ReturnCode.OK,lists));
         }
         // Post: api/FoodType
         public IHttpActionResult Post([FromBody]dynamic query, [FromUri] string flag)

@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using SF_Frame_Valudation;
 using OrderCenter.Data.DTO;
+using OrderCenter.Data.DTO.ViewEnum;
+using OrderCenter.Data.DTO.CommHelper;
 using OrderCenter.Data.Service;
 
 namespace OrderCenterStandard.Controllers
@@ -13,17 +15,7 @@ namespace OrderCenterStandard.Controllers
     public class UserLoginController : ApiController
     {
         UserService serivice = new UserService();
-        // GET: api/User
-        public IHttpActionResult Get(string loginID,string userState, int pageIndex, int pageSize)
-        {
-            throw new Exception();
-        }
-
-        // GET: api/User/id
-        public IHttpActionResult Get(string id)
-        {
-            throw new Exception();
-        }
+        
 
         // POST: api/UserLogin
         public IHttpActionResult Post([FromBody]dynamic query)
@@ -35,24 +27,16 @@ namespace OrderCenterStandard.Controllers
             //long timeStamp = query.timeStamp;
             string secretString =query.SecretString;
             string Msg = "登录失败";
+            int Code = (int)ReturnCode.OPERATION_FAILED;
             //login and get user info
            
            //support loginid,phone,email login!
-             UserInfoSelfViewModel loginDataModel = serivice.app_UserLogin(loginId, secretString,out Msg);
-             var data = new{ Message = Msg, Data = loginDataModel };
-            return Json(data);
+             UserInfoSelfViewModel loginDataModel = serivice.app_UserLogin(loginId, secretString,out Msg,out Code);
+            List<UserInfoSelfViewModel> list = new List<UserInfoSelfViewModel>();
+            list.Add(loginDataModel);
+            return Json(new Return_ResultJsonModel<UserInfoSelfViewModel>(0,0,0,Msg,Code,list));
         }
 
-        // PUT: api/User
-        public IHttpActionResult Put([FromBody]dynamic query)
-        {
-            throw new Exception();
-        }
-
-        // DELETE: api/User
-        public IHttpActionResult Delete([FromBody]dynamic query)
-        {
-            throw new Exception();
-        }
+       
     }
 }

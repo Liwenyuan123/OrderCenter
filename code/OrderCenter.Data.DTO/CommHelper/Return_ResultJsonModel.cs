@@ -6,17 +6,25 @@ using System.Threading.Tasks;
 
 namespace OrderCenter.Data.DTO.CommHelper
 {
-    public static class Return_ResultJsonModel
+    public  class Return_ResultJsonModel<T>where T:class
     {
-        public static JsonModel CreateResultJson(string msg,int code,List<T> data)
-        {
+        public int PageIndex { get; set; }
+        public int PageCount { get; set; }
+        public int PageTotal { get; set; }
+        public string Msg { get; set; }
+        public int Code { get; set; }
+        public List<T> Models { get; set; }
 
+        public   Return_ResultJsonModel(int pageIndex,int pageCount,int pageTotal, string msg,int code,List<T> data)
+        {
+            this.PageIndex = pageIndex;
+            this.PageCount = pageCount;
+            this.PageTotal = pageTotal;
+            this.Msg = msg;
+            this.Code = code;
+            this.Models = data;
         }
     }
-    public static class JsonModel
-    {
-        public static string Msg { get; set; }
-        public static int Code { get; set; }
-        public static List<T> Data<T> { get;set;}
-    }
+    
+    
 }

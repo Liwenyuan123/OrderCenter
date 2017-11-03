@@ -193,7 +193,6 @@
     <Compile Include="Controllers\app_UserController.cs" />
     <Compile Include="Controllers\CommodityController.cs" />
     <Compile Include="Controllers\FoodTypeController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\app_OrderController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserLoginController.cs" />

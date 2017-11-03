@@ -9,22 +9,24 @@ using OrderCenter.Data.Service;
 using OrderCenter.Data.DTO;
 using OrderCenterStandard.App_Start;
 using OrderCenter.Data.DTO.ViewEnum;
+using OrderCenter.Data.DTO.CommHelper;
 
 namespace OrderCenterStandard.Controllers
 {
     public class CommodityController : ApiController
     {
         //Get api/Commodity
-        [HttpGet]
-        public IHttpActionResult Get(string ComName, int TypeID, int PageIndex)
+        [HttpPost]
+        public IHttpActionResult Post(string ComName, int TypeID, int PageIndex)
         {
             //string ComName,int TypeID,int PageIndex
             var comService = new CommodityService();
             int PageCount = 0;
             int PageTotal = 0;
-            var lists = comService.Select(ComName, TypeID, PageIndex,out PageCount,out PageTotal,PageSize.Count);
-            var reModel = new { Msg = "查询成功", code = 0, data = lists };
-            return Json(reModel);
+            string Msg = "操作失败";
+            int Code = (int)ReturnCode.OPERATION_FAILED;
+            var lists = comService.Select(ComName, TypeID, PageIndex, out PageCount, out PageTotal, PageSize.Count, out Code, out Msg);
+            return Json(new Return_ResultJsonModel<CommodityViewModel>(PageIndex, PageCount, PageTotal, Msg, Code, lists));
         }
         //app商品列表页
         [HttpGet]
@@ -32,43 +34,47 @@ namespace OrderCenterStandard.Controllers
         {
             var comService = new CommodityService();
             var list = comService.GroupByType();
-            return Json(list);
-         }
+
+            return Json(new Return_ResultJsonModel<dynamic>(0, 0, 0, "查询成功", (int)ReturnCode.OK, list));
+        }
         //Post api/Commodity
-        public IHttpActionResult Post([FromBody]dynamic query,[FromUri] int flagType)
+        public IHttpActionResult Post([FromBody]dynamic query, [FromUri] int FlagType)
         {
-            string str =Convert.ToString( query);
+            string str = Convert.ToString(query);
             CommodityViewModel model = Newtonsoft.Json.JsonConvert.DeserializeObject<CommodityViewModel>(str);
             var comService = new CommodityService();
-            switch (flagType)
+            string Msg = "操作失败";
+            int Code = (int)ReturnCode.OPERATION_FAILED;
+            switch (FlagType)
             {
                 case 1:
-                    comService.Add(model);break;
+                    comService.Add(model, out Msg, out Code); break;
                 case 2:
-                    comService.Update(model);break;
+                    comService.Update(model, out Msg, out Code); break;
 
             }
-            return Ok("操作成功！");
-            
+            return Json(new Return_ResultJsonModel<CommodityViewModel>(0, 0, 0, Msg, Code, null));
+
         }
         //Post api/Commodity/UID=?FlagType =1
-        public IHttpActionResult Post(string UID,int FlagType)
+        public IHttpActionResult Post(string UID, int FlagType)
         {
-            var reMsg="";
+            var Msg = "操作失败";
+            int Code = (int)ReturnCode.OPERATION_FAILED;
             CommodityService comService = new CommodityService();
             switch (FlagType)
             {
                 case 1:
-                  if (comService.Delete(UID))
-                        reMsg="操作成功！";
-                    else reMsg ="操作失败";break;
+                    if (comService.Delete(UID))
+                        Msg = "操作成功！";Code = (int)ReturnCode.OK; break;
                 case 2:
-                    reMsg = Newtonsoft.Json.JsonConvert.SerializeObject( comService.GetByID(UID)).ToString();
+                    var model = comService.GetByID(UID);
+                    Msg = "操作成功"; Code = (int)ReturnCode.OK;
                     break;
                 default:
                     break;
             }
-            return Ok(reMsg);
+            return Ok(new Return_ResultJsonModel<CommodityViewModel>(0,0,0,Msg,Code,null));
         }
     }
 }

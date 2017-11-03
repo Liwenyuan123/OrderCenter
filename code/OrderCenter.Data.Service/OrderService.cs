@@ -139,11 +139,11 @@ namespace OrderCenter.Data.Service
             }
         }
 
-        public dynamic app_FuzzySearch(string comName)
+        public List<CommodityViewModel> app_FuzzySearch(string comName)
         {
             using (var db = new OrderCentDB())
             {
-                var model = db.O_CommodityInfo.Where(c => c.ComName.Contains(comName)).Select(c => new { c.UID, c.Unit, c.ComName, c.Price, c.PriceSum }).ToList();
+                var model = db.O_CommodityInfo.Where(c => c.ComName.Contains(comName)).Select(c => new CommodityViewModel (){ UID= c.UID,  ComName= c.ComName, Standard=c.Standard, Unit=c.Unit, Price= c.Price??0, PriceSum=c.PriceSum??0, TypeID =c.TypeID??0,TypeName = c.O_FoodType.TypeName}).ToList();
                 return model;
             }
         }

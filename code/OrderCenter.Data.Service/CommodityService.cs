@@ -21,9 +21,9 @@ namespace OrderCenter.Data.Service
         /// <param name="PageTotal">总条数</param>
         /// <param name="PageSize">每页条数</param>
         /// <returns></returns>
-        public List<CommodityViewModel> Select(string ComName, int TypeID, int PageIndex,out int PageCount, out int PageTotal, int PageSize)
+        public List<CommodityViewModel> Select(string ComName, int TypeID, int PageIndex,out int PageCount, out int PageTotal, int PageSize,out int Code,out string Msg)
         {
-            
+            Msg = "操作失败";
             Expression<Func<O_CommodityInfo, bool>> where = t => true;
             if (!string.IsNullOrEmpty(ComName) && ComName != "0")
             {
@@ -40,6 +40,8 @@ namespace OrderCenter.Data.Service
 
                 PageTotal = db.O_CommodityInfo.Where(where).Select(m => m.UID).AsQueryable().Count();
                 PageCount =Convert.ToInt32( Math.Ceiling(Convert.ToDecimal(PageTotal) / PageSize));
+                Msg = "查询成功";
+                Code = (int)ReturnCode.OK;
                 return models.ToList();
             }
 
@@ -54,7 +56,7 @@ namespace OrderCenter.Data.Service
             }
         }
 
-        public bool Add(CommodityViewModel model)
+        public bool Add(CommodityViewModel model,out string Msg,out int Code)
         {
             using (var db = new OrderCentDB())
             {
@@ -69,26 +71,39 @@ namespace OrderCenter.Data.Service
                 newModel.TypeID = model.TypeID;
                 newModel.Unit = model.Unit;
                 db.O_CommodityInfo.Add(newModel);
-                return db.SaveChanges() > 0;
+                bool re = db.SaveChanges() > 0;
+                if (re)
+                {
+                    Msg = "操作成功";
+                    Code = (int)ReturnCode.OK;
+                }
+                else { re = false;
+                    Msg = "操作失败";
+                    Code = (int)ReturnCode.OPERATION_FAILED;
+                }
+                
+                return re ;
             }
         }
         //修改
-        public bool Update(CommodityViewModel model)
+        public bool Update(CommodityViewModel model,out string Msg,out int Code)
         {
+            Msg = "操作失败"; Code = (int)ReturnCode.OPERATION_FAILED;
             using (var db = new OrderCentDB())
             {
                 O_CommodityInfo oldModel = db.O_CommodityInfo.FirstOrDefault(c => c.UID == model.UID);
-                //oldModel.UID = model.UID;
                 oldModel.Unit = model.Unit;
                 oldModel.TypeID = model.TypeID;
-                //oldModel.State = model.State;
                 oldModel.Standard = model.Standard;
-                //oldModel.Remark = model.Remark;
                 oldModel.PriceSum = model.PriceSum;
                 oldModel.Price = model.Price;
                 oldModel.ComName = model.ComName;
-
-                return db.SaveChanges() > 0;
+                bool re = db.SaveChanges() > 0;
+                if (re)
+                {
+                    Msg = "操作成功";Code = (int)ReturnCode.OK;
+                }
+                return re;
             }
         }
         //删除

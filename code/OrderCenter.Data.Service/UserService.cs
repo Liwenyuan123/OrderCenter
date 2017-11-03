@@ -115,7 +115,7 @@ namespace OrderCenter.Data.Service
 
 
         //add userInfo
-        public UserInfoSelfViewModel app_RegisterUser(app_RegisterViewModel modelView,out string Msg)
+        public UserInfoSelfViewModel app_RegisterUser(app_RegisterViewModel modelView,out string Msg,out int Code)
         {
             using (var db = new OrderCentDB())
             {
@@ -137,11 +137,12 @@ namespace OrderCenter.Data.Service
                 reModel.LoginId = model.LoginID;
                 reModel.Phone = model.Phone;
                 reModel.Address = model.Address;
+                Code = (int)ReturnCode.OK;
                 return reModel;
             }
         }
 
-        public UserInfoSelfViewModel app_UserLogin(string loginID, string secretString, out string Msg)
+        public UserInfoSelfViewModel app_UserLogin(string loginID, string secretString, out string Msg,out int Code)
         {
 
             using (var db = new OrderCentDB())
@@ -151,6 +152,7 @@ namespace OrderCenter.Data.Service
                 string pwd = Encrypt_Helper_SF.UserMd5(secretString.Trim() + "SF_Frame_app_8");
                 if (userInfo.PassWord != pwd) { Msg = "账号或密码错误"; }
                 Msg = "登录成功";
+                Code = (int)ReturnCode.OK;
                 UserInfoSelfViewModel model = new UserInfoSelfViewModel();
                 model.UserUid = userInfo.UID.ToString();
                 model.LoginId = userInfo.LoginID;
@@ -162,7 +164,7 @@ namespace OrderCenter.Data.Service
 
         }
 
-        public List<UserManageViewModel> SelectUsers(string loginId, int userState, int pageIndex, out int pageTotal, out int pageCount)
+        public List<UserManageViewModel> SelectUsers(string loginId, int userState, int pageIndex, out int pageTotal, out int pageCount,out string Msg,out int Code)
         {
             Expression<Func<O_UserInfo, bool>> where = c => true;
             if (!string.IsNullOrEmpty(loginId))
@@ -181,30 +183,49 @@ namespace OrderCenter.Data.Service
                 //总页数
                 pageCount = Convert.ToInt32(Math.Ceiling((decimal)pageTotal / PageSize.Count));
                 var list = db.O_UserInfo.Where(where).Skip((pageIndex - 1) * PageSize.Count).Take(PageSize.Count).Select(t => new UserManageViewModel { Uid = t.UID.ToString(), LoginID = t.UserName, Phone = t.Phone, State = Enum.GetName(typeof(OrderState), Convert.ToInt32(t.State)) }).ToList();
+                Msg = "操作成功";
+                Code = (int)ReturnCode.OK;
                 return list;
 
             }
         }
 
         //delete user
-        public bool deleteUser(string uid)
+        public List<UserManageViewModel> deleteUser(string uid,out string Msg,out int Code)
         {
+            Msg = "操作失败";Code = (int)ReturnCode.OPERATION_FAILED;
             using (var db = new OrderCentDB())
             {
+                List<UserManageViewModel> reList = new List<UserManageViewModel> ();
                 var model = db.O_UserInfo.FirstOrDefault(c => c.UID.ToString() == uid);
                 model.State = (int)RecordState.DELETE;
-                return db.SaveChanges() > 0;
+                if( db.SaveChanges() > 0)
+                {
+                    Msg = "操作成功";
+                    Code = (int)ReturnCode.OK;
+                    reList = db.O_UserInfo.Where(c => c.State == (int)RecordState.NORMAL).Select(c=>new UserManageViewModel() { Uid=c.UID.ToString(), LoginID =c.LoginID, UserName=c.UserName,Phone = c.Phone }).ToList();
+                }
+                
+                return reList;
             }
         }
-        public bool updateUser(string uid,string loginId,string userName,string phone)
+        public List<UserManageViewModel> updateUser(string uid,string loginId,string userName,string phone,out string Msg,out int Code)
         {
+            Msg = "操作失败";
+            Code = (int)ReturnCode.OPERATION_FAILED;
             using (var db = new OrderCentDB())
             {
                 var model = db.O_UserInfo.FirstOrDefault(c => c.UID.ToString() == uid);
                 model.LoginID = loginId;
                 model.UserName = userName;
                 model.Phone = phone;
-                return db.SaveChanges() > 0;
+                if(db.SaveChanges() > 0)
+                {
+                    Msg = "修改成功";
+                    Code = (int)ReturnCode.OK;
+                }
+                List<UserManageViewModel> list = db.O_UserInfo.Where(c => c.State == (int)RecordState.NORMAL).Select(c => new UserManageViewModel() { Uid = c.UID.ToString(), LoginID = c.LoginID, UserName = c.UserName, Phone = c.Phone,State= Enum.GetName(typeof(RecordState),c.State) }).ToList();
+                return list;
             }
         }
 
