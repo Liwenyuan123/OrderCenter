@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using SF_Frame_Valudation;
 using OrderCenter.Data.DTO;
 using OrderCenter.Data.Service;
 using OrderCenter.Data.DTO.ViewEnum;
@@ -19,7 +18,6 @@ namespace OrderCenterStandard.Controllers
         public IHttpActionResult Post([FromBody]dynamic query)
         {
             //check args
-            SF_Frame_Valudation.CheckDataNullValudation.CheckNullGet(query, "数据为空");
             string loginId = query.LoginId;
             string secretString = query.SecretMessage;
             int random = query.random;

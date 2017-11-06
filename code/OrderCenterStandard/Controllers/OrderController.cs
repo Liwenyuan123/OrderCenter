@@ -9,7 +9,6 @@ using OrderCenter.Data.DTO;
 using OrderCenter.Data.DTO.ViewEnum;
 using OrderCenter.Data.Service;
 using Newtonsoft.Json.Linq;
-using SF_Frame_Valudation;
 
 namespace OrderCenterStandard.Controllers
 {
@@ -66,7 +65,6 @@ namespace OrderCenterStandard.Controllers
         public IHttpActionResult Post([FromBody]dynamic query)
         {
             string Msg = "操作失败";
-            CheckDataNullValudation.CheckNullGet(query,"请输入参数");
             //string str = Convert.ToString(query);
             OrderMainViewModel orderViews = JsonConvert.DeserializeObject<OrderMainViewModel>(Convert.ToString( query));
 
