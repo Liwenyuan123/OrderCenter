@@ -28,8 +28,10 @@ namespace OrderCenter.Data.Service
             return lists;
         }
 
-        public List<OrderMainViewModel> Select(string startDate, string endDate, int orderState, int pageIndex, out int pageCount, out int pageTotal)
+        public List<OrderMainViewModel> Select(string startDate, string endDate, int orderState, int pageIndex, out int pageCount, out int pageTotal,out string msg,out int code)
         {
+            code = (int)ReturnCode.OPERATION_FAILED;
+            msg = "操作失败";
             Expression<Func<O_OrderMain, bool>> where = t => true;
             if (!string.IsNullOrEmpty(startDate))
             {
@@ -50,6 +52,8 @@ namespace OrderCenter.Data.Service
                 //总页数
                 pageCount = Convert.ToInt32(Math.Ceiling((decimal)pageTotal / PageSize.Count));
                 var list = db.O_OrderMain.Where(where).Skip((pageIndex - 1) * PageSize.Count).Take(PageSize.Count).Select(t => new OrderMainViewModel { MainID = t.UID, UsePersonName = t.UsePersonName, Phone = t.Phone, Address = t.Address, OrState = Enum.GetName(typeof(OrderState), Convert.ToInt32(t.OrderState)) }).ToList();
+                msg = "操作成功";
+                code = (int)ReturnCode.OK;
                 return list;
 
             }

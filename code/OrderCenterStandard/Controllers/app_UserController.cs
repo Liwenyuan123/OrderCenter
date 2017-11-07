@@ -14,7 +14,9 @@ namespace OrderCenterStandard.Controllers
     public class app_UserController : ApiController
     {
         UserService service = new UserService();
+
         // POST: api/UserLogin
+        [HttpPost]
         public IHttpActionResult Post([FromBody]dynamic query)
         {
             //check args

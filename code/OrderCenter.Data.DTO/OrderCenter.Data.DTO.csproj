@@ -44,6 +44,8 @@
     <Compile Include="app_OrderMain.cs" />
     <Compile Include="app_RegisterViewModel.cs" />
     <Compile Include="CommHelper\Encrypt_Helper_SF.cs" />
+    <Compile Include="dynamicGetByID.cs" />
+    <Compile Include="dynamicSelect.cs" />
     <Compile Include="ViewEnum\ReturnCode.cs" />
     <Compile Include="CommHelper\Return_ResultJsonModel.cs" />
     <Compile Include="FoodTypeViewModel.cs" />

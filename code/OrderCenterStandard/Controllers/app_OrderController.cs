@@ -16,19 +16,21 @@ namespace OrderCenterStandard.Controllers
         OrderService service = new OrderService();
 
         //get the history OrderList
-        //api/Order/
-        [HttpGet]
-        public IHttpActionResult Get(string SearchC ,string Flag)
+        [Route("api/app_Order/GetListOrSearchC")]
+        [HttpPost]
+        public IHttpActionResult GetListOrSearchC([FromBody]dynamic query )
         {
-            
-            switch (Flag)
+            string flag = query.FlagType;
+            switch (flag)
             {
                 case "History":
-                    var models = service.GetOrderByUserID(SearchC);
+                    string uid = query.SearchC;
+                    var models = service.GetOrderByUserID(uid);
                     Return_ResultJsonModel<O_OrderMain> reJson = new Return_ResultJsonModel<O_OrderMain>(0, 0, 0, "操作成功", 0, models); 
                     return Json(reJson);
                 case "FuzzyS":
-                    var comList = service.app_FuzzySearch(SearchC);
+                    string comName = query.SearchC;
+                    var comList = service.app_FuzzySearch(comName);
                     Return_ResultJsonModel<CommodityViewModel> reJsonF = new Return_ResultJsonModel<CommodityViewModel>(0, 0, 0, "操作成功", 0, comList);
                     return Json(reJsonF);
                 default:

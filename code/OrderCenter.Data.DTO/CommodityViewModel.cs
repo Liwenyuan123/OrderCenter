@@ -9,7 +9,7 @@ namespace OrderCenter.Data.DTO
     public class CommodityViewModel
     {
         //商品主键
-        public Guid UID { get; set; }
+        public Guid? UID { get; set; }
         //商品名称
         public string ComName { get; set; }
         //规格

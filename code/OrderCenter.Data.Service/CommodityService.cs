@@ -24,7 +24,7 @@ namespace OrderCenter.Data.Service
         public List<CommodityViewModel> Select(string ComName, int TypeID, int PageIndex,out int PageCount, out int PageTotal, int PageSize,out int Code,out string Msg)
         {
             Msg = "操作失败";
-            Expression<Func<O_CommodityInfo, bool>> where = t => true;
+            Expression<Func<O_CommodityInfo, bool>> where = t => t.State ==(int)RecordState.NORMAL;
             if (!string.IsNullOrEmpty(ComName) && ComName != "0")
             {
                 where = PredicateExtensions.And<O_CommodityInfo>(where, t => t.ComName.Contains(ComName));
@@ -36,7 +36,7 @@ namespace OrderCenter.Data.Service
 
             using (var db = new OrderCentDB())
             {
-                var models = db.O_CommodityInfo.Where(where).OrderBy(c=>c.ComName).Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(c => new CommodityViewModel() { UID = c.UID, ComName = c.ComName, Standard = c.Standard, Unit = c.Unit, Price = c.Price ?? 0, PriceSum = c.PriceSum ?? 0, TypeName = c.O_FoodType.TypeName });
+                var models = db.O_CommodityInfo.Where(where).OrderBy(c=>c.ComName).Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(c => new CommodityViewModel() { UID = c.UID, ComName = c.ComName, Standard = c.Standard, Unit = c.Unit, Price = c.Price ?? 0, PriceSum = c.PriceSum ?? 0, TypeName = c.O_FoodType.TypeName,TypeID =(int)c.TypeID });
 
                 PageTotal = db.O_CommodityInfo.Where(where).Select(m => m.UID).AsQueryable().Count();
                 PageCount =Convert.ToInt32( Math.Ceiling(Convert.ToDecimal(PageTotal) / PageSize));
@@ -51,7 +51,7 @@ namespace OrderCenter.Data.Service
         {
             using (var db = new OrderCentDB())
             {
-                var model = db.O_CommodityInfo.Where(c => c.UID.ToString() == uid).Select(c => new CommodityViewModel() { UID = c.UID, ComName = c.ComName, Standard = c.Standard, Unit = c.Unit, Price = c.Price ?? 0, PriceSum = c.PriceSum ?? 0, TypeName = c.O_FoodType.TypeName }).ToList();
+                var model = db.O_CommodityInfo.Where(c => c.UID.ToString() == uid).Select(c => new CommodityViewModel() { UID = c.UID, ComName = c.ComName, Standard = c.Standard, Unit = c.Unit, Price = c.Price ?? 0, PriceSum = c.PriceSum ?? 0, TypeName = c.O_FoodType.TypeName ,TypeID=c.TypeID??0}).ToList();
                 return model[0];
             }
         }
