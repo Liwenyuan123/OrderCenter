@@ -20,7 +20,7 @@ namespace OrderCenterStandard.Controllers
 
         [Route("api/Commodity/GetComList")]
         [HttpPost]
-        public IHttpActionResult GetComList([FromBody]dynamicSelect query)
+        public IHttpActionResult GetComList(dynamic query)
         {
             //string ComName,int TypeID,int PageIndex
             var comService = new CommodityService();
@@ -66,7 +66,7 @@ namespace OrderCenterStandard.Controllers
         
         [HttpPost]
         [Route("api/Commodity/DelOrGetByID")]
-        public IHttpActionResult DelOrGetByID([FromBody]dynamicGetByID query )
+        public IHttpActionResult DelOrGetByID(dynamic query )
         {
             var Msg = "操作失败";
             int Code = (int)ReturnCode.OPERATION_FAILED;
