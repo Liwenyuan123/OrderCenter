@@ -42,20 +42,21 @@ namespace OrderCenterStandard.Controllers
             return Json(new Return_ResultJsonModel<O_OrderDetail>(0,0,0,"查询成功",(int)ReturnCode.OK,details));
         }
         //api/Order/MainID=""&&Flag=""
-        [HttpGet]
-        public IHttpActionResult GetAduit(string MainID, string Flag)
+        [HttpPost]
+        public IHttpActionResult GetAduit(dynamic query  )
         {
-
+            string MainID = query.MainID;
+            string Flag = query.Flag;
             bool re = false;
             switch (Flag)
             {
-                case "通过":
+                case "Adopt":
                     re = service.UpdateOrderState(MainID, (int)OrderState.AuditPassed);
                     break;
-                case "不通过":
+                case "Refuse":
                     re = service.UpdateOrderState(MainID, (int)OrderState.AuditPassed);
                     break;
-                case "收货":
+                case "IsOver":
                     re = service.UpdateOrderState(MainID, (int)OrderState.IsOver);
                     break;
 

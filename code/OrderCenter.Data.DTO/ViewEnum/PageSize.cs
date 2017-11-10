@@ -8,6 +8,6 @@ namespace OrderCenter.Data.DTO.ViewEnum
 {
     public static class PageSize
     {
-        public static int Count = 1;
+        public static int Count = 10;
     }
 }
