@@ -16,7 +16,7 @@ namespace OrderCenterStandard
             config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
             // Web API 路由
             config.MapHttpAttributeRoutes();
-
+            config.Filters.Add(new Filters.ApiSecurityFilter());
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

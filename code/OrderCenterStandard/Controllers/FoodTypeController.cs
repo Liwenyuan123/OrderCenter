@@ -15,6 +15,7 @@ namespace OrderCenterStandard.Controllers
     public class FoodTypeController : ApiController
     {
         // GET api/FoodType
+        [HttpGet]
         public IHttpActionResult Get()
         {
             var service = new FoodTypeService();

@@ -94,10 +94,6 @@
       <Project>{1b365f57-93e3-482a-8bd8-162535d4d5cb}</Project>
       <Name>OrderCenter.Data.DTO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OrderCenter.Data.Model\OrderCenter.Data.Model.csproj">
-      <Project>{3a2b47d0-ee1c-430a-8e2e-da888ab35d12}</Project>
-      <Name>OrderCenter.Data.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
