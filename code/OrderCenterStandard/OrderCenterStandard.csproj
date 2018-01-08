@@ -197,6 +197,7 @@
     <Compile Include="Controllers\CommodityController.cs" />
     <Compile Include="Controllers\FoodTypeController.cs" />
     <Compile Include="Controllers\app_OrderController.cs" />
+    <Compile Include="Controllers\loginController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\UserLoginController.cs" />
@@ -214,10 +215,29 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\style.css" />
     <Content Include="default.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="image\background.jpg" />
+    <Content Include="image\banner.jpg" />
+    <Content Include="image\bg-01.jpg" />
+    <Content Include="image\bg.jpg" />
+    <Content Include="image\current.png" />
+    <Content Include="image\example1.jpg" />
+    <Content Include="image\example2.jpg" />
+    <Content Include="image\goods.png" />
+    <Content Include="image\hd_top.jpg" />
+    <Content Include="image\home.png" />
+    <Content Include="image\logo.png" />
+    <Content Include="image\order.png" />
+    <Content Include="image\user.png" />
+    <Content Include="js\login.js" />
+    <Content Include="js\main.js" />
+    <Content Include="manager\index.html" />
+    <Content Include="manager\main.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -243,14 +263,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\md5.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Views\Manager\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Views\Manager\css\bootstrap.min.css" />
     <Content Include="Views\Manager\css\common.css" />
     <Content Include="Views\Manager\css\datepicker.css" />
@@ -271,7 +290,7 @@
     <Content Include="Views\Manager\image\logo.png" />
     <Content Include="Views\Manager\image\order.png" />
     <Content Include="Views\Manager\image\user.png" />
-    <Content Include="Views\Manager\js\bootstrap.min.js" />
+    <Content Include="js\bootstrap.min.js" />
     <Content Include="Views\Manager\js\datepicker.min.js" />
     <Content Include="Views\Manager\js\datepicker.zh-CN.min.js" />
     <Content Include="Views\Manager\js\goods.js" />
@@ -282,7 +301,7 @@
     <Content Include="Views\Manager\js\password.js" />
     <Content Include="Views\Manager\js\user.js" />
     <Content Include="Views\Manager\login.html" />
-    <Content Include="Views\Manager\order.html" />
+    <Content Include="manager\order.html" />
     <Content Include="Views\Manager\orderDetail.html" />
     <Content Include="Views\Manager\user.html" />
     <Content Include="Web.config">
@@ -320,9 +339,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,0 +1,78 @@
+﻿html {
+    *overflow: auto;
+}
+
+#containerLeft {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+/*左侧导航*/
+.nav {
+    width: 6%;
+    height: 100%;
+    position: fixed;
+    color: white;
+    background-color: #458C16;
+}
+
+    .nav li {
+        width: 100%;
+        padding: 10px 0;
+        margin: 20px;
+        cursor: pointer;
+    }
+
+    .nav-pills > li.active > a, .nav > li > a:hover {
+        background: none !important;
+    }
+
+.changeColor {
+    background: #437C1D;
+}
+
+.current {
+    color: #F7F7F7;
+    width: 10px;
+    height: 20px;
+    position: absolute;
+    right: 0;
+    top: 25%;
+}
+
+.tabImg {
+    margin-left: 30%;
+}
+
+
+
+
+
+
+#container {
+    position: relative;
+    width: 94%;
+    height: 100%;
+    float: right;
+}
+/*页面头部*/
+#hd {
+    /*position: relative;*/
+    width: 100%;
+    line-height: 60px;
+    border-bottom: 2px solid #E5E7E9;
+    background-size: cover;
+    background: url(../image/bg-01.jpg) repeat-x;
+    height: 60px;
+}
+
+    #hd .title {
+        font-weight: bolder;
+    }
+
+div, ul, li, a, span, dd {
+    font-size: 21px;
+    font-weight: normal;
+    color: #555;
+}
