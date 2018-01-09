@@ -234,6 +234,7 @@
     <Content Include="image\logo.png" />
     <Content Include="image\order.png" />
     <Content Include="image\user.png" />
+    <Content Include="js\jquery-3.2.1.min.js" />
     <Content Include="js\login.js" />
     <Content Include="js\main.js" />
     <Content Include="manager\index.html" />
@@ -300,7 +301,7 @@
     <Content Include="Views\Manager\js\orderDetail.js" />
     <Content Include="Views\Manager\js\password.js" />
     <Content Include="Views\Manager\js\user.js" />
-    <Content Include="Views\Manager\login.html" />
+    <Content Include="login.html" />
     <Content Include="manager\order.html" />
     <Content Include="Views\Manager\orderDetail.html" />
     <Content Include="Views\Manager\user.html" />
