@@ -49,44 +49,105 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FoodTypeService.cs" />
-    <Compile Include="OrderCenterDB.Context.cs">
+    <Compile Include="peisongDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OrderCenterDB.Context.tt</DependentUpon>
+      <DependentUpon>peisongDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="OrderCenterDB.cs">
+    <Compile Include="peisongDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OrderCenterDB.tt</DependentUpon>
+      <DependentUpon>peisongDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="OrderCenterDB.Designer.cs">
+    <Compile Include="peisongDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OrderCenterDB.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="OrderService.cs" />
-    <Compile Include="CommodityService.cs" />
-    <Compile Include="O_CommodityInfo.cs">
-      <DependentUpon>OrderCenterDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="O_FoodType.cs">
-      <DependentUpon>OrderCenterDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="O_OrderDetail.cs">
-      <DependentUpon>OrderCenterDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="O_OrderMain.cs">
-      <DependentUpon>OrderCenterDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="O_Unit.cs">
-      <DependentUpon>OrderCenterDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="O_UserInfo.cs">
-      <DependentUpon>OrderCenterDB.tt</DependentUpon>
+      <DependentUpon>peisongDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="PredicateExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="P_CheckApply.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_CompanyRelation.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_MenuLvl.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_MiddleProduct.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_Order.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_OrderList.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_OrderOtherCost.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_OrderRelation.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_Person.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_PersonOrderOperate.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_ProductInfo.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_RelationApply.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_RoleMenu.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_AccountApply.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_Company.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_CompanyType.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_File.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_Message.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_PayWay.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_Product.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_ProductType.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_Right.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_Role.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_RoleRight.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_TimeApply.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_TimeApplyDetail.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_User.cs">
+      <DependentUpon>peisongDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserLogin.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -97,28 +158,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="OrderCenterDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OrderCenterDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="OrderCenterDB.edmx.diagram">
-      <DependentUpon>OrderCenterDB.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
+    <EntityDeploy Include="peisongDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>peisongDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="peisongDB.edmx.diagram">
+      <DependentUpon>peisongDB.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="OrderCenterDB.Context.tt">
+    <Content Include="peisongDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OrderCenterDB.edmx</DependentUpon>
-      <LastGenOutput>OrderCenterDB.Context.cs</LastGenOutput>
+      <DependentUpon>peisongDB.edmx</DependentUpon>
+      <LastGenOutput>peisongDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="OrderCenterDB.tt">
+    <Content Include="peisongDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OrderCenterDB.edmx</DependentUpon>
-      <LastGenOutput>OrderCenterDB.cs</LastGenOutput>
+      <DependentUpon>peisongDB.edmx</DependentUpon>
+      <LastGenOutput>peisongDB.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

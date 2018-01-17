@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PeiSongModelStoreContainer" CdmEntityContainer="PeiSongEntities">
+    <EntitySetMapping Name="P_CheckApply">
+      <EntityTypeMapping TypeName="PeiSongModel.P_CheckApply">
+        <MappingFragment StoreEntitySet="P_CheckApply">
+          <ScalarProperty Name="ApplyID" ColumnName="ApplyID" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CheckCode" ColumnName="CheckCode" />
+          <ScalarProperty Name="ApplyState" ColumnName="ApplyState" />
+          <ScalarProperty Name="TaskType" ColumnName="TaskType" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_CompanyRelation">
+      <EntityTypeMapping TypeName="PeiSongModel.P_CompanyRelation">
+        <MappingFragment StoreEntitySet="P_CompanyRelation">
+          <ScalarProperty Name="RelationID" ColumnName="RelationID" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="CompanyType" ColumnName="CompanyType" />
+          <ScalarProperty Name="OppositeCompanyCode" ColumnName="OppositeCompanyCode" />
+          <ScalarProperty Name="OppositeCompanyType" ColumnName="OppositeCompanyType" />
+          <ScalarProperty Name="RelationState" ColumnName="RelationState" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_MenuLvl">
+      <EntityTypeMapping TypeName="PeiSongModel.P_MenuLvl">
+        <MappingFragment StoreEntitySet="P_MenuLvl">
+          <ScalarProperty Name="MenuCode" ColumnName="MenuCode" />
+          <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
+          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+          <ScalarProperty Name="MenuUrl" ColumnName="MenuUrl" />
+          <ScalarProperty Name="ShowOrder" ColumnName="ShowOrder" />
+          <ScalarProperty Name="MenuState" ColumnName="MenuState" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="IcoPath" ColumnName="IcoPath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_MiddleProduct">
+      <EntityTypeMapping TypeName="PeiSongModel.P_MiddleProduct">
+        <MappingFragment StoreEntitySet="P_MiddleProduct">
+          <ScalarProperty Name="MProductID" ColumnName="MProductID" />
+          <ScalarProperty Name="MCompanyCode" ColumnName="MCompanyCode" />
+          <ScalarProperty Name="PCompanyCode" ColumnName="PCompanyCode" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ProductState" ColumnName="ProductState" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_Order">
+      <EntityTypeMapping TypeName="PeiSongModel.P_Order">
+        <MappingFragment StoreEntitySet="P_Order">
+          <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
+          <ScalarProperty Name="SendPerson" ColumnName="SendPerson" />
+          <ScalarProperty Name="SendCompany" ColumnName="SendCompany" />
+          <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+          <ScalarProperty Name="ReceivePerson" ColumnName="ReceivePerson" />
+          <ScalarProperty Name="ReceiveCompany" ColumnName="ReceiveCompany" />
+          <ScalarProperty Name="ReceiveTime" ColumnName="ReceiveTime" />
+          <ScalarProperty Name="ReProductPerson" ColumnName="ReProductPerson" />
+          <ScalarProperty Name="ReProductTime" ColumnName="ReProductTime" />
+          <ScalarProperty Name="CheckPerson" ColumnName="CheckPerson" />
+          <ScalarProperty Name="CheckTime" ColumnName="CheckTime" />
+          <ScalarProperty Name="OrderState" ColumnName="OrderState" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_OrderList">
+      <EntityTypeMapping TypeName="PeiSongModel.P_OrderList">
+        <MappingFragment StoreEntitySet="P_OrderList">
+          <ScalarProperty Name="DetailID" ColumnName="DetailID" />
+          <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="PlanCount" ColumnName="PlanCount" />
+          <ScalarProperty Name="RealCount" ColumnName="RealCount" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ProductUnit" ColumnName="ProductUnit" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_OrderOtherCost">
+      <EntityTypeMapping TypeName="PeiSongModel.P_OrderOtherCost">
+        <MappingFragment StoreEntitySet="P_OrderOtherCost">
+          <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
+          <ScalarProperty Name="CostType" ColumnName="CostType" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_OrderRelation">
+      <EntityTypeMapping TypeName="PeiSongModel.P_OrderRelation">
+        <MappingFragment StoreEntitySet="P_OrderRelation">
+          <ScalarProperty Name="RelationID" ColumnName="RelationID" />
+          <ScalarProperty Name="SourceList" ColumnName="SourceList" />
+          <ScalarProperty Name="ObjectList" ColumnName="ObjectList" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_Person">
+      <EntityTypeMapping TypeName="PeiSongModel.P_Person">
+        <MappingFragment StoreEntitySet="P_Person">
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="LogID" ColumnName="LogID" />
+          <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+          <ScalarProperty Name="PersonPhoto" ColumnName="PersonPhoto" />
+          <ScalarProperty Name="PersonPhone" ColumnName="PersonPhone" />
+          <ScalarProperty Name="PersonPwd" ColumnName="PersonPwd" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+          <ScalarProperty Name="AccountBegin" ColumnName="AccountBegin" />
+          <ScalarProperty Name="AccountEnd" ColumnName="AccountEnd" />
+          <ScalarProperty Name="AccountState" ColumnName="AccountState" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="MsgCode" ColumnName="MsgCode" />
+          <ScalarProperty Name="MobileType" ColumnName="MobileType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_PersonOrderOperate">
+      <EntityTypeMapping TypeName="PeiSongModel.P_PersonOrderOperate">
+        <MappingFragment StoreEntitySet="P_PersonOrderOperate">
+          <ScalarProperty Name="OperateID" ColumnName="OperateID" />
+          <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
+          <ScalarProperty Name="OperatePersonID" ColumnName="OperatePersonID" />
+          <ScalarProperty Name="OrderState" ColumnName="OrderState" />
+          <ScalarProperty Name="OperateDes" ColumnName="OperateDes" />
+          <ScalarProperty Name="OperateTime" ColumnName="OperateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_ProductInfo">
+      <EntityTypeMapping TypeName="PeiSongModel.P_ProductInfo">
+        <MappingFragment StoreEntitySet="P_ProductInfo">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ProductUnit" ColumnName="ProductUnit" />
+          <ScalarProperty Name="IsDivisible" ColumnName="IsDivisible" />
+          <ScalarProperty Name="ProductState" ColumnName="ProductState" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_RelationApply">
+      <EntityTypeMapping TypeName="PeiSongModel.P_RelationApply">
+        <MappingFragment StoreEntitySet="P_RelationApply">
+          <ScalarProperty Name="ApplyCode" ColumnName="ApplyCode" />
+          <ScalarProperty Name="SPersonID" ColumnName="SPersonID" />
+          <ScalarProperty Name="SCompanyCode" ColumnName="SCompanyCode" />
+          <ScalarProperty Name="RCompanyCode" ColumnName="RCompanyCode" />
+          <ScalarProperty Name="ApplyType" ColumnName="ApplyType" />
+          <ScalarProperty Name="ApplyState" ColumnName="ApplyState" />
+          <ScalarProperty Name="ApplyContent" ColumnName="ApplyContent" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CheckPerson" ColumnName="CheckPerson" />
+          <ScalarProperty Name="CheckTime" ColumnName="CheckTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_RoleMenu">
+      <EntityTypeMapping TypeName="PeiSongModel.P_RoleMenu">
+        <MappingFragment StoreEntitySet="P_RoleMenu">
+          <ScalarProperty Name="CompanyType" ColumnName="CompanyType" />
+          <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+          <ScalarProperty Name="MenuCode" ColumnName="MenuCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_AccountApply">
+      <EntityTypeMapping TypeName="PeiSongModel.S_AccountApply">
+        <MappingFragment StoreEntitySet="S_AccountApply">
+          <ScalarProperty Name="ApplyCode" ColumnName="ApplyCode" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+          <ScalarProperty Name="CompanyImage" ColumnName="CompanyImage" />
+          <ScalarProperty Name="CompanyType" ColumnName="CompanyType" />
+          <ScalarProperty Name="ApplyType" ColumnName="ApplyType" />
+          <ScalarProperty Name="AccountCount" ColumnName="AccountCount" />
+          <ScalarProperty Name="UseTime" ColumnName="UseTime" />
+          <ScalarProperty Name="LinkMan" ColumnName="LinkMan" />
+          <ScalarProperty Name="LinkPhone" ColumnName="LinkPhone" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="TotalBalance" ColumnName="TotalBalance" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+          <ScalarProperty Name="PayWay" ColumnName="PayWay" />
+          <ScalarProperty Name="PayAccount" ColumnName="PayAccount" />
+          <ScalarProperty Name="PayCode" ColumnName="PayCode" />
+          <ScalarProperty Name="ApplyState" ColumnName="ApplyState" />
+          <ScalarProperty Name="ApplyTime" ColumnName="ApplyTime" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_Company">
+      <EntityTypeMapping TypeName="PeiSongModel.S_Company">
+        <MappingFragment StoreEntitySet="S_Company">
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+          <ScalarProperty Name="CompanyImage" ColumnName="CompanyImage" />
+          <ScalarProperty Name="LinkMan" ColumnName="LinkMan" />
+          <ScalarProperty Name="LinkPhone" ColumnName="LinkPhone" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="CompanyType" ColumnName="CompanyType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_CompanyType">
+      <EntityTypeMapping TypeName="PeiSongModel.S_CompanyType">
+        <MappingFragment StoreEntitySet="S_CompanyType">
+          <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
+          <ScalarProperty Name="AccountTypeName" ColumnName="AccountTypeName" />
+          <ScalarProperty Name="InUser" ColumnName="InUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_File">
+      <EntityTypeMapping TypeName="PeiSongModel.S_File">
+        <MappingFragment StoreEntitySet="S_File">
+          <ScalarProperty Name="FileID" ColumnName="FileID" />
+          <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FileExt" ColumnName="FileExt" />
+          <ScalarProperty Name="FileLocation" ColumnName="FileLocation" />
+          <ScalarProperty Name="FileCompressLocation" ColumnName="FileCompressLocation" />
+          <ScalarProperty Name="FileType" ColumnName="FileType" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_Message">
+      <EntityTypeMapping TypeName="PeiSongModel.S_Message">
+        <MappingFragment StoreEntitySet="S_Message">
+          <ScalarProperty Name="MsgID" ColumnName="MsgID" />
+          <ScalarProperty Name="ReceiveID" ColumnName="ReceiveID" />
+          <ScalarProperty Name="ReceiverType" ColumnName="ReceiverType" />
+          <ScalarProperty Name="MsgTitle" ColumnName="MsgTitle" />
+          <ScalarProperty Name="MsgContent" ColumnName="MsgContent" />
+          <ScalarProperty Name="MsgState" ColumnName="MsgState" />
+          <ScalarProperty Name="SendType" ColumnName="SendType" />
+          <ScalarProperty Name="MsgType" ColumnName="MsgType" />
+          <ScalarProperty Name="IsPay" ColumnName="IsPay" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_PayWay">
+      <EntityTypeMapping TypeName="PeiSongModel.S_PayWay">
+        <MappingFragment StoreEntitySet="S_PayWay">
+          <ScalarProperty Name="PayWayID" ColumnName="PayWayID" />
+          <ScalarProperty Name="PayWayName" ColumnName="PayWayName" />
+          <ScalarProperty Name="InUser" ColumnName="InUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_Product">
+      <EntityTypeMapping TypeName="PeiSongModel.S_Product">
+        <MappingFragment StoreEntitySet="S_Product">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductState" ColumnName="ProductState" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_ProductType">
+      <EntityTypeMapping TypeName="PeiSongModel.S_ProductType">
+        <MappingFragment StoreEntitySet="S_ProductType">
+          <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="ShowOrder" ColumnName="ShowOrder" />
+          <ScalarProperty Name="NodeLevel" ColumnName="NodeLevel" />
+          <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
+          <ScalarProperty Name="UniteCode" ColumnName="UniteCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_Right">
+      <EntityTypeMapping TypeName="PeiSongModel.S_Right">
+        <MappingFragment StoreEntitySet="S_Right">
+          <ScalarProperty Name="RightCode" ColumnName="RightCode" />
+          <ScalarProperty Name="RightName" ColumnName="RightName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_Role">
+      <EntityTypeMapping TypeName="PeiSongModel.S_Role">
+        <MappingFragment StoreEntitySet="S_Role">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleState" ColumnName="RoleState" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_RoleRight">
+      <EntityTypeMapping TypeName="PeiSongModel.S_RoleRight">
+        <MappingFragment StoreEntitySet="S_RoleRight">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RightCode" ColumnName="RightCode" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_TimeApply">
+      <EntityTypeMapping TypeName="PeiSongModel.S_TimeApply">
+        <MappingFragment StoreEntitySet="S_TimeApply">
+          <ScalarProperty Name="ApplyCode" ColumnName="ApplyCode" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="ApplyTime" ColumnName="ApplyTime" />
+          <ScalarProperty Name="TotalBalance" ColumnName="TotalBalance" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="ApplyState" ColumnName="ApplyState" />
+          <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+          <ScalarProperty Name="PayWay" ColumnName="PayWay" />
+          <ScalarProperty Name="PayAccount" ColumnName="PayAccount" />
+          <ScalarProperty Name="PayCode" ColumnName="PayCode" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_TimeApplyDetail">
+      <EntityTypeMapping TypeName="PeiSongModel.S_TimeApplyDetail">
+        <MappingFragment StoreEntitySet="S_TimeApplyDetail">
+          <ScalarProperty Name="ApplyDetailID" ColumnName="ApplyDetailID" />
+          <ScalarProperty Name="ApplyCode" ColumnName="ApplyCode" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="UseTime" ColumnName="UseTime" />
+          <ScalarProperty Name="BeginTime" ColumnName="BeginTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_User">
+      <EntityTypeMapping TypeName="PeiSongModel.S_User">
+        <MappingFragment StoreEntitySet="S_User">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="LogCode" ColumnName="LogCode" />
+          <ScalarProperty Name="UserPwd" ColumnName="UserPwd" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="UserState" ColumnName="UserState" />
+          <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Updator" ColumnName="Updator" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -8,6 +8,7 @@ using OrderCenter.Data.DTO.CommHelper;
 using OrderCenter.Data.DTO.ViewEnum;
 using Newtonsoft.Json;
 using System.Web;
+using OrderCenterStandard.Models;
 
 namespace OrderCenterStandard.Controllers
 {
@@ -23,10 +24,10 @@ namespace OrderCenterStandard.Controllers
         public HttpResponseMessage GetToken(string staffId)
         {
             ResultMsg resultMsg = null;
-            int id = 0;
+            string id ="";
 
             //判断参数是否合法
-            if (string.IsNullOrEmpty(staffId) || (!int.TryParse(staffId, out id)))
+            if (string.IsNullOrEmpty(staffId) )
             {
                 resultMsg = new ResultMsg();
                 resultMsg.StatusCode = (int)StatusCodeEnum.ParameterError;
@@ -39,9 +40,10 @@ namespace OrderCenterStandard.Controllers
             Token token = (Token)HttpRuntime.Cache.Get(id.ToString());
             if (HttpRuntime.Cache.Get(id.ToString()) == null)
             {
+                string dateTimeLong = commonMethod.ConvertDateTimeInt( DateTime.Now.AddDays(1)).ToString();
                 token = new Token();
                 token.StaffId = id;
-                token.SignToken = Guid.NewGuid();
+                token.SignToken = Guid.NewGuid().ToString("N")+ dateTimeLong;
                 token.ExpireTime = DateTime.Now.AddDays(1);
                 HttpRuntime.Cache.Insert(token.StaffId.ToString(), token, null, token.ExpireTime, TimeSpan.Zero);
             }
@@ -55,7 +57,7 @@ namespace OrderCenterStandard.Controllers
             return HttpResponseExtension.toJson(JsonConvert.SerializeObject(resultMsg));
         }
 
-
+       
        
     }
 }

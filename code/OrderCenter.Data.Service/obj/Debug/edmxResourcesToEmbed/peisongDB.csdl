@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PeiSongModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="P_CheckApply">
+    <Key>
+      <PropertyRef Name="ApplyID" />
+    </Key>
+    <Property Name="ApplyID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PersonID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CheckCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ApplyState" Type="Int32" />
+    <Property Name="TaskType" Type="Int32" Nullable="false" />
+    <Property Name="EndTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="P_CompanyRelation">
+    <Key>
+      <PropertyRef Name="RelationID" />
+    </Key>
+    <Property Name="RelationID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyType" Type="Int32" />
+    <Property Name="OppositeCompanyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OppositeCompanyType" Type="Int32" />
+    <Property Name="RelationState" Type="Int32" Nullable="false" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="P_MenuLvl">
+    <Key>
+      <PropertyRef Name="MenuCode" />
+    </Key>
+    <Property Name="MenuCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ParentCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="MenuName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MenuUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ShowOrder" Type="Int32" Nullable="false" />
+    <Property Name="MenuState" Type="Int32" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IcoPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="P_MiddleProduct">
+    <Key>
+      <PropertyRef Name="MProductID" />
+    </Key>
+    <Property Name="MProductID" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MCompanyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PCompanyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductState" Type="Int32" Nullable="false" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="P_Order">
+    <Key>
+      <PropertyRef Name="OrderCode" />
+    </Key>
+    <Property Name="OrderCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SendPerson" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="SendCompany" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="OrderTime" Type="DateTime" Precision="3" />
+    <Property Name="ReceivePerson" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiveCompany" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiveTime" Type="DateTime" Precision="3" />
+    <Property Name="ReProductPerson" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ReProductTime" Type="DateTime" Precision="3" />
+    <Property Name="CheckPerson" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CheckTime" Type="DateTime" Precision="3" />
+    <Property Name="OrderState" Type="Int32" Nullable="false" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="P_OrderList">
+    <Key>
+      <PropertyRef Name="DetailID" />
+    </Key>
+    <Property Name="DetailID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PlanCount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="RealCount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductUnit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="P_OrderOtherCost">
+    <Key>
+      <PropertyRef Name="OrderCode" />
+      <PropertyRef Name="CostType" />
+    </Key>
+    <Property Name="OrderCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CostType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="P_OrderRelation">
+    <Key>
+      <PropertyRef Name="RelationID" />
+    </Key>
+    <Property Name="RelationID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SourceList" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ObjectList" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CompanyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="P_Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LogID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PersonName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PersonPhoto" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="PersonPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PersonPwd" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleType" Type="Int32" Nullable="false" />
+    <Property Name="AccountBegin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AccountEnd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AccountState" Type="Int32" Nullable="false" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+    <Property Name="MsgCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="MobileType" Type="Int32" />
+  </EntityType>
+  <EntityType Name="P_PersonOrderOperate">
+    <Key>
+      <PropertyRef Name="OperateID" />
+    </Key>
+    <Property Name="OperateID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OperatePersonID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderState" Type="Int32" Nullable="false" />
+    <Property Name="OperateDes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="OperateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="P_ProductInfo">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CompanyCode" />
+    </Key>
+    <Property Name="ProductID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductImage" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductUnit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDivisible" Type="Int32" Nullable="false" />
+    <Property Name="ProductState" Type="Int32" Nullable="false" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="P_RelationApply">
+    <Key>
+      <PropertyRef Name="ApplyCode" />
+    </Key>
+    <Property Name="ApplyCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SPersonID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SCompanyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RCompanyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApplyType" Type="Int32" Nullable="false" />
+    <Property Name="ApplyState" Type="Int32" Nullable="false" />
+    <Property Name="ApplyContent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CheckPerson" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CheckTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="P_RoleMenu">
+    <Key>
+      <PropertyRef Name="CompanyType" />
+      <PropertyRef Name="RoleType" />
+      <PropertyRef Name="MenuCode" />
+    </Key>
+    <Property Name="CompanyType" Type="Int32" Nullable="false" />
+    <Property Name="RoleType" Type="Int32" Nullable="false" />
+    <Property Name="MenuCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="S_AccountApply">
+    <Key>
+      <PropertyRef Name="ApplyCode" />
+    </Key>
+    <Property Name="ApplyCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyImage" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyType" Type="Int32" Nullable="false" />
+    <Property Name="ApplyType" Type="Int32" Nullable="false" />
+    <Property Name="AccountCount" Type="Int32" Nullable="false" />
+    <Property Name="UseTime" Type="Int32" Nullable="false" />
+    <Property Name="LinkMan" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LinkPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Tel" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="TotalBalance" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="IsPaid" Type="Int32" Nullable="false" />
+    <Property Name="PayWay" Type="Int32" />
+    <Property Name="PayAccount" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PayCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ApplyState" Type="Int32" Nullable="false" />
+    <Property Name="ApplyTime" Type="DateTime" Precision="3" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="S_Company">
+    <Key>
+      <PropertyRef Name="CompanyCode" />
+    </Key>
+    <Property Name="CompanyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyImage" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="LinkMan" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LinkPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Tel" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+    <Property Name="CompanyType" Type="Int32" />
+  </EntityType>
+  <EntityType Name="S_CompanyType">
+    <Key>
+      <PropertyRef Name="AccountTypeID" />
+    </Key>
+    <Property Name="AccountTypeID" Type="Int32" Nullable="false" />
+    <Property Name="AccountTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InUser" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="S_File">
+    <Key>
+      <PropertyRef Name="FileID" />
+    </Key>
+    <Property Name="FileID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProjectCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FileName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FileExt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FileLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FileCompressLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FileType" Type="Int32" Nullable="false" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="S_Message">
+    <Key>
+      <PropertyRef Name="MsgID" />
+    </Key>
+    <Property Name="MsgID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReceiveID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReceiverType" Type="Int32" Nullable="false" />
+    <Property Name="MsgTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MsgContent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MsgState" Type="Int32" Nullable="false" />
+    <Property Name="SendType" Type="Int32" Nullable="false" />
+    <Property Name="MsgType" Type="Int32" />
+    <Property Name="IsPay" Type="Int32" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="S_PayWay">
+    <Key>
+      <PropertyRef Name="PayWayID" />
+    </Key>
+    <Property Name="PayWayID" Type="Int32" Nullable="false" />
+    <Property Name="PayWayName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InUser" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="S_Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductState" Type="Int32" Nullable="false" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="S_ProductType">
+    <Key>
+      <PropertyRef Name="TypeCode" />
+    </Key>
+    <Property Name="TypeCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShowOrder" Type="Int32" Nullable="false" />
+    <Property Name="NodeLevel" Type="Int32" Nullable="false" />
+    <Property Name="ParentCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="UniteCode" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="S_Right">
+    <Key>
+      <PropertyRef Name="RightCode" />
+    </Key>
+    <Property Name="RightCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RightName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="S_Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleState" Type="Int32" Nullable="false" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="S_RoleRight">
+    <Key>
+      <PropertyRef Name="RoleID" />
+      <PropertyRef Name="RightCode" />
+    </Key>
+    <Property Name="RoleID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RightCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="S_TimeApply">
+    <Key>
+      <PropertyRef Name="ApplyCode" />
+    </Key>
+    <Property Name="ApplyCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApplyTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TotalBalance" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="ApplyState" Type="Int32" />
+    <Property Name="IsPaid" Type="Int32" Nullable="false" />
+    <Property Name="PayWay" Type="Int32" />
+    <Property Name="PayAccount" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PayCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="S_TimeApplyDetail">
+    <Key>
+      <PropertyRef Name="ApplyDetailID" />
+    </Key>
+    <Property Name="ApplyDetailID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApplyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PersonID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UseTime" Type="Int32" Nullable="false" />
+    <Property Name="BeginTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="S_User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LogCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPwd" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserImage" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Int32" Nullable="false" />
+    <Property Name="UserPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserState" Type="Int32" Nullable="false" />
+    <Property Name="LastLoginTime" Type="DateTime" Precision="3" />
+    <Property Name="Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Updator" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="PeiSongEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="P_CheckApply" EntityType="Self.P_CheckApply" />
+    <EntitySet Name="P_CompanyRelation" EntityType="Self.P_CompanyRelation" />
+    <EntitySet Name="P_MenuLvl" EntityType="Self.P_MenuLvl" />
+    <EntitySet Name="P_MiddleProduct" EntityType="Self.P_MiddleProduct" />
+    <EntitySet Name="P_Order" EntityType="Self.P_Order" />
+    <EntitySet Name="P_OrderList" EntityType="Self.P_OrderList" />
+    <EntitySet Name="P_OrderOtherCost" EntityType="Self.P_OrderOtherCost" />
+    <EntitySet Name="P_OrderRelation" EntityType="Self.P_OrderRelation" />
+    <EntitySet Name="P_Person" EntityType="Self.P_Person" />
+    <EntitySet Name="P_PersonOrderOperate" EntityType="Self.P_PersonOrderOperate" />
+    <EntitySet Name="P_ProductInfo" EntityType="Self.P_ProductInfo" />
+    <EntitySet Name="P_RelationApply" EntityType="Self.P_RelationApply" />
+    <EntitySet Name="P_RoleMenu" EntityType="Self.P_RoleMenu" />
+    <EntitySet Name="S_AccountApply" EntityType="Self.S_AccountApply" />
+    <EntitySet Name="S_Company" EntityType="Self.S_Company" />
+    <EntitySet Name="S_CompanyType" EntityType="Self.S_CompanyType" />
+    <EntitySet Name="S_File" EntityType="Self.S_File" />
+    <EntitySet Name="S_Message" EntityType="Self.S_Message" />
+    <EntitySet Name="S_PayWay" EntityType="Self.S_PayWay" />
+    <EntitySet Name="S_Product" EntityType="Self.S_Product" />
+    <EntitySet Name="S_ProductType" EntityType="Self.S_ProductType" />
+    <EntitySet Name="S_Right" EntityType="Self.S_Right" />
+    <EntitySet Name="S_Role" EntityType="Self.S_Role" />
+    <EntitySet Name="S_RoleRight" EntityType="Self.S_RoleRight" />
+    <EntitySet Name="S_TimeApply" EntityType="Self.S_TimeApply" />
+    <EntitySet Name="S_TimeApplyDetail" EntityType="Self.S_TimeApplyDetail" />
+    <EntitySet Name="S_User" EntityType="Self.S_User" />
+  </EntityContainer>
+</Schema>

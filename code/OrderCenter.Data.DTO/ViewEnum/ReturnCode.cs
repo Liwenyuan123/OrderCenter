@@ -10,6 +10,6 @@ namespace OrderCenter.Data.DTO.ViewEnum
     {
         NO_METHOD = 1001,
         OPERATION_FAILED = 1002,
-        OK =0
+        OK =1
     }
 }

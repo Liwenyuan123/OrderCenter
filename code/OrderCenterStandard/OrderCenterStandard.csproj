@@ -191,24 +191,23 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Common\SetCodePic.cs" />
+    <Compile Include="Common\SetFontPoint.cs" />
     <Compile Include="Common\WebSettingsConfig.cs" />
     <Compile Include="Controllers\app_RegisterController.cs" />
     <Compile Include="Controllers\app_UserController.cs" />
-    <Compile Include="Controllers\CommodityController.cs" />
-    <Compile Include="Controllers\FoodTypeController.cs" />
-    <Compile Include="Controllers\app_OrderController.cs" />
+    <Compile Include="Controllers\CodeController.cs" />
     <Compile Include="Controllers\loginController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
-    <Compile Include="Controllers\UserLoginController.cs" />
     <Compile Include="Controllers\UserManageController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Filters\ApiSecurityFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\commonMethod.cs" />
     <Compile Include="Models\ReturnOK.cs" />
-    <Compile Include="Models\Token.cs" />
+    <Compile Include="Models\VerCodePic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +220,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="image\applications_system_24px.png" />
+    <Content Include="image\home_page_house_24px.png" />
     <Content Include="image\background.jpg" />
     <Content Include="image\banner.jpg" />
     <Content Include="image\bg-01.jpg" />
@@ -231,12 +232,21 @@
     <Content Include="image\goods.png" />
     <Content Include="image\hd_top.jpg" />
     <Content Include="image\home.png" />
+    <Content Include="image\home_page.png" />
+    <Content Include="image\key_lock_login_password.ico" />
+    <Content Include="image\list_16px.png" />
+    <Content Include="image\Login_16pxt.png" />
+    <Content Include="image\login_16px_pwd.png" />
+    <Content Include="image\login_16px_pwd2.png" />
     <Content Include="image\logo.png" />
     <Content Include="image\order.png" />
+    <Content Include="image\system_logo.png" />
     <Content Include="image\user.png" />
     <Content Include="js\jquery-3.2.1.min.js" />
     <Content Include="js\login.js" />
     <Content Include="js\main.js" />
+    <Content Include="js\postUrl.js" />
+    <Content Include="manager\companyApply.html" />
     <Content Include="manager\index.html" />
     <Content Include="manager\main.html" />
     <Content Include="Scripts\bootstrap.js" />

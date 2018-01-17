@@ -12,12 +12,12 @@ namespace OrderCenter.Data.DTO
     public class UserInfoSelfViewModel
     {
         // PK（identity）  User UID
-        public string UserUid { get; set; }
+        public string UserID { get; set; }
         // 登录名
         public string LoginId { get; set; }
         public string UserName { get; set; }
         public string Phone { get; set; }
-        public string Address { get; set; }
+        public string Token { get; set; }
         
 
       

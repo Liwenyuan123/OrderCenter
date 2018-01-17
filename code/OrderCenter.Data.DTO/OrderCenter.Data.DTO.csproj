@@ -44,8 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="app_OrderDetail.cs" />
-    <Compile Include="app_OrderMain.cs" />
     <Compile Include="app_RegisterViewModel.cs" />
     <Compile Include="CommHelper\Encrypt_Helper_SF.cs" />
     <Compile Include="CommHelper\EnumExtension.cs" />
@@ -56,11 +54,7 @@
     <Compile Include="ViewEnum\ApiEnum.cs" />
     <Compile Include="ViewEnum\ReturnCode.cs" />
     <Compile Include="CommHelper\Return_ResultJsonModel.cs" />
-    <Compile Include="FoodTypeViewModel.cs" />
     <Compile Include="LoginDataModel.cs" />
-    <Compile Include="OrderDetailViewModel.cs" />
-    <Compile Include="OrderMainViewModel.cs" />
-    <Compile Include="CommodityViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInfoSelfViewModel.cs" />
     <Compile Include="UserManageViewModel.cs" />

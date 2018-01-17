@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css" />
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/postUrl.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
     <style type="text/css">
-        img {
+        #backgrouncImg {
             width: 100%;
             height: 100%;
             overflow-y: hidden;
@@ -16,8 +18,8 @@
         .panel {
             position: absolute;
             z-index: 1000;
-            width: 16%;
-            height: 253px;
+            width: 30%;
+            height: 337px;
             top: 0;
             bottom: 0;
             left: 0;
@@ -25,71 +27,56 @@
             margin: auto;
         }
 
-        .form-group div {
-            height: 20px;
-            font-size: 16px;
-            line-height: 20px;
-            text-align: center;
+        .form-group .form-control {
+            width: 80%;
         }
+
+        #txt_code {
+            width: 60%;
+        }
+        .input-group-addon img{margin-left:0px;}
     </style>
 
     <title>登录页面</title>
 </head>
 <body>
-    <img src="./image/background.jpg" />
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">登 录</h3>
-        </div>
-        <div class="panel-body">
-            <form class="form-inline">
-                <div class="form-group">
-                    <label for="user">登录名称：</label>
-                    <input type="text" class="form-control" id="user" name="user" placeholder="请输入用户名" />
-                    <div class="user_msg"></div>
-                </div>           
-                <div class="form-group">
-                    <label for="password">登录密码：</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码" />
-                    <div class="password_msg"></div>                    
+    <div class="container">        
+        <div class="panel panel-primary">
+            <div class="panel-heading "><h4>企业账号--后台管理系统</h4></div>
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label for="txt_userName" class="col-sm-2 control-label ">登陆名</label>
+                        <div class="col-sm-10 input-group">
+                            <div class="input-group-addon"><img src="image/Login_16pxt.png" /></div>
+                            <input type="text" class="form-control" id="txt_userName" name="txt_userName" placeholder="请输入用户名" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_pwd" class="col-sm-2 control-label">登陆密码</label>
+                        <div class="col-sm-10 input-group">
+                            <div class="input-group-addon"><img src="image/login_16px_pwd2.png" /></div>
+                            <input type="password" class="form-control" id="txt_pwd" name="txt_pwd" placeholder="请输入密码" /><div class="user_msg"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_pwd" class="col-sm-2 control-label">验证码</label>
+                        <div class="col-sm-10 input-group">                           
+                            <input type="text" class="form-control" id="txt_code" name="txt_code" placeholder="请输入验证码" /><div class="user_msg"></div>
+                            <div class="input-group-addon"><img src="image/login_16px_pwd.png" id="img_code" /> </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-primary" id="btn_ok">登录</button>
+                        </div>
+                    </div>
                 </div>
-                <button type="button" class="btn btn-default" >登录</button>
-            </form>
+
+            </div>
+
         </div>
-       
+
     </div>
-    <script type="text/javascript">
-        $(function () {
-            $(".btn").click(function () {
-                var user = $("input[name=user]").val();
-                var password = $("input[name=password").val();
-                if (user.length == 0) {
-                    $(".user_msg").html("用户名不能为空！").css("color", "red");
-                }
-                if (password.length == 0) {
-                    $(".password_msg").html("密码不能为空！").css("color", "red");
-                }
-                $.ajax({
-                    type: "post",
-                    url: "",
-                    dataType: "json",
-                    data: {
-                        "user": user,
-                        "password": password
-                    },
-                    success: function (ret) {
-                        if (ret.code == 0) {
-                            window.location.href = 'home.html';
-                        } else {
-                            alert(ret.msg);
-                        }
-                    },
-                    error: function () {
-                        alert("网络访问出错！");
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>

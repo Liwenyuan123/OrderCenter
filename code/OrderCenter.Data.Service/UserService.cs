@@ -117,26 +117,27 @@ namespace OrderCenter.Data.Service
         //add userInfo
         public UserInfoSelfViewModel app_RegisterUser(app_RegisterViewModel modelView,out string Msg,out int Code)
         {
-            using (var db = new OrderCentDB())
+            using (var db = new PeiSongEntities())
             {
                 Msg = "操作失败";
-                O_UserInfo model = new O_UserInfo();
-                model.UID = Guid.NewGuid();
-                model.Phone = modelView.Phone;
-                model.UserName = modelView.UserName;
-                model.LoginID = modelView.LoginId;
-                model.PassWord = Encrypt_Helper_SF.UserMd5(modelView.PassWord.Trim()+"SF_Frame_app_8");
-                model.Address = modelView.Address;
-                model.State = (int)RecordState.NORMAL;
-                model.UserRole = UserRole.FRONT_END.ToString();
-                db.O_UserInfo.Add(model);
+                P_Person model = new P_Person();
+                model.PersonID = Guid.NewGuid().ToString("N");
+                model.LogID = modelView.LoginId;
+                model.PersonName = modelView.UserName;
+                model.PersonPhone = modelView.Phone;
+                model.PersonPwd = Encrypt_Helper_SF.UserMd5(modelView.PassWord.Trim()+"SF_Frame_app_8");
+                model.CompanyCode = "";// modelView.Address;
+                model.RoleType = 0;// (int)RecordState.NORMAL;
+                model.AccountBegin = DateTime.Now;
+                model.AccountEnd = DateTime.Now.AddDays(15);
+                db.P_Person.Add(model);
                 if (db.SaveChanges() > 0) Msg = "注册成功";
                 UserInfoSelfViewModel reModel = new UserInfoSelfViewModel();
-                reModel.UserUid = model.UID.ToString();
-                reModel.UserName = model.UserName;
-                reModel.LoginId = model.LoginID;
-                reModel.Phone = model.Phone;
-                reModel.Address = model.Address;
+                reModel.UserID = model.PersonID.ToString();
+                reModel.UserName = model.PersonName;
+                reModel.LoginId = model.LogID;
+                reModel.Phone = model.PersonPhone;
+                //reModel.Address = model.Address;
                 Code = (int)ReturnCode.OK;
                 return reModel;
             }
@@ -145,20 +146,20 @@ namespace OrderCenter.Data.Service
         public UserInfoSelfViewModel app_UserLogin(string loginID, string secretString, out string Msg,out int Code)
         {
 
-            using (var db = new OrderCentDB())
+            using (var db = new PeiSongEntities())
             {
-                var userInfo = db.O_UserInfo.Single(c => c.LoginID == loginID);
+                var userInfo = db.P_Person.Single(c => c.PersonID == loginID);
                 if (userInfo == null) { Msg = "用户不存在"; }
                 string pwd = Encrypt_Helper_SF.UserMd5(secretString.Trim() + "SF_Frame_app_8");
-                if (userInfo.PassWord != pwd) { Msg = "账号或密码错误"; }
+                if (userInfo.PersonPwd != pwd) { Msg = "账号或密码错误"; }
                 Msg = "登录成功";
                 Code = (int)ReturnCode.OK;
                 UserInfoSelfViewModel model = new UserInfoSelfViewModel();
-                model.UserUid = userInfo.UID.ToString();
-                model.LoginId = userInfo.LoginID;
-                model.Phone = userInfo.Phone;
-                model.Address = userInfo.Address;
-                model.UserName = userInfo.UserName;
+                model.UserID = userInfo.PersonID.ToString();
+                model.LoginId = userInfo.LogID;
+                model.Phone = userInfo.PersonPhone;
+               // model.Address = userInfo.Address;
+                model.UserName = userInfo.PersonName;
 
                 return model;
             }
@@ -167,23 +168,23 @@ namespace OrderCenter.Data.Service
 
         public List<UserManageViewModel> SelectUsers(string loginId, int userState, int pageIndex, out int pageTotal, out int pageCount,out string Msg,out int Code)
         {
-            Expression<Func<O_UserInfo, bool>> where = c => true;
+            Expression<Func<P_Person, bool>> where = c => true;
             if (!string.IsNullOrEmpty(loginId))
             {
-                where = where.And(c => c.UserName.Contains(loginId));
+                where = where.And(c => c.PersonName.Contains(loginId));
             }
             if (userState == 0 || userState == 1)
             {
-                where = where.And(c => c.State == userState);
+                where = where.And(c => c.AccountState == userState);
             }
 
-            using (var db = new OrderCentDB())
+            using (var db = new PeiSongEntities())
             {
                 //总条数
-                pageTotal = db.O_UserInfo.Where(where).Count();
+                pageTotal = db.P_Person.Where(where).Count();
                 //总页数
                 pageCount = Convert.ToInt32(Math.Ceiling((decimal)pageTotal / PageSize.Count));
-                var list = db.O_UserInfo.Where(where).Skip((pageIndex - 1) * PageSize.Count).Take(PageSize.Count).Select(t => new UserManageViewModel { Uid = t.UID.ToString(), LoginID = t.UserName, Phone = t.Phone, State = Enum.GetName(typeof(OrderState), Convert.ToInt32(t.State)) }).ToList();
+                var list = db.P_Person.Where(where).Skip((pageIndex - 1) * PageSize.Count).Take(PageSize.Count).Select(t => new UserManageViewModel { Uid = t.PersonID, LoginID = t.LogID, Phone = t.PersonPhone, State = Enum.GetName(typeof(OrderState), Convert.ToInt32(t.AccountState)) }).ToList();
                 Msg = "操作成功";
                 Code = (int)ReturnCode.OK;
                 return list;
@@ -195,16 +196,16 @@ namespace OrderCenter.Data.Service
         public List<UserManageViewModel> deleteUser(string uid,out string Msg,out int Code)
         {
             Msg = "操作失败";Code = (int)ReturnCode.OPERATION_FAILED;
-            using (var db = new OrderCentDB())
+            using (var db = new PeiSongEntities())
             {
                 List<UserManageViewModel> reList = new List<UserManageViewModel> ();
-                var model = db.O_UserInfo.FirstOrDefault(c => c.UID.ToString() == uid);
-                model.State = (int)RecordState.DELETE;
+                var model = db.P_Person.FirstOrDefault(c => c.PersonID.ToString() == uid);
+                model.AccountState = (int)RecordState.DELETE;
                 if( db.SaveChanges() > 0)
                 {
                     Msg = "操作成功";
                     Code = (int)ReturnCode.OK;
-                    reList = db.O_UserInfo.Where(c => c.State == (int)RecordState.NORMAL).Select(c=>new UserManageViewModel() { Uid=c.UID.ToString(), LoginID =c.LoginID, UserName=c.UserName,Phone = c.Phone }).ToList();
+                    reList = db.P_Person.Where(c => c.AccountState == (int)RecordState.NORMAL).Select(c=>new UserManageViewModel() { Uid=c.PersonID.ToString(), LoginID =c.LogID, UserName=c.PersonName,Phone = c.PersonPhone }).ToList();
                 }
                 
                 return reList;
@@ -214,18 +215,18 @@ namespace OrderCenter.Data.Service
         {
             Msg = "操作失败";
             Code = (int)ReturnCode.OPERATION_FAILED;
-            using (var db = new OrderCentDB())
+            using (var db = new PeiSongEntities())
             {
-                var model = db.O_UserInfo.FirstOrDefault(c => c.UID.ToString() == uid);
-                model.LoginID = loginId;
-                model.UserName = userName;
-                model.Phone = phone;
+                var model = db.P_Person.FirstOrDefault(c => c.PersonID == uid);
+                model.PersonID = loginId;
+                model.PersonName = userName;
+                model.PersonPhone= phone;
                 if(db.SaveChanges() > 0)
                 {
                     Msg = "修改成功";
                     Code = (int)ReturnCode.OK;
                 }
-                List<UserManageViewModel> list = db.O_UserInfo.Where(c => c.State == (int)RecordState.NORMAL).Select(c => new UserManageViewModel() { Uid = c.UID.ToString(), LoginID = c.LoginID, UserName = c.UserName, Phone = c.Phone,State= Enum.GetName(typeof(RecordState),c.State) }).ToList();
+                List<UserManageViewModel> list = db.P_Person.Where(c => c.AccountState== (int)RecordState.NORMAL).Select(c => new UserManageViewModel() { Uid = c.PersonID, LoginID = c.LogID, UserName = c.PersonName, Phone = c.PersonPhone,State= Enum.GetName(typeof(RecordState),c.AccountState) }).ToList();
                 return list;
             }
         }
@@ -233,11 +234,11 @@ namespace OrderCenter.Data.Service
         //updatePassWord
         public bool updatePassWord(string uid, string pwd,out string Msg)
         {
-            using (var db = new OrderCentDB())
+            using (var db = new PeiSongEntities())
             {
                 Msg = "操作失败";
-                var model = db.O_UserInfo.FirstOrDefault(c => c.UID.ToString() == uid);
-                model.PassWord = Encrypt_Helper_SF.UserMd5(pwd + "SF_Frame_app_8");
+                var model = db.P_Person.FirstOrDefault(c => c.PersonID.ToString() == uid);
+                model.PersonPwd = Encrypt_Helper_SF.UserMd5(pwd + "SF_Frame_app_8");
                 bool re = db.SaveChanges() > 0;
                 if (re) Msg = "修改成功";
                 return re;

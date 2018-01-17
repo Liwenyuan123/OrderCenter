@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PeiSongModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="P_CheckApply">
+    <Key>
+      <PropertyRef Name="ApplyID" />
+    </Key>
+    <Property Name="ApplyID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="PersonID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="CheckCode" Type="nvarchar" MaxLength="40" />
+    <Property Name="ApplyState" Type="int" />
+    <Property Name="TaskType" Type="int" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="P_CompanyRelation">
+    <Key>
+      <PropertyRef Name="RelationID" />
+    </Key>
+    <Property Name="RelationID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CompanyType" Type="int" />
+    <Property Name="OppositeCompanyCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="OppositeCompanyType" Type="int" />
+    <Property Name="RelationState" Type="int" Nullable="false" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="P_MenuLvl">
+    <Key>
+      <PropertyRef Name="MenuCode" />
+    </Key>
+    <Property Name="MenuCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ParentCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="MenuName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MenuUrl" Type="nvarchar" MaxLength="200" />
+    <Property Name="ShowOrder" Type="int" Nullable="false" />
+    <Property Name="MenuState" Type="int" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+    <Property Name="IcoPath" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="P_MiddleProduct">
+    <Key>
+      <PropertyRef Name="MProductID" />
+    </Key>
+    <Property Name="MProductID" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="MCompanyCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PCompanyCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProductID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductState" Type="int" Nullable="false" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="P_Order">
+    <Key>
+      <PropertyRef Name="OrderCode" />
+    </Key>
+    <Property Name="OrderCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="SendPerson" Type="nvarchar" MaxLength="40" />
+    <Property Name="SendCompany" Type="nvarchar" MaxLength="20" />
+    <Property Name="OrderTime" Type="datetime" />
+    <Property Name="ReceivePerson" Type="nvarchar" MaxLength="40" />
+    <Property Name="ReceiveCompany" Type="nvarchar" MaxLength="20" />
+    <Property Name="ReceiveTime" Type="datetime" />
+    <Property Name="ReProductPerson" Type="nvarchar" MaxLength="40" />
+    <Property Name="ReProductTime" Type="datetime" />
+    <Property Name="CheckPerson" Type="nvarchar" MaxLength="40" />
+    <Property Name="CheckTime" Type="datetime" />
+    <Property Name="OrderState" Type="int" Nullable="false" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="P_OrderList">
+    <Key>
+      <PropertyRef Name="DetailID" />
+    </Key>
+    <Property Name="DetailID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="OrderCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProductID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="PlanCount" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="RealCount" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductUnit" Type="nvarchar" MaxLength="10" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="P_OrderOtherCost">
+    <Key>
+      <PropertyRef Name="OrderCode" />
+      <PropertyRef Name="CostType" />
+    </Key>
+    <Property Name="OrderCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CostType" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cost" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="P_OrderRelation">
+    <Key>
+      <PropertyRef Name="RelationID" />
+    </Key>
+    <Property Name="RelationID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="SourceList" Type="text" Nullable="false" />
+    <Property Name="ObjectList" Type="text" Nullable="false" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="P_Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="LogID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="PersonName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="PersonPhoto" Type="nvarchar" MaxLength="40" />
+    <Property Name="PersonPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="PersonPwd" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="RoleType" Type="int" Nullable="false" />
+    <Property Name="AccountBegin" Type="datetime" Nullable="false" />
+    <Property Name="AccountEnd" Type="datetime" Nullable="false" />
+    <Property Name="AccountState" Type="int" Nullable="false" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+    <Property Name="MsgCode" Type="nvarchar" MaxLength="40" />
+    <Property Name="MobileType" Type="int" />
+  </EntityType>
+  <EntityType Name="P_PersonOrderOperate">
+    <Key>
+      <PropertyRef Name="OperateID" />
+    </Key>
+    <Property Name="OperateID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="OrderCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="OperatePersonID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="OrderState" Type="int" Nullable="false" />
+    <Property Name="OperateDes" Type="nvarchar" MaxLength="100" />
+    <Property Name="OperateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="P_ProductInfo">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CompanyCode" />
+    </Key>
+    <Property Name="ProductID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProductImage" Type="nvarchar" MaxLength="40" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductUnit" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="IsDivisible" Type="int" Nullable="false" />
+    <Property Name="ProductState" Type="int" Nullable="false" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="P_RelationApply">
+    <Key>
+      <PropertyRef Name="ApplyCode" />
+    </Key>
+    <Property Name="ApplyCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="SPersonID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="SCompanyCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="RCompanyCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ApplyType" Type="int" Nullable="false" />
+    <Property Name="ApplyState" Type="int" Nullable="false" />
+    <Property Name="ApplyContent" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CheckPerson" Type="nvarchar" MaxLength="40" />
+    <Property Name="CheckTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="P_RoleMenu">
+    <Key>
+      <PropertyRef Name="CompanyType" />
+      <PropertyRef Name="RoleType" />
+      <PropertyRef Name="MenuCode" />
+    </Key>
+    <Property Name="CompanyType" Type="int" Nullable="false" />
+    <Property Name="RoleType" Type="int" Nullable="false" />
+    <Property Name="MenuCode" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="S_AccountApply">
+    <Key>
+      <PropertyRef Name="ApplyCode" />
+    </Key>
+    <Property Name="ApplyCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CompanyAddress" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CompanyImage" Type="nvarchar" MaxLength="40" />
+    <Property Name="CompanyType" Type="int" Nullable="false" />
+    <Property Name="ApplyType" Type="int" Nullable="false" />
+    <Property Name="AccountCount" Type="int" Nullable="false" />
+    <Property Name="UseTime" Type="int" Nullable="false" />
+    <Property Name="LinkMan" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="LinkPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="15" />
+    <Property Name="TotalBalance" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="IsPaid" Type="int" Nullable="false" />
+    <Property Name="PayWay" Type="int" />
+    <Property Name="PayAccount" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="PayCode" Type="nvarchar" MaxLength="40" />
+    <Property Name="ApplyState" Type="int" Nullable="false" />
+    <Property Name="ApplyTime" Type="datetime" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="S_Company">
+    <Key>
+      <PropertyRef Name="CompanyCode" />
+    </Key>
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CompanyAddress" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CompanyImage" Type="nvarchar" MaxLength="40" />
+    <Property Name="LinkMan" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="LinkPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="15" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+    <Property Name="CompanyType" Type="int" />
+  </EntityType>
+  <EntityType Name="S_CompanyType">
+    <Key>
+      <PropertyRef Name="AccountTypeID" />
+    </Key>
+    <Property Name="AccountTypeID" Type="int" Nullable="false" />
+    <Property Name="AccountTypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="InUser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="S_File">
+    <Key>
+      <PropertyRef Name="FileID" />
+    </Key>
+    <Property Name="FileID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ProjectCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FileExt" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="FileLocation" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FileCompressLocation" Type="nvarchar" MaxLength="100" />
+    <Property Name="FileType" Type="int" Nullable="false" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="S_Message">
+    <Key>
+      <PropertyRef Name="MsgID" />
+    </Key>
+    <Property Name="MsgID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ReceiveID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ReceiverType" Type="int" Nullable="false" />
+    <Property Name="MsgTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="MsgContent" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MsgState" Type="int" Nullable="false" />
+    <Property Name="SendType" Type="int" Nullable="false" />
+    <Property Name="MsgType" Type="int" />
+    <Property Name="IsPay" Type="int" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“PeiSong.dbo.S_MsgType”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="S_MsgType">
+          <Property Name="TypeID" Type="int" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsPay" Type="int" />
+          <Property Name="IsInUse" Type="int" />
+        </EntityType>-->
+  <EntityType Name="S_PayWay">
+    <Key>
+      <PropertyRef Name="PayWayID" />
+    </Key>
+    <Property Name="PayWayID" Type="int" Nullable="false" />
+    <Property Name="PayWayName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="InUser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="S_Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ProductType" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProductState" Type="int" Nullable="false" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="S_ProductType">
+    <Key>
+      <PropertyRef Name="TypeCode" />
+    </Key>
+    <Property Name="TypeCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ShowOrder" Type="int" Nullable="false" />
+    <Property Name="NodeLevel" Type="int" Nullable="false" />
+    <Property Name="ParentCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="UniteCode" Type="nvarchar" MaxLength="400" Nullable="false" />
+  </EntityType>
+  <EntityType Name="S_Right">
+    <Key>
+      <PropertyRef Name="RightCode" />
+    </Key>
+    <Property Name="RightCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="RightName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="S_Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="RoleState" Type="int" Nullable="false" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="S_RoleRight">
+    <Key>
+      <PropertyRef Name="RoleID" />
+      <PropertyRef Name="RightCode" />
+    </Key>
+    <Property Name="RoleID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="RightCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="S_TimeApply">
+    <Key>
+      <PropertyRef Name="ApplyCode" />
+    </Key>
+    <Property Name="ApplyCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ApplyTime" Type="datetime" Nullable="false" />
+    <Property Name="TotalBalance" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="ApplyState" Type="int" />
+    <Property Name="IsPaid" Type="int" Nullable="false" />
+    <Property Name="PayWay" Type="int" />
+    <Property Name="PayAccount" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="PayCode" Type="nvarchar" MaxLength="40" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="S_TimeApplyDetail">
+    <Key>
+      <PropertyRef Name="ApplyDetailID" />
+    </Key>
+    <Property Name="ApplyDetailID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ApplyCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PersonID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="UseTime" Type="int" Nullable="false" />
+    <Property Name="BeginTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="S_User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="LogCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserPwd" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="UserImage" Type="nvarchar" MaxLength="40" />
+    <Property Name="Gender" Type="int" Nullable="false" />
+    <Property Name="UserPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="RoleID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="UserState" Type="int" Nullable="false" />
+    <Property Name="LastLoginTime" Type="datetime" />
+    <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Updator" Type="nvarchar" MaxLength="40" />
+    <Property Name="UpdateTime" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="PeiSongModelStoreContainer">
+    <EntitySet Name="P_CheckApply" EntityType="Self.P_CheckApply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="P_CompanyRelation" EntityType="Self.P_CompanyRelation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="P_MenuLvl" EntityType="Self.P_MenuLvl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="P_MiddleProduct" EntityType="Self.P_MiddleProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="P_Order" EntityType="Self.P_Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="P_OrderList" EntityType="Self.P_OrderList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="P_OrderOtherCost" EntityType="Self.P_OrderOtherCost" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="P_OrderRelation" EntityType="Self.P_OrderRelation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="P_Person" EntityType="Self.P_Person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="P_PersonOrderOperate" EntityType="Self.P_PersonOrderOperate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="P_ProductInfo" EntityType="Self.P_ProductInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="P_RelationApply" EntityType="Self.P_RelationApply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="P_RoleMenu" EntityType="Self.P_RoleMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_AccountApply" EntityType="Self.S_AccountApply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_Company" EntityType="Self.S_Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_CompanyType" EntityType="Self.S_CompanyType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_File" EntityType="Self.S_File" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_Message" EntityType="Self.S_Message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_PayWay" EntityType="Self.S_PayWay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_Product" EntityType="Self.S_Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_ProductType" EntityType="Self.S_ProductType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_Right" EntityType="Self.S_Right" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_Role" EntityType="Self.S_Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_RoleRight" EntityType="Self.S_RoleRight" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_TimeApply" EntityType="Self.S_TimeApply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_TimeApplyDetail" EntityType="Self.S_TimeApplyDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_User" EntityType="Self.S_User" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

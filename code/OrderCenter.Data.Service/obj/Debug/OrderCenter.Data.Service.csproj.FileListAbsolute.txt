@@ -4,6 +4,7 @@ F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\OrderCenter.Data.Ser
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\EntityFramework.dll
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\EntityFramework.SqlServer.dll
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\OrderCenter.Data.DTO.dll
+F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\Newtonsoft.Json.dll
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\OrderCenter.Data.DTO.pdb
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\EntityFramework.xml
 F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\EntityFramework.SqlServer.xml
@@ -12,5 +13,3 @@ F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\zh-Hans\EntityFramew
 F:\2222\ordercenter\code\OrderCenter.Data.Service\obj\Debug\OrderCenter.Data.Service.csprojResolveAssemblyReference.cache
 F:\2222\ordercenter\code\OrderCenter.Data.Service\obj\Debug\OrderCenter.Data.Service.dll
 F:\2222\ordercenter\code\OrderCenter.Data.Service\obj\Debug\OrderCenter.Data.Service.pdb
-F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\Newtonsoft.Json.dll
-F:\2222\ordercenter\code\OrderCenter.Data.Service\bin\Debug\Newtonsoft.Json.xml

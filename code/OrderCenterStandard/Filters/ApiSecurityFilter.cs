@@ -66,7 +66,16 @@ namespace OrderCenterStandard.Filters
                     return;
                 }
             }
-
+            if (actionContext.ActionDescriptor.ActionName == "GetCode")
+            {
+                base.OnActionExecuting(actionContext);
+                return;
+            }
+            if (actionContext.ActionDescriptor.ActionName == "loginIn")
+            {
+                base.OnActionExecuting(actionContext);
+                return;
+            }
 
             //判断请求头是否包含以下参数
             if (string.IsNullOrEmpty(staffid) || (!int.TryParse(staffid, out id) || string.IsNullOrEmpty(timestamp) || string.IsNullOrEmpty(nonce) || string.IsNullOrEmpty(signature)))

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
 namespace OrderCenter.Data.DTO.CommHelper
 {
@@ -11,20 +10,17 @@ namespace OrderCenter.Data.DTO.CommHelper
         /// <summary>
         /// 用户名
         /// </summary>
-        public int StaffId { get; set; }
+        public string StaffId { get; set; }
 
         /// <summary>
         /// 用户名对应签名Token
         /// </summary>
-        public Guid SignToken { get; set; }
+        public string SignToken { get; set; }
 
 
         /// <summary>
         /// Token过期时间
         /// </summary>
         public DateTime ExpireTime { get; set; }
-
-
-
     }
 }
