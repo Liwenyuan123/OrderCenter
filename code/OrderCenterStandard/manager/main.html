@@ -14,12 +14,9 @@
     <div id="containerLeft">
         <ul class="nav nav-pills nav-stacked">
             <li role="presentation" class=" active"><img src="../image/logo.png" /></li>
-
             <li role="presentation" class="changeColor">
                 <img src="../image/applications_system_24px.png" style="margin-left:6px;vertical-align: middle;" />
-                <span style="padding-left:5px;vertical-align: middle;" class="munLi">
-                系统管理
-                </span>
+                <span style="padding-left:5px;vertical-align: middle;" class="munLi">系统管理</span>
                 <ul class="menu_childen">
                     <li munUrl="order.html"><!--<img src="../image/list_16px.png" />--> 用户管理</li>
                     <li munUrl="order.html"><!--<img src="../image/list_16px.png" />-->权限管理</li>
@@ -27,9 +24,7 @@
             </li>
             <li role="presentation" >
                 <img src="../image/home_page_house_24px.png" style="margin-left:6px;vertical-align: middle;" />
-                <span style="padding-left:5px;vertical-align: middle;" class="munLi">
-                    企业管理
-                </span>
+                <span style="padding-left:5px;vertical-align: middle;" class="munLi">企业管理</span>
                 <ul class="menu_childen">
                     <li munUrl="companyApply.html"><!--<img src="../image/list_16px.png" />-->企业账号申请</li>
                     <li munUrl="user.html"><!--<img src="../image/list_16px.png" />-->申请审核</li>
@@ -38,23 +33,22 @@
             </li>
         </ul>
     </div>
-    <div id="container">
-
-        <div id="hd">
-            <div class="col-md-10 title"></div>
-            <div class="col-md-1 userInfo">
-                <span class="glyphicon glyphicon-user" arial-hidden="true"></span>
-                <span class="userName dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span id="sys_name">Taylor</span></span>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-                    <li>用户名：</li>
-                    <li><span type="button" class="revise btn btn-default" data-toggle="modal" data-target="#revise">修改密码</span></li>
-                </ul>
-            </div>
-            <div class="col-md-1 userInfo">
-                <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
-                <span class="logout">退出</span>
-            </div>
+    <div id="hd">
+        <div class="col-md-10 title"></div>
+        <div class="col-md-1 userInfo">
+            <span class="glyphicon glyphicon-user" arial-hidden="true"></span>
+            <span class="userName dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span id="sys_name">Taylor</span></span>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                <li>用户名：</li>
+                <li><span type="button" class="revise btn btn-default" data-toggle="modal" data-target="#revise">修改密码</span></li>
+            </ul>
         </div>
+        <div class="col-md-1 userInfo">
+            <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+            <span class="logout">退出</span>
+        </div>
+    </div>
+    <div id="containerRight">        
         <div id="bd" style="overflow-x:hidden;overflow-y:hidden;">
             <iframe id="mainIframe" frameborder="0" style="overflow-x: hidden;overflow-y:hidden; width:100%" scrolling="no"></iframe>
         </div>

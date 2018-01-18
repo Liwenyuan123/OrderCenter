@@ -8,6 +8,12 @@
     height: 100%;
     float: left;
 }
+#containerRight {
+    position: relative;
+    width: 87%;
+    height: 100%;
+    float: right;
+}
 /*左侧导航*/
 .nav {
     width: 12%;
