@@ -113,36 +113,76 @@ namespace OrderCenter.Data.Service
 
 
 
-
-        //add userInfo
-        public UserInfoSelfViewModel app_RegisterUser(app_RegisterViewModel modelView,out string Msg,out int Code)
+        //select all usersInfo
+        public List<S_User> SelectUsers(string loginName,int userState,int pageIndex,int pageSize,out int pageTotal,out string error_msg,out int error_code)
         {
+            error_msg = "操作失败";
+            error_code = (int)ReturnCode.OPERATION_FAILED;
+            List<S_User> userList = new List<S_User>();
+            using(var db = new PeiSongEntities())
+            {
+                pageTotal = db.S_User.Where(c => c.LogCode == loginName && c.UserState == userState).Count();
+                userList = db.S_User.Where(c => c.LogCode == loginName && c.UserState == userState).OrderByDescending(c=>c.CreateTime).Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            }
+            return userList;
+        }
+        //add userInfo
+        public bool AddUser(UserViewModel modelView,out string error_msg,out int error_code)
+        {
+            bool returnValue = false;
+            error_msg = "操作失败";
+            error_code = (int)ReturnCode.OPERATION_FAILED;
             using (var db = new PeiSongEntities())
             {
-                Msg = "操作失败";
-                P_Person model = new P_Person();
-                model.PersonID = Guid.NewGuid().ToString("N");
-                model.LogID = modelView.LoginId;
-                model.PersonName = modelView.UserName;
-                model.PersonPhone = modelView.Phone;
-                model.PersonPwd = Encrypt_Helper_SF.UserMd5(modelView.PassWord.Trim()+"SF_Frame_app_8");
-                model.CompanyCode = "";// modelView.Address;
-                model.RoleType = 0;// (int)RecordState.NORMAL;
-                model.AccountBegin = DateTime.Now;
-                model.AccountEnd = DateTime.Now.AddDays(15);
-                db.P_Person.Add(model);
-                if (db.SaveChanges() > 0) Msg = "注册成功";
-                UserInfoSelfViewModel reModel = new UserInfoSelfViewModel();
-                reModel.UserID = model.PersonID.ToString();
-                reModel.UserName = model.PersonName;
-                reModel.LoginId = model.LogID;
-                reModel.Phone = model.PersonPhone;
-                //reModel.Address = model.Address;
-                Code = (int)ReturnCode.OK;
-                return reModel;
+               
+                S_User model = new S_User();
+                model.UserID = Guid.NewGuid().ToString("N");
+                model.LogCode = modelView.LoginId;
+                model.UserPwd = Encrypt_Helper_SF.UserMd5(modelView.UserPwd.Trim() + "SF_Frame_app_8");
+                model.UserName = modelView.UserName;
+                model.Gender = modelView.Gender; 
+                model.UserPhone = modelView.UserPhone;
+                model.RoleID = "0";// (int)RecordState.NORMAL;
+                model.UserState = (int)UserState.NORMAL;
+                model.Creator = modelView.Creator;
+                model.CreateTime = DateTime.Now;
+                db.S_User.Add(model);
+                if (db.SaveChanges() > 0)
+                {
+                    error_msg = "添加成功";
+                    error_code = (int)ReturnCode.OK;
+                    returnValue = true;
+                    
+                }
+                return returnValue;
             }
         }
 
+        public bool UpdateUser(UserViewModel modelView,out string error_msg,out int error_code)
+        {
+            bool returnValue = false;
+            error_msg = "操作失败";
+            error_code = (int)ReturnCode.OPERATION_FAILED;
+            using (var db = new PeiSongEntities())
+            {
+                S_User model =db.S_User.FirstOrDefault(c=>c.UserID == modelView.UserID);
+                model.LogCode = modelView.LoginId;
+                model.UserName = modelView.UserName;
+                model.Gender = modelView.Gender;
+                model.UserPhone = modelView.UserPhone;// modelView.Address;
+                model.RoleID = modelView.RoleID;// (int)RecordState.NORMAL;
+                model.UserState = modelView.UserState;
+                model.Updator = modelView.Updator;
+                model.UpdateTime =DateTime.Now;
+                if (db.SaveChanges() > 0)
+                {
+                    error_msg = "添加成功";
+                    error_code = (int)ReturnCode.OK;
+                    returnValue = true;                   
+                }
+                return returnValue;
+            }
+        }
         public UserInfoSelfViewModel app_UserLogin(string loginID, string secretString, out string Msg,out int Code)
         {
 
@@ -166,7 +206,7 @@ namespace OrderCenter.Data.Service
 
         }
 
-        public List<UserManageViewModel> SelectUsers(string loginId, int userState, int pageIndex, out int pageTotal, out int pageCount,out string Msg,out int Code)
+        public List<UserManageViewModel> selectUsers(string loginId, int userState, int pageIndex, out int pageTotal, out int pageCount,out string Msg,out int Code)
         {
             Expression<Func<P_Person, bool>> where = c => true;
             if (!string.IsNullOrEmpty(loginId))
@@ -192,23 +232,22 @@ namespace OrderCenter.Data.Service
             }
         }
 
-        //delete user
-        public List<UserManageViewModel> deleteUser(string uid,out string Msg,out int Code)
+        //update UserState
+        public bool UpdateUserState(string userID,int userState,out string error_msg,out int error_code)
         {
-            Msg = "操作失败";Code = (int)ReturnCode.OPERATION_FAILED;
+            error_msg = "操作失败";
+            error_code = (int)ReturnCode.OPERATION_FAILED;
             using (var db = new PeiSongEntities())
             {
-                List<UserManageViewModel> reList = new List<UserManageViewModel> ();
-                var model = db.P_Person.FirstOrDefault(c => c.PersonID.ToString() == uid);
-                model.AccountState = (int)RecordState.DELETE;
+                var model = db.S_User.FirstOrDefault(c => c.UserID == userID);
+                model.UserState = userState;
                 if( db.SaveChanges() > 0)
                 {
-                    Msg = "操作成功";
-                    Code = (int)ReturnCode.OK;
-                    reList = db.P_Person.Where(c => c.AccountState == (int)RecordState.NORMAL).Select(c=>new UserManageViewModel() { Uid=c.PersonID.ToString(), LoginID =c.LogID, UserName=c.PersonName,Phone = c.PersonPhone }).ToList();
-                }
-                
-                return reList;
+                    error_msg = "操作成功";
+                    error_code = (int)ReturnCode.OK;
+                    return true;
+                }                
+                return false;
             }
         }
         public List<UserManageViewModel> updateUser(string uid,string loginId,string userName,string phone,out string Msg,out int Code)

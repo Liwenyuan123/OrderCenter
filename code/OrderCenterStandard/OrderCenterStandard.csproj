@@ -199,7 +199,7 @@
     <Compile Include="Controllers\CodeController.cs" />
     <Compile Include="Controllers\loginController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
-    <Compile Include="Controllers\UserManageController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Filters\ApiSecurityFilter.cs" />
     <Compile Include="Global.asax.cs">

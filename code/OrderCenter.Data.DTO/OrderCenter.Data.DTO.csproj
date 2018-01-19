@@ -44,7 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="app_RegisterViewModel.cs" />
+    <Compile Include="CompanyApplyViewModel.cs" />
+    <Compile Include="UserViewModel.cs" />
     <Compile Include="CommHelper\Encrypt_Helper_SF.cs" />
     <Compile Include="CommHelper\EnumExtension.cs" />
     <Compile Include="CommHelper\HttpResponseExtension.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="ViewEnum\PageSize.cs" />
     <Compile Include="ViewEnum\RecordState.cs" />
     <Compile Include="ViewEnum\UserRole.cs" />
+    <Compile Include="ViewEnum\UserState.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

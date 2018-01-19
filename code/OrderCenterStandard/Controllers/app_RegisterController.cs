@@ -19,7 +19,7 @@ namespace OrderCenterStandard.Controllers
         {
             var s = Convert.ToString(query);
             //check args
-            app_RegisterViewModel model = Newtonsoft.Json.JsonConvert.DeserializeObject<app_RegisterViewModel>(s);
+            UserViewModel model = Newtonsoft.Json.JsonConvert.DeserializeObject<UserViewModel>(s);
             string Msg = "true";
             int Code = -1;
             //login and get user info
